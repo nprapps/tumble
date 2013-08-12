@@ -13,7 +13,7 @@ class Row(object):
     Wraps a row of copy for error handling.
     """
     _sheet = None
-    _row = {} 
+    _row = {}
     _index = 0
 
     def __init__(self, sheet, data, index):
@@ -153,8 +153,8 @@ class Copy(object):
         """
         import json
 
-        obj = {}    
-    
+        obj = {}
+
         for name, sheet in self._copy.items():
             if 'key' in sheet._columns:
                 obj[name] = {}
@@ -163,8 +163,8 @@ class Copy(object):
                     obj[name][row['key']] = row._row['value']
             else:
                 obj[name] = []
-                
+
                 for row in sheet:
                     obj[name].append(row._row)
-            
+
         return json.dumps(obj)

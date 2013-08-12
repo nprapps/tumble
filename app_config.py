@@ -23,7 +23,7 @@ PROJECT_SLUG = '$NEW_PROJECT_SLUG'
 # The name of the repository containing the source
 REPOSITORY_NAME = '$NEW_REPOSITORY_NAME'
 REPOSITORY_URL = 'git@github.com:nprapps/%s.git' % REPOSITORY_NAME
-REPOSITORY_ALT_URL = None # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME'
+REPOSITORY_ALT_URL = None  # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME'
 
 # The name to be used in paths on the server
 PROJECT_FILENAME = '$NEW_PROJECT_FILENAME'
@@ -81,7 +81,7 @@ LOG_PATH = '/var/log/%s.log' % PROJECT_FILENAME
 """
 COPY EDITING
 """
-COPY_GOOGLE_DOC_KEY = '0AlXMOHKxzQVRdHZuX1UycXplRlBfLVB0UVNldHJYZmc'
+COPY_GOOGLE_DOC_KEY = '0AjWpFWKpoFHqdHYtS1lnWjZqTlBPbXFmcDYwZ1BNbGc'
 
 """
 SHARING
@@ -170,11 +170,11 @@ def configure_targets(deployment_target):
         SERVERS = STAGING_SERVERS
         SERVER_BASE_URL = 'http://%s/%s' % (SERVERS[0], PROJECT_SLUG)
         DEBUG = True
-        
+
         TUMBLR_URL = 'staging-%s.tumblr.com' % PROJECT_SLUG
         TUMBLR_BLOG_ID = 'staging-%s' % PROJECT_SLUG
     else:
-        S3_BUCKETS = [] 
+        S3_BUCKETS = []
         S3_BASE_URL = 'http://127.0.0.1:8000'
         SERVERS = []
         SERVER_BASE_URL = 'http://127.0.0.1:8001/%s' % PROJECT_SLUG

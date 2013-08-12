@@ -9,8 +9,8 @@ from jinja2 import Template
 
 import app
 import app_config
+import copytext
 from etc import github
-import tumblr_utils
 
 """
 Base configuration
@@ -47,7 +47,7 @@ def staging():
 def development():
     env.settings = 'development'
     app_config.configure_targets(None)
-    env.hosts = app_config.SERVERS 
+    env.hosts = app_config.SERVERS
 
 """
 Fabcasting! Run commands on the remote server.
@@ -201,12 +201,6 @@ def render():
         with open(filename, 'w') as f:
             f.write(content.encode('utf-8'))
 
-def tests():
-    """
-    Run Python unit tests.
-    """
-    local('nosetests')
-
 """
 Setup
 
@@ -285,14 +279,6 @@ def install_requirements():
     run('%(SERVER_VIRTUALENV_PATH)s/bin/pip install -U -r %(SERVER_REPOSITORY_PATH)s/requirements.txt' % app_config.__dict__)
     run('cd %(SERVER_REPOSITORY_PATH)s; npm install less universal-jst -g --prefix node_modules' % app_config.__dict__)
 
-def install_crontab():
-    """
-    Install cron jobs script into cron.d.
-    """
-    require('settings', provided_by=[production, staging])
-
-    sudo('cp %(SERVER_REPOSITORY_PATH)s/crontab /etc/cron.d/%(PROJECT_FILENAME)s' % app_config.__dict__)
-
 def uninstall_crontab():
     """
     Remove a previously install cron jobs script from cron.d
@@ -310,49 +296,6 @@ def bootstrap_issues():
     github.create_labels(auth)
     github.create_tickets(auth)
     github.create_milestones(auth)
-
-def create_log_file():
-    """
-    Creates the log file for recording Tumblr POSTs.
-    """
-    sudo('touch %s' % app_config.LOG_PATH)
-    sudo('chown ubuntu %s' % app_config.LOG_PATH)
-
-def install_scout_plugins():
-    """
-    Install plugins to Scout.
-    """
-    with settings(warn_only=True):
-        run('ln -s %(SERVER_REPOSITORY_PATH)s/scout/*.rb ~/.scout' % app_config.__dict__)
-
-def generate_new_oauth_tokens():
-    tumblr_utils.generate_new_oauth_tokens()
-
-"""
-Deployment
-
-Changes to deployment requires a full-stack test. Deployment
-has two primary functions: Pushing flat files to S3 and deploying
-code to a remote server if required. It may also generate a theme
-file for tumblr.
-"""
-def _deploy_to_s3():
-    """
-    Deploy the gzipped stuff to S3.
-    """
-    s3cmd = 's3cmd -P --add-header=Cache-Control:max-age=5 --guess-mime-type --recursive --exclude-from gzip_types.txt sync gzip/ %s'
-    s3cmd_gzip = 's3cmd -P --add-header=Cache-Control:max-age=5 --add-header=Content-encoding:gzip --guess-mime-type --recursive --exclude "*" --include-from gzip_types.txt sync gzip/ %s'
-
-    for bucket in app_config.S3_BUCKETS:
-        local(s3cmd % ('s3://%s/%s/' % (bucket, app_config.PROJECT_SLUG)))
-        local(s3cmd_gzip % ('s3://%s/%s/' % (bucket, app_config.PROJECT_SLUG)))
-
-def _gzip_www():
-    """
-    Gzips everything in www and puts it all in gzip
-    """
-    local('python gzip_www.py')
-    local('rm -rf gzip/live-data')
 
 """
 Bits about the Tumblr theme.
@@ -389,111 +332,6 @@ def copy_theme():
     render_theme()
     local('pbcopy < tumblr-theme.html')
 
-
-"""
-Bits about the server config files.
-"""
-def _get_template_conf_path(service, extension):
-    """
-    Derive the path for a conf template file.
-    """
-    return 'confs/%s.%s' % (service, extension)
-
-def _get_rendered_conf_path(service, extension):
-    """
-    Derive the rendered path for a conf file.
-    """
-    return 'confs/rendered/%s.%s.%s' % (app_config.PROJECT_FILENAME, service, extension)
-
-def _get_installed_conf_path(service, remote_path, extension):
-    """
-    Derive the installed path for a conf file.
-    """
-    return '%s/%s.%s.%s' % (remote_path, app_config.PROJECT_FILENAME, service, extension)
-
-def _get_installed_service_name(service):
-    """
-    Derive the init service name for an installed service.
-    """
-    return '%s.%s' % (app_config.PROJECT_FILENAME, service)
-
-def _get_service_log_path(service):
-    """
-    Derive a log path for a service.
-    """
-    return '/var/log/%s.%s.log' % (app_config.PROJECT_FILENAME, service)
-
-def _get_service_socket_path(service):
-    """
-    Derive a socket path for a service.
-    """
-    return ('/tmp/%s.%s.sock' % (app_config.PROJECT_FILENAME, service))
-
-def render_confs():
-    """
-    Renders server configurations.
-    """
-    require('settings', provided_by=[production, staging])
-
-    with settings(warn_only=True):
-        local('mkdir confs/rendered')
-
-    # Copy the app_config so that when we load the secrets they don't
-    # get exposed to other management commands
-    context = copy.copy(app_config.__dict__)
-    context.update(app_config.get_secrets())
-
-    for service, remote_path, extension in app_config.SERVER_SERVICES:
-        template_path = _get_template_conf_path(service, extension)
-        rendered_path = _get_rendered_conf_path(service, extension)
-
-        with open(template_path,  'r') as read_template:
-
-            with open(rendered_path, 'wb') as write_template:
-                payload = Template(read_template.read())
-                write_template.write(payload.render(**context))
-
-def deploy_confs():
-    """
-    Deploys rendered server configurations to the specified server.
-    This will reload nginx and the appropriate uwsgi config.
-    """
-    require('settings', provided_by=[production, staging])
-
-    render_confs()
-
-    with settings(warn_only=True):
-        for service, remote_path, extension in app_config.SERVER_SERVICES:
-            rendered_path = _get_rendered_conf_path(service, extension)
-            installed_path = _get_installed_conf_path(service, remote_path, extension)
-
-            a = local('md5 -q %s' % rendered_path, capture=True)
-            b = run('md5sum %s' % installed_path).split()[0]
-
-            if a != b:
-                print 'Updating %s' % installed_path
-                put(rendered_path, installed_path, use_sudo=True)
-
-                if service == 'nginx':
-                    sudo('service nginx reload')
-                elif service == 'uwsgi':
-
-                    service_name = _get_installed_service_name(service)
-                    sudo('initctl reload-configuration')
-                    sudo('service %s restart' % service_name)
-                elif service == 'app':
-                    socket_path = _get_service_socket_path(service)
-                    run('touch %s' % socket_path)
-                    sudo('chmod 644 %s' % socket_path)
-                    sudo('chown www-data:www-data %s' % socket_path)
-
-                    log_path = _get_service_log_path(service)
-                    sudo('touch %s' % log_path)
-                    sudo('chmod 644 %s' % log_path)
-                    sudo('chown www-data:www-data %s' % log_path)
-            else:
-                print '%s has not changed' % rendered_path
-
 def deploy(remote='origin'):
     """
     Deploy the latest app to S3 and, if configured, to our servers.
@@ -519,30 +357,26 @@ def deploy(remote='origin'):
     _gzip_www()
     _deploy_to_s3()
 
-def write_json_data():
+def setup_tumblrs():
     """
-    Writes JSON file to www/live-data/.
+    If they don't exist, create/copy the files for this tumblog.
     """
-    tumblr_utils.write_json_data()
+    for row in copytext.Copy()['tumblr-index']:
+        local('mkdir -p tumblrs/%s' % row.value)
+        local('touch tumblrs/%s/app.js' % row.value)
+        local('touch tumblrs/%s/app.less' % row.value)
 
-def deploy_json_data():
-    """
-    Deploys JSON file to S3.
-    """
-    write_json_data()
-    tumblr_utils.deploy_json_data(app_config.S3_BUCKETS)
+        try:
+            with open('tumblrs/%s/modernizr.js' % row.value):
+                pass
+        except IOError:
+            local('cp www/js/lib/modernizr.js tumblrs/%s/modernizr.js' % row.value)
 
-"""
-Cron jobs
-"""
-def cron_test():
-    """
-    Example cron task. Note we use "local" instead of "run"
-    because this will run on the server.
-    """
-    require('settings', provided_by=[production, staging])
-
-    local('echo $DEPLOYMENT_TARGET > /tmp/cron_test.txt')
+        try:
+            with open('tumblrs/%s/modernizr.js' % row.value):
+                pass
+        except IOError:
+            local('cp templates/tumblr-theme.html.tpl tumblrs/%s/tumblr-theme.html.tpl' % row.value)
 
 """
 Destruction
@@ -556,32 +390,6 @@ def _confirm(message):
 
     if answer.lower() not in ('y', 'yes', 'buzz off', 'screw you'):
         exit()
-
-def nuke_confs():
-    """
-    DESTROYS rendered server configurations from the specified server.
-    This will reload nginx and stop the uwsgi config.
-    """
-    require('settings', provided_by=[production, staging])
-
-    for service, remote_path, extension in app_config.SERVER_SERVICES:
-        with settings(warn_only=True):
-            installed_path = _get_installed_conf_path(service, remote_path, extension)
-
-            sudo('rm -f %s' % installed_path)
-            
-            if service == 'nginx':
-                sudo('service nginx reload')
-            elif service == 'uwsgi':
-                service_name = _get_installed_service_name(service)
-                sudo('service %s stop' % service_name)
-                sudo('initctl reload-configuration')
-            elif service == 'app':
-                socket_path = _get_service_socket_path(service)
-                sudo('rm %s' % socket_path)
-
-                log_path = _get_service_log_path(service)
-                sudo('rm %s' % log_path)
 
 def shiva_the_destroyer():
     """
@@ -617,8 +425,8 @@ def app_template_bootstrap(project_name=None, repository_name=None):
 
     config = {}
     config['$NEW_PROJECT_SLUG'] = os.getcwd().split('/')[-1]
-    config['$NEW_PROJECT_NAME'] = project_name or config['$NEW_PROJECT_SLUG'] 
-    config['$NEW_REPOSITORY_NAME'] = repository_name or config['$NEW_PROJECT_SLUG'] 
+    config['$NEW_PROJECT_NAME'] = project_name or config['$NEW_PROJECT_SLUG']
+    config['$NEW_REPOSITORY_NAME'] = repository_name or config['$NEW_PROJECT_SLUG']
     config['$NEW_PROJECT_FILENAME'] = config['$NEW_PROJECT_SLUG'].replace('-', '_')
 
     _confirm("Have you created a Github repository named \"%s\"?" % config['$NEW_REPOSITORY_NAME'])

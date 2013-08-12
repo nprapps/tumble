@@ -13,44 +13,6 @@ from render_utils import flatten_app_config, make_context
 
 app = Flask(app_config.PROJECT_NAME)
 
-# Example application views
-@app.route('/')
-def index():
-    """
-    Example view demonstrating rendering a simple HTML page.
-    """
-    return render_template('index.html', **make_context())
-
-@app.route('/widget.html')
-def widget():
-    """
-    Embeddable widget example page.
-    """
-    return render_template('widget.html', **make_context())
-
-@app.route('/test_widget.html')
-def test_widget():
-    """
-    Example page displaying widget at different embed sizes.
-    """
-    return render_template('test_widget.html', **make_context())
-
-@app.route('/tumblr-form.html')
-def tumblr_form():
-    """
-    Example page displaying widget at different embed sizes.
-    """
-    return render_template('tumblr-form.html', **make_context())
-
-
-@app.route('/test/test.html')
-def test_dir():
-    return render_template('index.html', **make_context())
-
-# Render Tumblr theme
-@app.route('/tumblr-theme.html')
-def _tumblr_theme():
-    return render_template('tumblr-theme.html', **make_context())
 
 # Render LESS files on-demand
 @app.route('/less/<string:filename>')
@@ -63,14 +25,16 @@ def _less(filename):
 
     r = envoy.run('node_modules/.bin/lessc -', data=less)
 
-    return r.std_out, 200, { 'Content-Type': 'text/css' }
+    return r.std_out, 200, {'Content-Type': 'text/css'}
+
 
 # Render JST templates on-demand
 @app.route('/js/templates.js')
 def _templates_js():
     r = envoy.run('node_modules/.bin/jst --template underscore jst')
 
-    return r.std_out, 200, { 'Content-Type': 'application/javascript' }
+    return r.std_out, 200, {'Content-Type': 'application/javascript'}
+
 
 # Render application configuration
 @app.route('/js/app_config.js')
@@ -78,21 +42,23 @@ def _app_config_js():
     config = flatten_app_config()
     js = 'window.APP_CONFIG = ' + json.dumps(config)
 
-    return js, 200, { 'Content-Type': 'application/javascript' }
+    return js, 200, {'Content-Type': 'application/javascript'}
+
 
 # Render copytext
 @app.route('/js/copy.js')
 def _copy_js():
     copy = 'window.COPY = ' + copytext.Copy().json()
 
-    return copy, 200, { 'Content-Type': 'application/javascript' }
+    return copy, 200, {'Content-Type': 'application/javascript'}
+
 
 # Server arbitrary static files on-demand
 @app.route('/<path:path>')
 def _static(path):
     try:
         with open('www/%s' % path) as f:
-            return f.read(), 200, { 'Content-Type': guess_type(path)[0] }
+            return f.read(), 200, {'Content-Type': guess_type(path)[0]}
     except IOError:
         abort(404)
 
@@ -116,6 +82,7 @@ def urlencode_filter(s):
     s = urllib.quote_plus(s)
 
     return Markup(s)
+
 
 if __name__ == '__main__':
     import argparse
