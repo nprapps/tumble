@@ -17,7 +17,7 @@ app = Flask(app_config.PROJECT_NAME)
 
 
 # Render tumblr theme
-@app.route('/<slug>/index.html')
+@app.route('/<string:slug>/index.html')
 def _render_tumblr_theme(slug, target=None):
     """
     Render out the tumblr theme.
@@ -65,17 +65,22 @@ def _render_tumblr_theme(slug, target=None):
     return render_template_string(template_string, **context)
 
 # Render LESS files on-demand
-@app.route('/less/<string:filename>')
-def _less(filename):
+@app.route('/<string:slug>/<string:filename>.less.css')
+def _less(slug, filename):
+    lessfile = 'tumblrs/%s/%s.less' % (slug, filename)
+
     try:
-        with open('less/%s' % filename) as f:
-            less = f.read()
+        with open(lessfile, 'rb') as readfile:
+            pass
     except IOError:
         abort(404)
 
-    r = envoy.run('node_modules/.bin/lessc -', data=less)
+    r = envoy.run('node_modules/bin/lessc %s %s' % (lessfile, lessfile + '.css'))
 
-    return r.std_out, 200, {'Content-Type': 'text/css'}
+    with open(lessfile + '.css', 'rb') as readfile:
+        output = readfile.read()
+
+    return output, 200, {'Content-Type': 'text/css'}
 
 
 # Render JST templates on-demand

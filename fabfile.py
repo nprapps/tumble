@@ -376,6 +376,12 @@ def shiva_the_destroyer():
             if app_config.DEPLOY_SERVICES:
                 nuke_confs()
 
+
+def bootstrap():
+    local('mkvirtualenv --no-site-packages tumble')
+    local('pip install -r requirements.txt')
+    local('npm install less universal-jst -g --prefix node_modules')
+
 """
 App-template specific setup. Not relevant after the project is running.
 """
