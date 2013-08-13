@@ -90,7 +90,7 @@ workon tumble
 ./app.py
 ```
 
-Visit localhost:8000/<tumblr-slug>/index.html in your browser. Here's Ari Shapiro's Tumblog: [localhost:8000/ari-whitehouse/index.html](http://localhost:8000/ari-whitehouse/index.html).
+Visit ``localhost:8000/<tumblr-slug>/index.html`` in your browser. Here's Ari Shapiro's Tumblog: [localhost:8000/ari-whitehouse/index.html](http://localhost:8000/ari-whitehouse/index.html).
 
 Editing workflow
 -------------------
