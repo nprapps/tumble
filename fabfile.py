@@ -175,18 +175,15 @@ def render(slug=None):
             slugs.append(str(row.value))
 
     if len(slugs) > 0:
-        app_config.configure_targets(env.get('settings', None))
 
         for slug in slugs:
             less(initial_path="%s" % slug)
             with app.app.test_request_context(path=slug):
                 view = app.__dict__['_render_tumblr_theme']
-                content = view(slug, env.settings)
+                content = view(slug)
 
                 with open('tumblrs/%s/theme.html' % slug, 'wb') as writefile:
                     writefile.write(content.encode('utf-8'))
-
-        app_config.configure_targets(app_config.DEPLOYMENT_TARGET)
 
 """
 Setup

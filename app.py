@@ -18,7 +18,7 @@ app = Flask(app_config.PROJECT_NAME)
 
 # Render tumblr theme
 @app.route('/<string:slug>/index.html')
-def _render_tumblr_theme(slug, target=None):
+def _render_tumblr_theme(slug):
     """
     Render out the tumblr theme.
     When handled as an URL, gets target=None.
@@ -38,7 +38,7 @@ def _render_tumblr_theme(slug, target=None):
     for extension in ['*.js', '*.css', '*.png']:
         for path in glob('tumblrs/%s/%s' % (slug, extension)):
             filename = path.split('/')[2]
-            if target == 'production':
+            if app_config.DEPLOYMENT_TARGET == 'production':
                 template = {
                     '*.js': '<script type="text/javascript">%s</script>',
                     '*.css': '<style type="text/css">%s</style>',
