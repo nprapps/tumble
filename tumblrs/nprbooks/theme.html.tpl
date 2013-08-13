@@ -71,9 +71,11 @@
                 <header class="span3">
                     <div id="blog_info">
                         <div class="fix-wrap">
-                            <h2 class="npr"><a href="http://npr.org"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></h2>
                             {block:IfShowBlogTitle}
-                            <h1><a href="/"><img class="visible-tablet visible-desktop" src="{{ STATIC_URL }}img/header-lg.png" /><img class="visible-phone" src="{{ STATIC_URL }}img/header-sm.png" /></a></h1>
+                            
+                            {{ static['header-lg.png'] }}
+                            
+                            <h1><a href="/"><img class="visible-tablet visible-desktop" src="{{ STATIC_URL }}header-lg.png" /><img class="visible-phone" src="{{ STATIC_URL }}header-sm.png" /></a></h1>
                             {/block:IfShowBlogTitle}
                             <p>{Description}</p>
                         </div>

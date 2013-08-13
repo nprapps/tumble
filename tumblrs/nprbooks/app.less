@@ -16,7 +16,7 @@ body {
 }
 
 #blog_info {
-    text-align: right;
+//    text-align: right;
     position: fixed;
     width: 100%;
     max-width: 960px;
@@ -36,6 +36,8 @@ body {
         color: @musicMedium;
         -webkit-font-smoothing: antialiased;
     }
+    
+    a { color: #83a1dd; }
 
     .fix-wrap {
         width: 23.076923076923077%;
@@ -251,13 +253,8 @@ body {
         }
 
         .tags {
-            position: absolute;
-            bottom: 0;
-            right: 0;
+            margin-top: 11px;
 
-            @media @screen-tiny {
-                position: static;
-            }
             .tag {
                 display: inline-block;
                 position: relative;
@@ -268,9 +265,7 @@ body {
                 padding: 3px 5px;
                 margin-left: 5px;
 
-                &:first-child {
-                    margin-left: 0;
-                }
+                &:first-child { margin-left: 0; }
 
                 &:hover {
                     background: @primaryControl;
