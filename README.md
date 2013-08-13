@@ -118,6 +118,13 @@ Note: ``update_copy`` runs automatically whenever ``fab render`` is called.
 
 At the Tumblr template level, you can embed copytext like ``copy.key_that_i_want``, where copy is the slug of the current Tumblog, and key_that_i_want is the value of the first column.
 
+Template tags
+--------------
+You'll have two basic needs for injecting content into the Tumblr theme.
+
+First, you might want to inject a static file, e.g., CSS/JS or a PNG image from the Tumblr's folder. You can do that with the ``{{ static }}`` template tag. To inject an image called ``header.png``, copy that image into the ``tumblrs/<tumblr-slug>/`` folder and then add a template tag in the template like this: ``{{ static['header.png'] }}``. This template tag will insert a reference to localhost if you're developing locally, or it will insert a rendered out version of the file if you're preparing for production.
+
+Second, you might want a key/value from this Tumblr's sheet in the Google doc. You can do that with the ``{{ copy }}`` template tag. To inject a key called ``og_description`` containing the social media description for this Tumblr, add the key/value you want to the correct Google doc sheet. Then, use this tag: ``{{ copy.og_description }}``. You can also use ``{{ copy['og_description'] }}`` if you have a key with a ``.`` in the name.
 
 Render a theme for local development
 -------------------------------------
@@ -126,14 +133,6 @@ To render a theme for local development, you'll just do ``fab copy_theme:<tumblr
 For example, to create a local development theme for Ari's Tumblr, you'd do this: ``fab copy_theme:ari-whitehouse``.
 
 This will create a Tumblr theme file (and paste it to your clipboard, natch) that you can paste into Tumblr's admin. The CSS and JS will point to your local app.less and app.js, so you can develop against the Tumblr URL but with local assets.
-
-Template tags
---------------
-You'll have two basic needs for injecting content into the Tumblr theme.
-
-First, you might want to inject a static file, e.g., CSS/JS or a PNG image from the Tumblr's folder. You can do that with the ``{{ static }}`` template tag. To inject an image called ``header.png``, copy that image into the ``tumblrs/<tumblr-slug>/`` folder and then add a template tag in the template like this: ``{{ static['header.png'] }}``. This template tag will insert a reference to localhost if you're developing locally, or it will insert a rendered out version of the file if you're preparing for production.
-
-Second, you might want a key/value from this Tumblr's sheet in the Google doc. You can do that with the ``{{ copy }}`` template tag. To inject a key called ``og_description`` containing the social media description for this Tumblr, add the key/value you want to the correct Google doc sheet. Then, use this tag: ``{{ copy.og_description }}``. You can also use ``{{ copy['og_description'] }}`` if you have a key with a ``.`` in the name.
 
 Render a theme for production
 ------------------------------
