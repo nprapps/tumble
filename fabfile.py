@@ -96,14 +96,19 @@ Changing the template functions should produce output
 with fab render without any exceptions. Any file used
 by the site templates should be rendered by fab render.
 """
-def less():
+def less(initial_path=None):
     """
     Render LESS files to CSS.
     """
-    for path in glob('less/*.less'):
+    if initial_path:
+        glob_string = 'tumblrs/%s/*.less' % initial_path
+    else:
+        glob_string = 'less/*.less'
+
+    for path in glob(glob_string):
         filename = os.path.split(path)[-1]
         name = os.path.splitext(filename)[0]
-        out_path = 'www/css/%s.less.css' % name
+        out_path = '%s.css' % path
 
         local('node_modules/bin/lessc %s %s' % (path, out_path))
 
@@ -136,7 +141,8 @@ def app_config_js():
     response = _app_config_js()
     js = response[0]
 
-    with open('www/js/app_config.js', 'w') as f:
+    local('mkdir -p www/js')
+    with open('www/js/app_config.js', 'wb') as f:
         f.write(js)
 
 def copy_js():
@@ -151,55 +157,36 @@ def copy_js():
     with open('www/js/copy.js', 'w') as f:
         f.write(js)
 
-def render():
+def render(slug=None):
     """
     Render HTML templates and compile assets.
     """
-    from flask import g
+    require('settings', provided_by=[production, staging, development])
 
     update_copy()
-    less()
-    jst()
 
-    app_config_js()
-    copy_js()
+    slugs = []
 
-    compiled_includes = []
+    if slug:
+        slugs.append(slug)
 
-    for rule in app.app.url_map.iter_rules():
-        rule_string = rule.rule
-        name = rule.endpoint
+    if not slug:
+        for row in copytext.Copy()['tumblr-index']:
+            slugs.append(str(row.value))
 
-        if name == 'static' or name.startswith('_'):
-            print 'Skipping %s' % name
-            continue
+    if len(slugs) > 0:
+        app_config.configure_targets(env.get('settings', None))
 
-        if rule_string.endswith('/'):
-            filename = 'www' + rule_string + 'index.html'
-        elif rule_string.endswith('.html'):
-            filename = 'www' + rule_string
-        else:
-            print 'Skipping %s' % name
-            continue
+        for slug in slugs:
+            less(initial_path="%s" % slug)
+            with app.app.test_request_context(path=slug):
+                view = app.__dict__['_render_tumblr_theme']
+                content = view(slug, env.settings)
 
-        dirname = os.path.dirname(filename)
+                with open('tumblrs/%s/theme.html' % slug, 'wb') as writefile:
+                    writefile.write(content.encode('utf-8'))
 
-        if not (os.path.exists(dirname)):
-            os.makedirs(dirname)
-
-        print 'Rendering %s' % (filename)
-
-        with app.app.test_request_context(path=rule_string):
-            g.compile_includes = True
-            g.compiled_includes = compiled_includes
-
-            view = app.__dict__[name]
-            content = view()
-
-            compiled_includes = g.compiled_includes
-
-        with open(filename, 'w') as f:
-            f.write(content.encode('utf-8'))
+        app_config.configure_targets(app_config.DEPLOYMENT_TARGET)
 
 """
 Setup
@@ -300,37 +287,12 @@ def bootstrap_issues():
 """
 Bits about the Tumblr theme.
 """
-def render_theme():
-    """
-    Renders the tumblr theme.
-    Requires knowing what environment you want.
-    """
+
+def copy_theme(slug):
     require('settings', provided_by=[production, staging, development])
 
-    from flask import g
-
-    compiled_includes = []
-
-    path = 'tumblr-theme.html'
-    with app.app.test_request_context(path=path):
-
-        g.compile_includes = True
-        g.compiled_includes = compiled_includes
-
-        view = app.__dict__['_render_tumblr_theme']
-        content = view()
-
-        compiled_includes = g.compiled_includes
-
-    with open('tumblr-theme.html', 'w') as f:
-        f.write(content.encode('utf-8'))
-
-
-def copy_theme():
-    require('settings', provided_by=[production, staging, development])
-
-    render_theme()
-    local('pbcopy < tumblr-theme.html')
+    render(slug)
+    local('pbcopy < %s/theme.html' % slug)
 
 def deploy(remote='origin'):
     """
@@ -361,22 +323,22 @@ def setup_tumblrs():
     """
     If they don't exist, create/copy the files for this tumblog.
     """
+    update_copy()
     for row in copytext.Copy()['tumblr-index']:
         local('mkdir -p tumblrs/%s' % row.value)
         local('touch tumblrs/%s/app.js' % row.value)
-        local('touch tumblrs/%s/app.less' % row.value)
 
-        try:
-            with open('tumblrs/%s/modernizr.js' % row.value):
-                pass
-        except IOError:
-            local('cp www/js/lib/modernizr.js tumblrs/%s/modernizr.js' % row.value)
-
-        try:
-            with open('tumblrs/%s/modernizr.js' % row.value):
-                pass
-        except IOError:
-            local('cp templates/tumblr-theme.html.tpl tumblrs/%s/tumblr-theme.html.tpl' % row.value)
+        for path, filename in [
+            ('www/js/lib', 'modernizr.js'),
+            ('www/js/lib', 'jquery.fitvids.js'),
+            ('less', 'app.less'),
+            ('templates', 'theme.html.tpl'),
+        ]:
+            try:
+                with open('tumblrs/%s/%s' % (row.value, filename)):
+                    pass
+            except IOError:
+                local('cp %s/%s tumblrs/%s/%s' % (path, filename, row.value, filename))
 
 """
 Destruction

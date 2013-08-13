@@ -27,13 +27,13 @@
         <!--[if lt IE 9]>
                 <script src="http://static.tumblr.com/hriofhd/Qj0m8pn7q/html5shiv.js"></script>
         <![endif]-->
-        <script type="text/javascript" src="{{ modernizer_js }}"></script>
+        {{ static['modernizr.js'] }}
 
         <!-- Reset CSS -->
         <link rel="stylesheet" href="http://static.tumblr.com/thpaaos/DIcklyl4z/reset.css" type="text/css">
 
         <!-- Project CSS -->
-        <link rel="stylesheet" href="{{ app_css }}" />
+        {{ static['app.less.css'] }}
 
         <!--[if lt IE 9]>
             <style type="text/css">
@@ -59,7 +59,7 @@
         <meta property="og:url" content="{{ copy.og_url }}" />
         <meta property="og:type" content="article" />
         <meta property="og:description" content="{{ copy.og_description }}" />
-        <meta property="og:image" content="{{ copy.og_image }}" />
+        <meta property="og:image" content="{{ static['og_image.png'] }}" />
         <meta property="og:site_name" content="NPR.org" />
         <meta property="fb:app_id" content="138837436154588" />
 
@@ -232,8 +232,8 @@
 
 
         <script type="text/javascript" src="http://assets.tumblr.com/javascript/jquery-1.7.2.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/app.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fitvids.js"></script>
+        {{ static['app.js'] }}
+        {{ static['jquery.fitvids.js'] }}
 
         {block:IfUseEndlessScrolling}
         <script type="text/javascript">
@@ -436,6 +436,5 @@
 
 
         {block:IfUseEndlessScrolling}<script type="text/javascript" src="http://assets.tumblr.com/javascript/tumblelog.js"></script>{/block:IfUseEndlessScrolling}
-        <script type="text/javascript" src="{{ app_js }}"></script>
     </body>
 </html>

@@ -1,18 +1,68 @@
 #!/usr/bin/env python
 
+import base64
+from glob import glob
 import json
 from mimetypes import guess_type
 import urllib
 
 import envoy
-from flask import Flask, Markup, abort, render_template
+from flask import Flask, Markup, abort, render_template_string
 
 import app_config
 import copytext
-from render_utils import flatten_app_config, make_context
+from render_utils import flatten_app_config
 
 app = Flask(app_config.PROJECT_NAME)
 
+
+# Render tumblr theme
+@app.route('/<slug>/index.html')
+def _render_tumblr_theme(slug, target=None):
+    """
+    Render out the tumblr theme.
+    When handled as an URL, gets target=None.
+    When called from fabfile as part of render(),
+    gets target from env.settings.
+
+    production: Renders files inline.
+    staging/development: Points files to 127.0.0.1
+    """
+    context = flatten_app_config()
+    context['static'] = {}
+    context['copy'] = {}
+
+    for item in copytext.Copy()[slug]:
+        context['copy'][item.key] = item.value
+
+    for extension in ['*.js', '*.css', '*.png']:
+        for path in glob('tumblrs/%s/%s' % (slug, extension)):
+            filename = path.split('/')[2]
+            if target == 'production':
+                template = {
+                    '*.js': '<script type="text/javascript">%s</script>',
+                    '*.css': '<style type="text/css">%s</style>',
+                    '*.png': '<img src="data:image/png;base64,%s" />',
+                }
+                with open(path, "rb") as readfile:
+                    if extension == '*.png':
+                        output = base64.b64encode(readfile.read())
+                    else:
+                        output = readfile.read()
+                context['static'][filename] = template[extension] % output
+
+            else:
+                template = {
+                    '*.js': '<script src="http://127.0.0.1:8000/%s"></script>"' % path.replace('tumblrs/', ''),
+                    '*.css': '<link rel="stylesheet" href="http://127.0.0.1:8000/%s" />' % path.replace('tumblrs/', ''),
+                    '*.png': '<img src="http://127.0.0.1:8000/%s" />' % path.replace('tumblrs/', ''),
+                }
+                context['static'][filename] = template[extension]
+
+    with open('tumblrs/%s/theme.html.tpl' % slug, 'rb') as readfile:
+        template_string = readfile.read()
+
+    return render_template_string(template_string, **context)
 
 # Render LESS files on-demand
 @app.route('/less/<string:filename>')
@@ -57,17 +107,10 @@ def _copy_js():
 @app.route('/<path:path>')
 def _static(path):
     try:
-        with open('www/%s' % path) as f:
+        with open('tumblrs/%s' % path) as f:
             return f.read(), 200, {'Content-Type': guess_type(path)[0]}
     except IOError:
         abort(404)
-
-
-# Render tumblr theme
-@app.route('/tumblr-theme.html')
-def _render_tumblr_theme():
-    context = flatten_app_config()
-    return render_template('tumblr-theme.html', **context)
 
 
 @app.template_filter('urlencode')
