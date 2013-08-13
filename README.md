@@ -116,7 +116,11 @@ fab update_copy
 
 Note: ``update_copy`` runs automatically whenever ``fab render`` is called.
 
-At the Tumblr template level, you can embed copytext like ``copy.key_that_i_want``, where copy is the slug of the current Tumblog, and key_that_i_want is the value of the first column.
+At the Tumblr template level, you can embed copytext like this:
+
+```{{ copy.key_that_i_want }}``
+
+In this case, ``copy`` is the slug of the current Tumblog, and ``key_that_i_want`` is the value of the first column.
 
 Template tags
 --------------
@@ -128,16 +132,24 @@ Second, you might want a key/value from this Tumblr's sheet in the Google doc. Y
 
 Render a theme for local development
 -------------------------------------
-To render a theme for local development, you'll just do ```fab copy_theme:<tumblr_slug>```.
+To render a theme for local development, you'll just do:
 
-For example, to create a local development theme for Ari's Tumblr, you'd do this: ```fab copy_theme:ari-whitehouse```.
+```fab copy_theme:<tumblr_slug>```.
+
+For example, to create a local development theme for Ari's Tumblr, you'd do this:
+
+```fab copy_theme:ari-whitehouse```.
 
 This will create a Tumblr theme file (and paste it to your clipboard, natch) that you can paste into Tumblr's admin. The CSS and JS will point to your local app.less and app.js, so you can develop against the Tumblr URL but with local assets.
 
 Render a theme for production
 ------------------------------
-To render a theme for production, you'll just do ```fab production copy_theme:<tumblr_slug>```.
+To render a theme for production, you'll just do:
 
-For example, to create a production theme for Ari's Tumblr, you'd do this: ```fab production copy_theme:ari-whitehouse```.
+```fab production copy_theme:<tumblr_slug>```.
+
+For example, to create a production theme for Ari's Tumblr, you'd do this:
+
+```fab production copy_theme:ari-whitehouse```.
 
 This will create a Tumblr theme file (and paste it to your clipboard, natch) that you can paste into Tumblr's admin. The CSS and JS will be fully baked into the Template HTML. Images will be baked as base64 strings and CSS/JS files will be rendered and inserted as ``<script>`` and ``<style>`` tags.
