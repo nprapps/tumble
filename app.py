@@ -4,9 +4,9 @@ import base64
 from glob import glob
 import json
 from mimetypes import guess_type
+import os
 import urllib
 
-import envoy
 from flask import Flask, Markup, abort, render_template_string
 
 import app_config
@@ -75,7 +75,7 @@ def _less(slug, filename):
     except IOError:
         abort(404)
 
-    r = envoy.run('node_modules/bin/lessc %s %s' % (lessfile, lessfile + '.css'))
+    os.system('node_modules/bin/lessc %s %s' % (lessfile, lessfile + '.css'))
 
     with open(lessfile + '.css', 'rb') as readfile:
         output = readfile.read()
