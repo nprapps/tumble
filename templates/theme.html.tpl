@@ -127,13 +127,11 @@
                                     {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
                             </div>
                             {/block:Photo}
+
                             {block:Photoset}
                             <div class="photoset">
-                                {block:Photos}
-                                    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
-                                    {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
-                                {/block:Photos}
-                                {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+                                <div class="photoset-500">{Photoset-500}</div>
+                                <div class="photoset-250">{Photoset-250}</div>
                             </div>
                             {/block:Photoset}
 

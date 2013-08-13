@@ -129,6 +129,7 @@
                                     {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
                             </div>
                             {/block:Photo}
+
                             {block:Photoset}
                             <div class="photoset">
                                 <div class="photoset-500">{Photoset-500}</div>
