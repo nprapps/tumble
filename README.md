@@ -1,4 +1,4 @@
-$NEW_PROJECT_NAME
+TUMBLE
 ========================
 
 * [What is this?](#what-is-this)
