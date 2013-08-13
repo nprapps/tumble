@@ -87,8 +87,20 @@ body {
                 margin-bottom: @baseLineHeight;
             }
         }
-
-
+        
+        .photoset {
+            iframe { 
+                margin: 0 auto; 
+                display: block;
+            }
+            .photoset-250 { display: none; }
+            
+            @media @screen-tiny {
+                .photoset-250 { display: block; }
+                .photoset-500 { display: none; }
+            }
+        }
+        
         .video {
             .video-container {
                 position: relative;
