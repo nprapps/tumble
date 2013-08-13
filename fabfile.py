@@ -292,7 +292,7 @@ def copy_theme(slug):
     require('settings', provided_by=[production, staging, development])
 
     render(slug)
-    local('pbcopy < %s/theme.html' % slug)
+    local('pbcopy < tumblrs/%s/theme.html' % slug)
 
 def deploy(remote='origin'):
     """
