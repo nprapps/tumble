@@ -27,59 +27,104 @@ def _render_tumblr_theme(slug):
 
     production: Renders files inline.
     staging/development: Points files to 127.0.0.1
+
+    Available in the template two ways:
+    {{ static['file.extension'] }} for static files.
+    {{ copy.key_name }} for bits of copy. Key name is the first column's value.
     """
+
+    # Set up context bits.
     context = flatten_app_config()
+
+    # For files in the tumblrs/<slug>/ folder.
     context['static'] = {}
+
+    # For copytext.
     context['copy'] = {}
 
+    # Loop over the copy in the sheet named for the slug.
+    # Append it like it's a dict.
     for item in copytext.Copy()[slug]:
         context['copy'][item.key] = item.value
 
+    # Loop over a few common file extensions.
     for extension in ['*.js', '*.css', '*.png']:
+
+        # Loop over the globbed files in the directory matching this extension.
         for path in glob('tumblrs/%s/%s' % (slug, extension)):
+
+            # Get the filename.
             filename = path.split('/')[2]
+
+            # If it's production, we're going to just embed the stuff directly in the template.
             if app_config.DEPLOYMENT_TARGET == 'production':
+
+                # Here's how we'll do that.
                 template = {
                     '*.js': '<script type="text/javascript">%s</script>',
                     '*.css': '<style type="text/css">%s</style>',
                     '*.png': '<img src="data:image/png;base64,%s" />',
                 }
+
+                # Open the file as binary.
                 with open(path, "rb") as readfile:
+
+                    # If it's a PNG, base64 encode it.
                     if extension == '*.png':
                         output = base64.b64encode(readfile.read())
                     else:
+
+                        # Otherwise, just read it to a string.
                         output = readfile.read()
+
+                # Append the output to context via the template lookup.
                 context['static'][filename] = template[extension] % output
 
             else:
+                # If it's not production, do things slightly differently.
+                # Point to app_config.S3_BASE_URL instead.
                 template = {
-                    '*.js': '<script src="http://127.0.0.1:8000/%s"></script>"' % path.replace('tumblrs/', ''),
-                    '*.css': '<link rel="stylesheet" href="http://127.0.0.1:8000/%s" />' % path.replace('tumblrs/', ''),
-                    '*.png': '<img src="http://127.0.0.1:8000/%s" />' % path.replace('tumblrs/', ''),
+                    '*.js': '<script src="%s/%s"></script>' % (app_config.S3_BASE_URL, path.replace('tumblrs/', '')),
+                    '*.css': '<link rel="stylesheet" href="%s/%s" />' % (app_config.S3_BASE_URL, path.replace('tumblrs/', '')),
+                    '*.png': '<img src="%s/%s" />' % (app_config.S3_BASE_URL, path.replace('tumblrs/', '')),
                 }
+
+                # Append the path to the context.
                 context['static'][filename] = template[extension]
 
+    # Open the theme's file.
     with open('tumblrs/%s/theme.html.tpl' % slug, 'rb') as readfile:
         template_string = readfile.read()
 
+    # Render the template.
     return render_template_string(template_string, **context)
 
-# Render LESS files on-demand
+
+# Render a less file in the <slug> directory.
+# This is a bit tricky because the browser asks for .less.css
+# and we need to compile that file first because it may not
+# exist yet.
 @app.route('/<string:slug>/<string:filename>.less.css')
 def _less(slug, filename):
+
+    # Get the path to the less file.
     lessfile = 'tumblrs/%s/%s.less' % (slug, filename)
 
+    # Try opening it. 404 if this fails.
     try:
         with open(lessfile, 'rb') as readfile:
             pass
     except IOError:
         abort(404)
 
+    # Call lessc and compile this file to CSS.
     os.system('node_modules/bin/lessc %s %s' % (lessfile, lessfile + '.css'))
 
+    # Read the compiled CSS file.
     with open(lessfile + '.css', 'rb') as readfile:
         output = readfile.read()
 
+    # Return the file as a CSS file.
     return output, 200, {'Content-Type': 'text/css'}
 
 
