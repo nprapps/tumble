@@ -339,7 +339,7 @@ def deploy(remote='origin'):
     _gzip_www()
     _deploy_to_s3()
 
-def setup_tumblrs():
+def bootstrap():
     """
     If they don't exist, create/copy the files for this tumblog.
     """
