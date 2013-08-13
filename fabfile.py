@@ -159,34 +159,54 @@ def copy_js():
 
 def render(slug=None):
     """
-    Render HTML templates and compile assets.
+    Render out all (or one) of the slugged tumblrs.
+    If a slug is passed (render:tumblr-slug) will limit to a single folder.
     """
+
+    # Need to know what you want.
+    # Staging/development point to localhost.
+    # Production bakes files into the template.
     require('settings', provided_by=[production, staging, development])
 
+    # Better update copy. The first sheet contains all of the tumblrs we know of.
     update_copy()
 
+    # Prepare a list of slugs to render.
     slugs = []
 
+    # If there's just one slug, add it to the list.
     if slug:
         slugs.append(slug)
 
+    # If there's no slug specified, loop over the copytext's 'tumblr-index' sheet
+    # and append the slugs to our list.
     if not slug:
         for row in copytext.Copy()['tumblr-index']:
             slugs.append(str(row.value))
 
+    # Please, God, let us have slugs.
     if len(slugs) > 0:
-        app_config.configure_targets(env.get('settings', None))
 
+        # Loop over the list of slug.s
         for slug in slugs:
-            less(initial_path="%s" % slug)
-            with app.app.test_request_context(path=slug):
-                view = app.__dict__['_render_tumblr_theme']
-                content = view(slug, env.settings)
 
+            # Run less() against the folder. Important for those CSS/LESS files.
+            less(initial_path="%s" % slug)
+
+            # Flask is fun. We need to create a fake request with the appropriate path.
+            # Then, we can call the view.
+            with app.app.test_request_context(path=slug):
+
+                # Grab the _render_tumblr_theme view.
+                view = app.__dict__['_render_tumblr_theme']
+
+                # Pass the slug and get the response.
+                content = view(slug)
+
+                # Write the response to a file in the tumbrs/<slug>/ directory.
+                # Always be encoding.
                 with open('tumblrs/%s/theme.html' % slug, 'wb') as writefile:
                     writefile.write(content.encode('utf-8'))
-
-        app_config.configure_targets(app_config.DEPLOYMENT_TARGET)
 
 """
 Setup
@@ -319,7 +339,7 @@ def deploy(remote='origin'):
     _gzip_www()
     _deploy_to_s3()
 
-def setup_tumblrs():
+def bootstrap():
     """
     If they don't exist, create/copy the files for this tumblog.
     """
