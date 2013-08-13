@@ -118,7 +118,7 @@ Note: ``update_copy`` runs automatically whenever ``fab render`` is called.
 
 At the Tumblr template level, you can embed copytext like this:
 
-```{{ copy.key_that_i_want }}``
+```{{ copy.key_that_i_want }}```
 
 In this case, ``copy`` is the slug of the current Tumblog, and ``key_that_i_want`` is the value of the first column.
 
