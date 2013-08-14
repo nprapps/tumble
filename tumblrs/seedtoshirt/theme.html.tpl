@@ -75,7 +75,7 @@
                             {block:IfShowBlogTitle}
                             <h1><a href="/"><img class="visible-tablet visible-desktop" src="{{ STATIC_URL }}img/header-lg.png" /><img class="visible-phone" src="{{ STATIC_URL }}img/header-sm.png" /></a></h1>
                             {/block:IfShowBlogTitle}
-                            <p>{Description}</p>
+                            
                         </div>
                     </div>
                 </header>
