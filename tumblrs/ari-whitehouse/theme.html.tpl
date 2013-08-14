@@ -27,13 +27,13 @@
         <!--[if lt IE 9]>
                 <script src="http://static.tumblr.com/hriofhd/Qj0m8pn7q/html5shiv.js"></script>
         <![endif]-->
-        {{ static['modernizr.js'] }}
+        {{ static(file_path='modernizr.js') }}
 
         <!-- Reset CSS -->
         <link rel="stylesheet" href="http://static.tumblr.com/thpaaos/DIcklyl4z/reset.css" type="text/css">
 
         <!-- Project CSS -->
-        {{ static['app.less.css'] }}
+        {{ static(file_path='app.less.css') }}
 
         <!--[if lt IE 9]>
             <style type="text/css">
@@ -59,7 +59,7 @@
         <meta property="og:url" content="{{ copy.og_url }}" />
         <meta property="og:type" content="article" />
         <meta property="og:description" content="{{ copy.og_description }}" />
-        <meta property="og:image" content="{{ static['og_image.png'] }}" />
+        <meta property="og:image" content="{{ static(file_path='og_image.png') }}" />
         <meta property="og:site_name" content="NPR.org" />
         <meta property="fb:app_id" content="138837436154588" />
 
@@ -73,7 +73,10 @@
                         <div class="fix-wrap">
                             <h2 class="npr"><a href="http://npr.org"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></h2>
                             {block:IfShowBlogTitle}
-                            <h1><a href="/"><img class="visible-tablet visible-desktop" src="{{ STATIC_URL }}img/header-lg.png" /><img class="visible-phone" src="{{ STATIC_URL }}img/header-sm.png" /></a></h1>
+                            <h1><a href="/">
+                                {{ static(file_path='header-lg.png', classes='visible-tablet visible-desktop') }}
+                                {{ static(file_path='header-sm.png', classes='visible-phone') }}
+                            </a></h1>
                             {/block:IfShowBlogTitle}
                             <p>{Description}</p>
                         </div>
@@ -232,8 +235,8 @@
 
 
         <script type="text/javascript" src="http://assets.tumblr.com/javascript/jquery-1.7.2.min.js"></script>
-        {{ static['app.js'] }}
-        {{ static['jquery.fitvids.js'] }}
+        {{ static(file_path='app.js') }}
+        {{ static(file_path='jquery.fitvids.js') }}
 
         {block:IfUseEndlessScrolling}
         <script type="text/javascript">

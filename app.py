@@ -16,6 +16,69 @@ from render_utils import flatten_app_config
 app = Flask(app_config.PROJECT_NAME)
 
 
+@app.context_processor
+def static_processor():
+    def static(file_path=None, classes=''):
+        """
+        Builds a context processor for handling static file embeds.
+
+        {{ static(file_path="foo.js", classes="foo bar") }}
+
+        Will find foo.js in the correct tumblrs/ directory and either
+        embed a reference to 127.0.0.1:8000 (S3_BASE_URL) or embed
+        the file itself if this is production.
+        """
+        # Request context is a global. Weird, huh?
+        from flask import request
+
+        # Get the path to the file's directory from the URL.
+        path = 'tumblrs/' + request.path.split('/')[1]
+
+        # Get the file extension.
+        extension = file_path.split('.')[-1]
+
+        # Make the file path the actual filesystem path to the file.
+        file_path = path + '/' + file_path
+
+        # If it's production, we're going to just embed the stuff directly in the template.
+        if app_config.DEPLOYMENT_TARGET == 'production':
+
+            # Here's how we'll do that.
+            template = {
+                'js': '<script class="%s" type="text/javascript">%s</script>',
+                'css': '<style class="%s" type="text/css">%s</style>',
+                'png': '<img class="%s" src="data:image/png;base64,%s" />',
+            }
+
+            # Open the file as binary.
+            with open(file_path, "rb") as readfile:
+
+                # If it's a PNG, base64 encode it.
+                if extension == '*.png':
+                    output = base64.b64encode(readfile.read())
+                else:
+
+                    # Otherwise, just read it to a string.
+                    output = readfile.read()
+
+            # Send it to the template.
+            return template[extension] % (classes, output)
+
+        else:
+            # If it's not production, do things slightly differently.
+            # Point to app_config.S3_BASE_URL instead.
+            template = {
+                'js': '<script class="%s" src="%s/%s"></script>' % (classes, app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
+                'css': '<link class="%s" rel="stylesheet" href="%s/%s" />' % (classes, app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
+                'png': '<img class="%s" src="%s/%s" />' % (classes, app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
+            }
+
+            # Send it to the template.
+            return template[extension]
+
+    return dict(static=static)
+
+
 # Render tumblr theme
 @app.route('/<string:slug>/index.html')
 def _render_tumblr_theme(slug):
@@ -28,16 +91,11 @@ def _render_tumblr_theme(slug):
     production: Renders files inline.
     staging/development: Points files to 127.0.0.1
 
-    Available in the template two ways:
-    {{ static['file.extension'] }} for static files.
     {{ copy.key_name }} for bits of copy. Key name is the first column's value.
     """
 
     # Set up context bits.
     context = flatten_app_config()
-
-    # For files in the tumblrs/<slug>/ folder.
-    context['static'] = {}
 
     # For copytext.
     context['copy'] = {}
@@ -46,51 +104,6 @@ def _render_tumblr_theme(slug):
     # Append it like it's a dict.
     for item in copytext.Copy()[slug]:
         context['copy'][item.key] = item.value
-
-    # Loop over a few common file extensions.
-    for extension in ['*.js', '*.css', '*.png']:
-
-        # Loop over the globbed files in the directory matching this extension.
-        for path in glob('tumblrs/%s/%s' % (slug, extension)):
-
-            # Get the filename.
-            filename = path.split('/')[2]
-
-            # If it's production, we're going to just embed the stuff directly in the template.
-            if app_config.DEPLOYMENT_TARGET == 'production':
-
-                # Here's how we'll do that.
-                template = {
-                    '*.js': '<script type="text/javascript">%s</script>',
-                    '*.css': '<style type="text/css">%s</style>',
-                    '*.png': '<img src="data:image/png;base64,%s" />',
-                }
-
-                # Open the file as binary.
-                with open(path, "rb") as readfile:
-
-                    # If it's a PNG, base64 encode it.
-                    if extension == '*.png':
-                        output = base64.b64encode(readfile.read())
-                    else:
-
-                        # Otherwise, just read it to a string.
-                        output = readfile.read()
-
-                # Append the output to context via the template lookup.
-                context['static'][filename] = template[extension] % output
-
-            else:
-                # If it's not production, do things slightly differently.
-                # Point to app_config.S3_BASE_URL instead.
-                template = {
-                    '*.js': '<script src="%s/%s"></script>' % (app_config.S3_BASE_URL, path.replace('tumblrs/', '')),
-                    '*.css': '<link rel="stylesheet" href="%s/%s" />' % (app_config.S3_BASE_URL, path.replace('tumblrs/', '')),
-                    '*.png': '<img src="%s/%s" />' % (app_config.S3_BASE_URL, path.replace('tumblrs/', '')),
-                }
-
-                # Append the path to the context.
-                context['static'][filename] = template[extension]
 
     # Open the theme's file.
     with open('tumblrs/%s/theme.html.tpl' % slug, 'rb') as readfile:
