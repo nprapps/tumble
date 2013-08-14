@@ -78,7 +78,8 @@
                                 {{ static(file_path='header-sm.png', classes='visible-phone') }}
                             </a></h1>
                             {/block:IfShowBlogTitle}
-                            
+                            <h3>{{ copy.og_tagline }}</h3>
+                            {{ copy.sidebar_text }}
                         </div>
                     </div>
                 </header>
