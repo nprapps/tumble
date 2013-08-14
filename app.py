@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import base64
-from glob import glob
 import json
 from mimetypes import guess_type
 import os

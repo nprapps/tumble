@@ -4,3 +4,4 @@ node_modules/*
 tumblrs/*/*.css
 tumblrs/*/*.html
 data/copy.xls
+.DS_Store
