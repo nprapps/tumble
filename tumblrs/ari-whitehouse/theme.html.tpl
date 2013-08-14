@@ -59,7 +59,7 @@
         <meta property="og:url" content="{{ copy.og_url }}" />
         <meta property="og:type" content="article" />
         <meta property="og:description" content="{{ copy.og_description }}" />
-        <meta property="og:image" content="{{ static(file_path='og_image.png') }}" />
+        <meta property="og:image" content="{{ copy.og_image }}" />
         <meta property="og:site_name" content="NPR.org" />
         <meta property="fb:app_id" content="138837436154588" />
 
@@ -74,8 +74,8 @@
                             <h2 class="npr"><a href="http://npr.org"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></h2>
                             {block:IfShowBlogTitle}
                             <h1><a href="/">
-                                {{ static(file_path='header-lg.png', classes='visible-tablet visible-desktop') }}
-                                {{ static(file_path='header-sm.png', classes='visible-phone') }}
+                                {{ static(file_path='header-lg.png', classes='visible-tablet visible-desktop', alt="header") }}
+                                {{ static(file_path='header-sm.png', classes='visible-phone', alt="header") }}
                             </a></h1>
                             {/block:IfShowBlogTitle}
                             <p>{Description}</p>

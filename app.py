@@ -17,7 +17,7 @@ app = Flask(app_config.PROJECT_NAME)
 
 @app.context_processor
 def static_processor():
-    def static(file_path=None, classes=''):
+    def static(file_path=None, classes='', alt=''):
         """
         Builds a context processor for handling static file embeds.
 
@@ -44,9 +44,9 @@ def static_processor():
 
             # Here's how we'll do that.
             template = {
-                'js': '<script class="%s" type="text/javascript">%s</script>',
-                'css': '<style class="%s" type="text/css">%s</style>',
-                'png': '<img class="%s" src="data:image/png;base64,%s" />',
+                'js': '<script type="text/javascript">%s</script>',
+                'css': '<style type="text/css">%s</style>',
+                'png': '<img class="%s" alt="%s" src="data:image/png;base64,%s" />',
             }
 
             # Open the file as binary.
@@ -60,16 +60,23 @@ def static_processor():
                     # Otherwise, just read it to a string.
                     output = readfile.read()
 
+            # Handle which strings need to get interpolated.
+            strings = output
+
+            # If it's an image, it needs classes and alt.
+            if extension == 'png':
+                strings = (classes, alt, output)
+
             # Send it to the template.
-            return template[extension] % (classes, output)
+            return template[extension] % strings
 
         else:
             # If it's not production, do things slightly differently.
             # Point to app_config.S3_BASE_URL instead.
             template = {
-                'js': '<script class="%s" src="%s/%s"></script>' % (classes, app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
-                'css': '<link class="%s" rel="stylesheet" href="%s/%s" />' % (classes, app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
-                'png': '<img class="%s" src="%s/%s" />' % (classes, app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
+                'js': '<script src="%s/%s"></script>' % (app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
+                'css': '<link rel="stylesheet" href="%s/%s" />' % (app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
+                'png': '<img class="%s" alt="%s" src="%s/%s" />' % (classes, alt, app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
             }
 
             # Send it to the template.
