@@ -38,6 +38,36 @@ body {
     p {
         color: @musicMedium;
         -webkit-font-smoothing: antialiased;
+        margin-bottom: 44px;
+    }
+    
+    ul {
+        color: @musicMedium;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        
+        > li {
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 11px;
+            display: table;
+            width: 100%;
+            background-color: #fff;
+            
+            a {
+                display: table-cell;
+                vertical-align: middle;
+                padding: 11px 11px;
+                color: #fff;s
+                background-color: #7598c9;
+                
+                &:hover { 
+                    opacity: 0.7;
+                    text-decoration: none;
+                }
+            }
+        }
     }
     
     a { color: #83a1dd; }
