@@ -130,6 +130,8 @@ You'll have two basic needs for injecting content into the Tumblr theme.
 
 First, you might want to inject a static file, e.g., CSS/JS or a PNG image from the Tumblr's folder. You can do that with the ``{{ static }}`` template tag. To inject an image called ``header.png``, copy that image into the ``tumblrs/<tumblr-slug>/`` folder and then add a template tag in the template like this: ``{{ static['header.png'] }}``. This template tag will insert a reference to localhost if you're developing locally, or it will insert a rendered out version of the file if you're preparing for production.
 
+(Note: If you want to use an image in your LESS file, you'll have to base64 encode it yourself &mdash; but keep a copy of the original image in the ``tumblrs/<tumblr-slug>/`` folder.)
+
 Second, you might want a key/value from this Tumblr's sheet in the Google doc. You can do that with the ``{{ copy }}`` template tag. To inject a key called ``og_description`` containing the social media description for this Tumblr, add the key/value you want to the correct Google doc sheet. Then, use this tag: ``{{ copy.og_description }}``. You can also use ``{{ copy['og_description'] }}`` if you have a key with a ``.`` in the name.
 
 Render a theme for local development
