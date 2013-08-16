@@ -78,6 +78,15 @@
                             </a></h1>
                             {/block:IfShowBlogTitle}
                             <p>{Description}</p>
+                            <ul>
+                                {block:SubmissionsEnabled} 
+                                <li class="submit"><a href="/submit">{SubmitLabel}</a></li>
+                                {/block:SubmissionsEnabled}
+
+                                {block:AskEnabled}
+                                <li class="ask"><a href="/ask">{AskLabel}</a></li>
+                                {/block:AskEnabled}
+                            </ul>
                         </div>
                     </div>
                 </header>
