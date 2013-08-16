@@ -52,9 +52,11 @@ def static_processor():
             # Open the file as binary.
             with open(file_path, "rb") as readfile:
 
-                # If it's a PNG, base64 encode it.
-                if extension == '*.png':
+                if extension == 'png':
+
+                    # If it's a PNG, base64 encode it.
                     output = base64.b64encode(readfile.read())
+
                 else:
 
                     # Otherwise, just read it to a string.
@@ -65,6 +67,7 @@ def static_processor():
 
             # If it's an image, it needs classes and alt.
             if extension == 'png':
+
                 strings = (classes, alt, output)
 
             # Send it to the template.
@@ -112,8 +115,8 @@ def _render_tumblr_theme(slug):
         context['copy'][item.key] = item.value
 
     # Open the theme's file.
-    with open('tumblrs/%s/theme.html.tpl' % slug, 'rb') as readfile:
-        template_string = readfile.read()
+    with open('tumblrs/%s/theme.html.tpl' % slug, 'r') as readfile:
+        template_string = unicode(readfile.read())
 
     # Render the template.
     return render_template_string(template_string, **context)
