@@ -346,9 +346,9 @@ def bootstrap():
     update_copy()
     for row in copytext.Copy()['tumblr-index']:
         local('mkdir -p tumblrs/%s' % row.value)
-        local('touch tumblrs/%s/app.js' % row.value)
 
         for path, filename in [
+            ('www/js', 'app.js'),
             ('www/js/lib', 'modernizr.js'),
             ('www/js/lib', 'jquery.fitvids.js'),
             ('less', 'app.less'),
