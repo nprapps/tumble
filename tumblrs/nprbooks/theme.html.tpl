@@ -169,10 +169,12 @@
                             {/block:Chat}
                             {block:Answer}
                             <div class="answer">
-                                <img src="{AskerPortraitURL-40}">
-                                {Asker}
-                                {Question}
-                                {Answer}
+                                <div class="qa-asker">
+                                    <img src="{AskerPortraitURL-40}">
+                                    {Asker} asks:
+                                </div>
+                                <div class="qa-question">{Question}</div>
+                                <div class="qa-response">{Answer}</div>
                             </div>
                             {/block:Answer}
 
