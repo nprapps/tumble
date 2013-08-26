@@ -211,27 +211,17 @@ body {
             .video-container {
                 position: relative;
                 width: 100%;
-                //padding-bottom: 56%;
                 //overflow: hidden;
                 padding-bottom: 0;
 
                 .center-block;
 
-                &.vine-embed {
-                    width: 100%;
-                }
+                &.vine-embed { width: 100%; }
+                &.nine-by-sixteen { padding-bottom: 175.7777778%; }
+                &.sixteen-by-nine { padding-bottom: 56%; }
+                &.square { padding-bottom: 100%; }
 
-                &.nine-by-sixteen {
-                    padding-bottom: 175.7777778%;
-                }
-
-                &.square {
-                    padding-bottom: 100%;
-                }
-
-                iframe {
-                    max-width: 100%;
-                }
+                iframe { max-width: 100%; }
 
                 a {
                     position: absolute !important;
@@ -240,7 +230,7 @@ body {
                 }
 
             }
-
+            
             .tumblr_video_iframe,
             .video-container img, {
                 position: absolute;
