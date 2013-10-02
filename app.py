@@ -47,12 +47,13 @@ def static_processor():
                 'js': '<script type="text/javascript">%s</script>',
                 'css': '<style type="text/css">%s</style>',
                 'png': '<img class="%s" alt="%s" src="data:image/png;base64,%s" />',
+                'svg': '<img class="%s" alt="%s" src="data:image/svg+xml;base64,%s" />'
             }
 
             # Open the file as binary.
             with open(file_path, "rb") as readfile:
 
-                if extension == 'png':
+                if extension == 'png' or 'svg':
 
                     # If it's a PNG, base64 encode it.
                     output = base64.b64encode(readfile.read())
@@ -66,7 +67,7 @@ def static_processor():
             strings = output
 
             # If it's an image, it needs classes and alt.
-            if extension == 'png':
+            if extension == 'png' or 'svg':
 
                 strings = (classes, alt, output)
 
@@ -80,6 +81,7 @@ def static_processor():
                 'js': '<script src="%s/%s"></script>' % (app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
                 'css': '<link rel="stylesheet" href="%s/%s" />' % (app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
                 'png': '<img class="%s" alt="%s" src="%s/%s" />' % (classes, alt, app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
+                'svg': '<img class="%s" alt="%s" src="%s/%s" />' % (classes, alt, app_config.S3_BASE_URL, file_path.replace('tumblrs/', ''))
             }
 
             # Send it to the template.

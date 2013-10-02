@@ -91,7 +91,7 @@
                             <h2 class="npr"><a href="http://npr.org"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></h2>
                             {block:IfShowBlogTitle}
                             <h1><a href="/">
-                                {{ static(file_path='header-lg.png', classes='img-responsive hidden-xs hidden-sm', alt="header") }}
+                                {{ static(file_path='header-lg.svg', classes='img-responsive hidden-xs hidden-sm', alt="header") }}
                                 {{ static(file_path='header-sm.png', classes='img-responsive visible-xs visible-sm', alt="header") }}
                             </a></h1>
                             {/block:IfShowBlogTitle}
