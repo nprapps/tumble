@@ -53,7 +53,7 @@ def static_processor():
             # Open the file as binary.
             with open(file_path, "rb") as readfile:
 
-                if extension == 'png' or 'svg':
+                if extension == 'png' or extension == 'svg':
 
                     # If it's a PNG, base64 encode it.
                     output = base64.b64encode(readfile.read())
@@ -67,7 +67,7 @@ def static_processor():
             strings = output
 
             # If it's an image, it needs classes and alt.
-            if extension == 'png' or 'svg':
+            if extension == 'png' or extension == 'svg':
 
                 strings = (classes, alt, output)
 
