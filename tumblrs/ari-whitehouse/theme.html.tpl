@@ -24,6 +24,22 @@
         <link rel="shortcut icon" href="http://www.npr.org/favicon.ico" />
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
 
+        <!-- Font loader -->
+        <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.10/webfont.js"></script>
+        <script>
+            WebFont.load({
+                 custom: {
+                     families: [
+                         'Gotham SSm:n4,n7'
+                     ],
+                     urls: [
+                         'http://s.npr.org/templates/css/fonts/GothamSSm.css'
+                     ]
+                 },
+                 timeout: 10000
+             });
+        </script>
+
         <!-- HTML5 Shiv -->
         <!--[if lt IE 9]>
                 <script src="http://static.tumblr.com/hriofhd/Qj0m8pn7q/html5shiv.js"></script>
@@ -67,16 +83,16 @@
     </head>
     <body class="{block:IndexPage}index-page{/block:IndexPage}{block:PermalinkPage}permalink-page{/block:PermalinkPage}">
 
-        <div id="container" class="group container-fluid">
-            <div class="row-fluid">
-                <header class="span3">
+        <div id="container" class="group container">
+            <div class="row">
+                <header>
                     <div id="blog_info">
                         <div class="fix-wrap">
                             <h2 class="npr"><a href="http://npr.org"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></h2>
                             {block:IfShowBlogTitle}
                             <h1><a href="/">
-                                {{ static(file_path='header-lg.png', classes='visible-tablet visible-desktop', alt="header") }}
-                                {{ static(file_path='header-sm.png', classes='visible-phone', alt="header") }}
+                                {{ static(file_path='header-lg.png', classes='img-responsive hidden-xs hidden-sm', alt="header") }}
+                                {{ static(file_path='header-sm.png', classes='img-responsive visible-xs visible-sm', alt="header") }}
                             </a></h1>
                             {/block:IfShowBlogTitle}
                             <p>{Description}</p>
@@ -84,71 +100,60 @@
                     </div>
                 </header>
 
-                <section id="post-wrap" class="span9">
+                <section id="post-wrap">
 
                     {block:TagPage}<h2 class="tag-header">{Tag}</h2>{/block:TagPage}
 
                     <div id="posts">
                         <!-- START POSTS -->
                         {block:Posts}
-                        <article class="post {TagsAsClasses}">
+                        <article class="post {TagsAsClasses} {block:Text}text{/block:Text}{block:Quote}quote{/block:Quote}{block:Link}link{/block:Link}{block:Video}video{/block:Video}{block:Audio}audio{/block:Audio}{block:Photo}photo{/block:Photo}{block:Photoset}photoset{/block:Photoset}{block:Panorama}panorama{/block:Panorama}{block:Chat}chat{/block:Chat}{block:Answer}answer{/block:Answer}">
+
+                            <div class="row">
                             {block:Text}
-                            <div class="text">
                                 {block:Title}<h3>{Title}</h3>{/block:Title}
-                                {Body}
-                            </div>
+                                <div class="text-wrapper">
+                                    {Body}
+                                </div>
                             {/block:Text}
                             {block:Quote}
-                            <div class="quote">
                                 <blockquote class="words {Length}">&#8220;{Quote}&#8221;</blockquote>
                                 {block:Source}<p class="source">&mdash; {Source}</p>{/block:Source}
-                            </div>
                             {/block:Quote}
                             {block:Link}
-                            <div class="link">
                                 <h3><a href="{URL}" {Target}>{Name} <i class="icon icon-external-link"></i></a></h3>
                                 {block:Description}<div class="caption">{Description}</div>{/block:Description}
-                            </div>
                             {/block:Link}
                             {block:Video}
-                            <div class="video">
-                                <div class="video-container">
-                                    {VideoEmbed-700}
+                                <div class="video-wrapper">
+                                    <div class="video-container">
+                                        {VideoEmbed-700}
+                                    </div>
                                 </div>
                                 {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
-                            </div>
                             {/block:Video}
                             {block:Audio}
-                            <div class="audio">
                                 {block:AlbumArt}<img src="{AlbumArtURL}" alt="">{/block:AlbumArt}
                                 {AudioPlayerGrey}
                                 {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
-                            </div>
                             {/block:Audio}
                             {block:Photo}
-                            <div class="photo">
-                                    {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>{LinkCloseTag}
+                                    {LinkOpenTag}<img src="{PhotoURL-HighRes}" class="img-responsive" alt="{PhotoAlt}"/>{LinkCloseTag}
                                     {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
-                            </div>
                             {/block:Photo}
 
                             {block:Photoset}
-                            <div class="photoset">
                                 <div class="photoset-500">{Photoset-500}</div>
                                 <div class="photoset-250">{Photoset-250}</div>
                                 {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
-                            </div>
                             {/block:Photoset}
 
                             {block:Panorama}
-                            <div class="panorama">
-                                {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />{LinkCloseTag}
+                                {LinkOpenTag}<img src="{PhotoURL-Panorama}" class="img-responsive" alt="{PhotoAlt}" />{LinkCloseTag}
                                 {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
-                            </div>
                             {/block:Panorama}
 
                             {block:Chat}
-                            <div class="chat">
                                 {block:Title}<h3>{Title}</h3>{/block:Title}
                                 <ul class="conversation">
                                     {block:Lines}
@@ -158,17 +163,14 @@
                                     </li>
                                     {/block:Lines}
                                 </ul>
-                            </div>
                             {/block:Chat}
                             {block:Answer}
-                            <div class="answer">
                                 <div class="qa-asker">
                                     <img src="{AskerPortraitURL-40}">
                                     {Asker} asks:
                                 </div>
                                 <div class="qa-question">{Question}</div>
                                 <div class="qa-response">{Answer}</div>
-                            </div>
                             {/block:Answer}
 
                             <div class="post-meta">
@@ -195,6 +197,7 @@
                                 <li><a rel="external" href="https://www.facebook.com/dialog/feed?app_id=138837436154588&amp;link={Permalink}&picture={PhotoURL-HighRes}&name={Title}&redirect_uri={Permalink}" alt="Share on Facebook" target="_blank" onclick="_gaq.push(['_trackEvent', 'Social', 'Click Facebook In Post', 'Read this post from &ldquo;{Title}&rdquo;']);" title="Like This Page On Facebook"><i class="icon icon-facebook-sign"></i></a></li>
                             </ul>
                             -->
+                            </div> <!-- end .row -->
 
                             {block:PermalinkPage}
                             {block:PostNotes}
