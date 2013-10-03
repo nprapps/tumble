@@ -91,7 +91,7 @@
                             <h2 class="npr"><a href="http://npr.org"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></h2>
                             {block:IfShowBlogTitle}
                             <h1><a href="/">
-                                {{ static(file_path='header-lg.svg', classes='img-responsive hidden-xs hidden-sm', alt="header") }}
+                                {{ static(file_path='header-lg.png', classes='img-responsive hidden-xs hidden-sm', alt="header") }}
                                 {{ static(file_path='header-sm.png', classes='img-responsive visible-xs visible-sm', alt="header") }}
                             </a></h1>
                             {/block:IfShowBlogTitle}
@@ -117,8 +117,10 @@
                                 </div>
                             {/block:Text}
                             {block:Quote}
-                                <blockquote class="words {Length}">&#8220;{Quote}&#8221;</blockquote>
-                                {block:Source}<p class="source">&mdash; {Source}</p>{/block:Source}
+                                <div class="quote-wrapper">
+                                    <blockquote class="words {Length}">&#8220;{Quote}&#8221;</blockquote>
+                                    {block:Source}<p class="source">&mdash; {Source}</p>{/block:Source}
+                                </div>
                             {/block:Quote}
                             {block:Link}
                                 <h3><a href="{URL}" {Target}>{Name} <i class="icon icon-external-link"></i></a></h3>
