@@ -145,7 +145,7 @@
                             {/block:Photo}
 
                             {block:Photoset}
-                                <div class="photoset-500">{Photoset-500}</div>
+                                <div class="photoset-500">{Photoset-700}</div>
                                 <div class="photoset-250">{Photoset-250}</div>
                                 {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
                             {/block:Photoset}

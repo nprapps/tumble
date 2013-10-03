@@ -150,6 +150,11 @@
                 font-size: @font-size-base;
                 font-weight: normal;
                 margin-bottom: @line-height-computed;
+
+                @media (min-width: @screen-lg){
+                    font-size: @font-size-base * 1.125;  // 16px * 1.125 = 18px
+                    margin-bottom: @line-height-computed * 1.125 / 2;
+                }
             }
         }
 
@@ -157,11 +162,11 @@
         @media (min-width: @screen-lg){
             .caption,
             .text-wrapper {
-                font-size: @font-size-base * 1.25;  // 16px * 1.25 = 20px
+                font-size: @font-size-base * 1.125;  // 16px * 1.125 = 18px
 
                 p,
                 blockquote p {
-                    margin-bottom: @line-height-computed * 1.25 / 2;
+                    margin-bottom: @line-height-computed * 1.125 / 2;
                 }
             }
         }
@@ -244,6 +249,7 @@
             iframe { 
                 margin: 0 auto @line-height-computed; 
                 display: block;
+                max-width: 100%;
             }
             // .caption { margin-top: 12px; }
             .photoset-250 { display: none; }
