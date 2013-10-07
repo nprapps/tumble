@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html class="no-js">
     <head>
         <title>{Title}{block:SearchPage} ({lang:Search results for SearchQuery}){/block:SearchPage}{block:PermalinkPage}{block:PostSummary}  {PostSummary}{/block:PostSummary}{/block:PermalinkPage} : NPR</title>
@@ -124,7 +124,7 @@
                             {/block:Quote}
                             {block:Link}
                                 <h3><a href="{URL}" {Target}>{Name} <i class="icon icon-external-link"></i></a></h3>
-                                {block:Description}<div class="caption">{Description}</div>{/block:Description}
+                                <div class="caption">{block:Description}{Description}{/block:Description}</div>
                             {/block:Link}
                             {block:Video}
                                 <div class="video-wrapper">
