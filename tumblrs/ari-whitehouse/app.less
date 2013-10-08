@@ -158,6 +158,11 @@
             }
         }
 
+        ol,
+        ul {
+            margin-left: 15px;
+        }
+
 
         @media (min-width: @screen-lg){
             .caption,
@@ -330,6 +335,16 @@
                 margin-bottom: @line-height-computed;
                 width: 100%;
                 height: 88px;
+            }
+        }
+
+        &.chat {
+            li {
+                list-style: none;
+
+                .person {
+                    font-weight: bold;
+                }
             }
         }
 
