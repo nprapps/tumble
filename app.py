@@ -10,6 +10,7 @@ from flask import Flask, Markup, abort, render_template_string
 
 import app_config
 import copytext
+from cssmin import cssmin
 from render_utils import flatten_app_config
 
 app = Flask(app_config.PROJECT_NAME)
@@ -57,6 +58,11 @@ def static_processor():
 
                     # If it's a PNG, base64 encode it.
                     output = base64.b64encode(readfile.read())
+
+                elif extension == 'css':
+
+                    # If it's CSS, let's minify
+                    output = cssmin(readfile.read())
 
                 else:
 
