@@ -111,7 +111,16 @@
 
                             <div class="row">
                             {block:Text}
-                                {block:Title}<h3>{Title}</h3>{/block:Title}
+                                {block:Title}
+                                    {block:IndexPage}
+                                    <a href="{Permalink}" class="permalink">
+                                    {/block:IndexPage}
+                                    <h3>{Title}</h3>
+                                    {block:IndexPage}
+                                    </a>
+                                    {/block:IndexPage}
+
+                                {/block:Title}
                                 <div class="text-wrapper">
                                     {Body}
                                 </div>
