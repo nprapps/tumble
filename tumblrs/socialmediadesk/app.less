@@ -78,13 +78,16 @@
     }
 
     h1 img {
+        display: block;
+
         @media (min-width: @screen-md) {
             float:right;
             margin-bottom: @line-height-computed;
+            width: 100%;
         }
 
         @media (max-width: @screen-sm-max){
-            max-height: 80px;
+            max-height: 150px;
         }
     }
 
@@ -131,7 +134,7 @@
         padding: @line-height-computed;
         margin-bottom: @line-height-computed;
         //max-width: 600px;
-        .box-shadow(darken(@musicDark, 20%) 0 3px 6px 0);
+        .box-shadow(@gray 0 3px 6px 0);
 
         @media (max-width: @screen-xs-max){
             padding: 15px;
