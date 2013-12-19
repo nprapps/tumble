@@ -129,7 +129,7 @@
                             {block:Video}
                                 <div class="video-wrapper">
                                     <div class="video-container">
-                                        {VideoEmbed-700}
+                                        {Video-700}
                                     </div>
                                 </div>
                                 {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
@@ -175,6 +175,13 @@
                                 <div class="qa-response">{Answer}</div>
                             {/block:Answer}
 
+
+                            {block:HasTags}
+                                <div class="tags col-xs-12 clearfix" style="position: static;">
+                                    {block:Tags}<a href="{TagURL}" class="tag">{Tag}<span class="triangle"></span></a>{/block:Tags}
+                                </div>
+                            {/block:HasTags}
+
                             <div class="post-meta">
 
                             {block:IndexPage}
@@ -185,11 +192,7 @@
                                 <p class="pubdate">{block:Date}{Month} {DayOfMonth}, {Year}{/block:Date}</p>
                             {/block:PermalinkPage}
 
-                            {block:HasTags}
-                                <div class="tags">
-                                    {block:Tags}<a href="{TagURL}" class="tag">{Tag}<span class="triangle"></span></a>{/block:Tags}
-                                </div>
-                            {/block:HasTags}
+                            
 
                             </div>
 

@@ -41,12 +41,20 @@ body {
     .fix-wrap {
         width: 23.076923076923077%;
 
+        h1 img {
+            width: 80%;
+        }
+
         @media (max-width: 979px) and (min-width: 768px) {
             width: 22.92817679558011%;
         }
 
         @media @screen-small {
             width: 100%;
+
+            h1 img {
+                width: auto;
+            }
         }
     }
 }
