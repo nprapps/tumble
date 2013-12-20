@@ -28,6 +28,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.10/webfont.js"></script>
         <script>
             WebFont.load({
+                 google: { families: [ 'Lato:400,700,400italic,700italic:latin' ] },
                  custom: {
                      families: [
                          'Gotham SSm:n4,n7'
