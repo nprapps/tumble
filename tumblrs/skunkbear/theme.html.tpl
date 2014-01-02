@@ -28,7 +28,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.10/webfont.js"></script>
         <script>
             WebFont.load({
-                 google: { families: [ 'Lato:400,700,400italic,700italic:latin' ] },
+                 google: { families: [ 'Roboto+Slab:400,700:latin' ] },
                  custom: {
                      families: [
                          'Gotham SSm:n4,n7'
@@ -102,6 +102,7 @@
                             {block:Pages}
                                 <li><a href="{URL}">{Label}</a></li>
                             {/block:Pages}
+                                <li><a href="/ask/">Questions?</a></li>
                             </ul>
                             {/block:HasPages}
                         </div>

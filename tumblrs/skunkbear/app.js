@@ -13,6 +13,7 @@ $(function() {
 
 			if (height > width){
 				$this.parents('.video-container').addClass('nine-by-sixteen');
+				$this.parents('.video-wrapper').addClass('vertical');
 			} else if (height == width) {
 				$this.parents('.video-container').addClass('square');
 			} else {
