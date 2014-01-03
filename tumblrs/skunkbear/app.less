@@ -107,6 +107,10 @@ h1,h2,h3,h4,h5,h6 {
             font-size: @font-size-base * 5;
             font-size: 8vw;
         }
+
+        @media (min-width: 1500px){
+            font-size: 124px;
+        }
     }
 
     .logo {
@@ -128,7 +132,6 @@ h1,h2,h3,h4,h5,h6 {
         display: inline-block;
         clear: both;
         padding: @line-height-computed / 4 0;
-        max-width: 50%;
         border-width: 1px 0;
         border-style: solid;
         border-color: #eee;
@@ -137,9 +140,9 @@ h1,h2,h3,h4,h5,h6 {
         letter-spacing: 0.1em;
         -webkit-font-smoothing: antialiased;
 
-        @media screen and (max-width: @screen-xs-max){
-            width: 100%;
-        }
+        // @media screen and (max-width: @screen-xs-max){
+        //     width: 100%;
+        // }
 
         .wf-loading & {
             visibility: hidden;
