@@ -48,6 +48,8 @@
 @import "less/bootstrap-3/utilities.less";
 @import "less/bootstrap-3/responsive-utilities.less";
 
+@reverse-text: #e6e1d8;
+
 
 // Global
 
@@ -83,12 +85,12 @@ h1,h2,h3,h4,h5,h6 {
 
     h1 {
         font-size: @font-size-base * 5;
-        font-size: 8vw;
+        font-size: 5vw;
         font-weight: 400;
         text-transform: uppercase;
 
         a {
-            color: #e6e1d8;
+            color: @reverse-text;
 
             &:hover {
                 text-decoration: none;
@@ -100,6 +102,11 @@ h1,h2,h3,h4,h5,h6 {
             font-size: @font-size-base * 2;
             font-size: 10vw;
         }
+
+        @media (min-width: @screen-md){
+            font-size: @font-size-base * 5;
+            font-size: 8vw;
+        }
     }
 
     .logo {
@@ -109,29 +116,26 @@ h1,h2,h3,h4,h5,h6 {
         img {
             vertical-align: middle;
             display: inline-block;
+            width: 200px;
 
-            @media (min-width: @screen-md) {
-                width: 90%;
-                max-width: 25%;
-            }
-
-            @media (max-width: @screen-sm-max){
+            @media (max-width: @screen-xs-max){
                 max-height: 60px;
             }
         }
     }
 
     p {        
-        color: #E6E1D8;
-        text-transform: uppercase;
+        display: inline-block;
         clear: both;
-        -webkit-font-smoothing: antialiased;
+        padding: @line-height-computed / 4 0;
+        max-width: 50%;
         border-width: 1px 0;
         border-style: solid;
         border-color: #eee;
-        padding: @line-height-computed / 4 0;
-        width: 50%;
-        display: inline-block;
+        color: @reverse-text;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        -webkit-font-smoothing: antialiased;
 
         @media screen and (max-width: @screen-xs-max){
             width: 100%;
@@ -148,9 +152,9 @@ h1,h2,h3,h4,h5,h6 {
     .tag-nav {
         li {
             display: inline-block;
-            -webkit-font-smoothing: antialiased;
             margin: 0 @grid-gutter-width / 4;
-
+            letter-spacing: 0.1em;
+            -webkit-font-smoothing: antialiased;
 
             a {
                 font-family: @font-family-headline;
@@ -176,7 +180,7 @@ h1,h2,h3,h4,h5,h6 {
     .tag-header {
         text-align: center;
         font-weight: normal;
-        color: #E6E1D8;
+        color: @reverse-text;
         margin-top: 0;
         line-height: 1;
         -webkit-font-smoothing: antialiased;
@@ -199,13 +203,19 @@ h1,h2,h3,h4,h5,h6 {
         }
 
         blockquote {
-            padding: 0 0 0 15px;
+            padding: 0 0 0 @grid-gutter-width;
             margin: 0 0 24px;
-            border-left: 2px solid #eeeeee;
+            border-left: none;
             p {
                 font-size: @font-size-base;
                 font-weight: normal;
                 margin-bottom: @line-height-computed;
+                font-style: italic;
+                color: @gray-light;
+
+                @media (max-width: @screen-xs-max){
+                    font-size: @font-size-base * 0.875;  // 16px * 1.125 = 18px
+                }
 
                 @media (min-width: @screen-lg){
                     font-size: @font-size-base * 1.125;  // 16px * 1.125 = 18px
@@ -464,13 +474,14 @@ h1,h2,h3,h4,h5,h6 {
         .pubdate,
         .note-count {
             display: inline-block;
-            font-family: @font-family-headline;
-            text-transform: uppercase;
-            font-size: 12px;
-            font-weight: bold;
-            line-height: 25px;
-            color: @gray-light;
             margin-bottom: 0;
+            color: @gray-light;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: bold;
+            font-size: 12px;
+            font-family: @font-family-headline;
+            line-height: 25px;            
 
             .permalink {
                 color: @gray-light;
@@ -484,7 +495,8 @@ h1,h2,h3,h4,h5,h6 {
         .pubdate {
             display: block;
             text-align: center;
-            margin: 0 0 @line-height-computed / 2;
+            line-height: 1;
+            margin: 0 0 @line-height-computed;
         }
 
         .note-count {
@@ -587,15 +599,20 @@ h1,h2,h3,h4,h5,h6 {
                     blockquote {
                         padding-top: 0;
                         padding-bottom: 0;
-                        line-height: 1.2;
+                        line-height: 1.3;
                         margin-top: @line-height-computed / 2;
                         border-left: none;
+                        font-style: italic;
                         padding-left: @grid-gutter-width;
 
                         a {
                             color: @gray-light;
                         }
                     }
+                }
+
+                @media screen and (max-width: @screen-xs-max){
+                    font-size: @font-size-base * 0.875;
                 }
             }
         }

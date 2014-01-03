@@ -176,21 +176,20 @@
                             {/block:Answer}
 
 
-                            {block:HasTags}
-                                <div class="tags col-xs-12 clearfix" style="position: static;">
-                                    {block:Tags}<a href="{TagURL}" class="tag">{Tag}<span class="triangle"></span></a>{/block:Tags}
-                                </div>
-                            {/block:HasTags}
-
                             <div class="post-meta">
 
                             {block:IndexPage}
-                                <p class="pubdate"><a href="{Permalink}" class="permalink">{block:Date}{Month} {DayOfMonth}, {Year}{/block:Date}</a></p>
+                                <p class="pubdate"><a href="{Permalink}" class="permalink">{block:Date}{ShortMonth}. {DayOfMonth}, {Year}{/block:Date}</a></p>
                                 <p class="note-count"><a href="{Permalink}" class="permalink"><i class="icon icon-comment"></i> {NoteCountWithLabel}</a></p>
                             {/block:IndexPage}
                             {block:PermalinkPage}
                                 <p class="pubdate">{block:Date}{Month} {DayOfMonth}, {Year}{/block:Date}</p>
                             {/block:PermalinkPage}
+                            {block:HasTags}
+                                <div class="tags">
+                                    {block:Tags}<a href="{TagURL}" class="tag">{Tag}<span class="triangle"></span></a>{/block:Tags}
+                                </div>
+                            {/block:HasTags}
 
                             
 
