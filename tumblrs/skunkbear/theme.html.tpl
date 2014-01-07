@@ -94,7 +94,7 @@
                             <h1><a href="/">{Title}</a></h1>
                             {/block:IfShowBlogTitle}
                             <a href="/" class="logo">
-                                {{ static(file_path='skunkbear.svg', classes='img-responsive', alt="header") }}
+                                {{ static(file_path='skunkbanner.svg', classes='img-responsive', alt="header") }}
                             </a>
                             <p class="description">{Description}</p>
                             {block:HasPages}
