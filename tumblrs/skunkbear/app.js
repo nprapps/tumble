@@ -19,6 +19,8 @@ $(function() {
 			} else {
 				$this.parents('.video-container').addClass('sixteen-by-nine');
 			}
+
+			$this.parent().attr('style', '');
 		});
 	}
 
