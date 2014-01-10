@@ -90,7 +90,7 @@
                             <h2 class="npr"><a href="http://npr.org"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></h2>
                             {block:IfShowBlogTitle}
                             <h1><a href="/">
-                                {{ static(file_path='header-lg.svg', classes='visible-tablet visible-desktop') }}
+                                {{ static(file_path='header-lg2.svg', classes='visible-tablet visible-desktop') }}
                                 {{ static(file_path='header.svg', classes='visible-phone') }}
                             </a></h1>
                             {/block:IfShowBlogTitle}

@@ -28,7 +28,6 @@
         <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.10/webfont.js"></script>
         <script>
             WebFont.load({
-                 google: { families: [ 'Roboto+Slab:400,700:latin' ] },
                  custom: {
                      families: [
                          'Gotham SSm:n4,n7'
@@ -46,9 +45,6 @@
                 <script src="http://static.tumblr.com/hriofhd/Qj0m8pn7q/html5shiv.js"></script>
         <![endif]-->
         {{ static(file_path='modernizr.js') }}
-
-        <!-- Reset CSS -->
-        <link rel="stylesheet" href="http://static.tumblr.com/thpaaos/DIcklyl4z/reset.css" type="text/css">
 
         <!-- Project CSS -->
         {{ static(file_path='app.less.css') }}
