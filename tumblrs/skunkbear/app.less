@@ -510,17 +510,18 @@ h1,h2,h3,h4,h5,h6 {
         }
 
         .diptych {
-           img {
-               width: 50%;
-               &:nth-child(odd){
-                   padding-right: @grid-gutter-width / 4;
-                   float: left;
-               }
-               &:nth-child(even){
-                   padding-left: @grid-gutter-width / 4;
-                   float: right;
-               }
-           }
+            margin-bottom: @line-height-computed;
+            img {
+                width: 50%;
+                &:nth-child(odd){
+                    padding-right: @grid-gutter-width / 4;
+                    float: left;
+                }
+                &:nth-child(even){
+                    padding-left: @grid-gutter-width / 4;
+                    float: right;
+                }
+            }
         }
 
         .pubdate,
