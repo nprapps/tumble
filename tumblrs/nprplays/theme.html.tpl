@@ -116,6 +116,8 @@
                         {block:Posts}
                         <article class="post {TagsAsClasses} {block:Text}text{/block:Text}{block:Quote}quote{/block:Quote}{block:Link}link{/block:Link}{block:Video}video{/block:Video}{block:Audio}audio{/block:Audio}{block:Photo}photo{/block:Photo}{block:Photoset}photoset{/block:Photoset}{block:Panorama}panorama{/block:Panorama}{block:Chat}chat{/block:Chat}{block:Answer}answer{/block:Answer}">
 
+                            <h4 class="pubdate"><a href="{Permalink}" class="permalink">{block:Date}{Month} {DayOfMonth}, {Year}{/block:Date}</a></h4>
+
                             <div class="row">
                             {block:Text}
                                 {block:IndexPage}
@@ -192,20 +194,17 @@
                             <div class="post-meta">
 
                             {block:IndexPage}
-                                <p class="pubdate"><a href="{Permalink}" class="permalink">{block:Date}{ShortMonth}. {DayOfMonth}, {Year}{/block:Date}</a></p>
                                 <p class="note-count"><a href="{Permalink}" class="permalink"><i class="icon icon-comment"></i> {NoteCountWithLabel}</a></p>
                             {/block:IndexPage}
-                            {block:PermalinkPage}
-                                <p class="pubdate">{block:Date}{Month} {DayOfMonth}, {Year}{/block:Date}</p>
-                            {/block:PermalinkPage}
                             {block:HasTags}
                                 <div class="tags">
                                     {block:Tags}<a href="{TagURL}" class="tag">{Tag}<span class="triangle"></span></a>{/block:Tags}
                                 </div>
                             {/block:HasTags}
 
-                            
-
+                                <div class="sharing">
+                                    <a rel="external" href="http://twitter.com/share?text=The+latest+from+Skunk+Bear%2C+NPR%27s+science+tumblr%3A&amp;url={Permalink}" alt="Share on Twitter" target="_blank" title="Share This Page On Twitter"><i class="icon icon-twitter"></i></a>
+                                </div>
                             </div>
 
                             <!--
