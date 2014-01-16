@@ -117,6 +117,9 @@ def _render_tumblr_theme(slug):
     # For copytext.
     context['copy'] = {}
 
+    # For og image reference
+    context['slug'] = slug
+
     # Loop over the copy in the sheet named for the slug.
     # Append it like it's a dict.
     for item in copytext.Copy()[slug]:
