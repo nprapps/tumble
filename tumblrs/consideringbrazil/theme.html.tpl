@@ -73,10 +73,7 @@
                         <div class="fix-wrap">
                             <h2 class="npr"><a href="http://npr.org"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></h2>
                             {block:IfShowBlogTitle}
-                            <h1><a href="/">
-                                {{ static(file_path='header-lg.png', classes='visible-tablet visible-desktop') }}
-                                {{ static(file_path='header-sm.png', classes='visible-phone') }}
-                            </a></h1>
+                            <h1><a href="/">{ Title }</a></h1>
                             {/block:IfShowBlogTitle}
                             <p>{Description}</p>
                         </div>

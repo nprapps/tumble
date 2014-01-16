@@ -307,12 +307,39 @@ def bootstrap_issues():
 """
 Bits about the Tumblr theme.
 """
-
 def copy_theme(slug):
     require('settings', provided_by=[production, staging, development])
 
     render(slug)
     local('pbcopy < tumblrs/%s/theme.html' % slug)
+
+"""
+Deployment
+
+Changes to deployment requires a full-stack test. Deployment
+has two primary functions: Pushing flat files to S3 and deploying
+code to a remote server if required.
+"""
+def _deploy_to_s3(path='.gzip'):
+    """
+    Deploy the gzipped stuff to S3.
+    """
+    # Clear files that should never be deployed
+    local('rm -rf %s/live-data' % path)
+    local('rm -rf %s/sitemap.xml' % path)
+
+    s3cmd = 's3cmd -P --add-header=Cache-Control:max-age=5 --guess-mime-type --recursive --exclude-from gzip_types.txt sync %s/ %s'
+    s3cmd_gzip = 's3cmd -P --add-header=Cache-Control:max-age=5 --add-header=Content-encoding:gzip --guess-mime-type --recursive --exclude "*" --include-from gzip_types.txt sync %s/ %s'
+
+    for bucket in app_config.S3_BUCKETS:
+        local(s3cmd % (path, 's3://%s/%s/' % (bucket, app_config.PROJECT_SLUG)))
+        local(s3cmd_gzip % (path, 's3://%s/%s/' % (bucket, app_config.PROJECT_SLUG)))
+
+def _gzip(in_path='www', out_path='.gzip'):
+    """
+    Gzips everything in www and puts it all in gzip
+    """
+    local('python gzip_assets.py %s %s' % (in_path, out_path))
 
 def deploy(remote='origin'):
     """
@@ -320,23 +347,10 @@ def deploy(remote='origin'):
     """
     require('settings', provided_by=[production, staging])
 
-    if app_config.DEPLOY_TO_SERVERS:
-        require('branch', provided_by=[stable, master, branch])
-
     if (app_config.DEPLOYMENT_TARGET == 'production' and env.branch != 'stable'):
         _confirm("You are trying to deploy the '%s' branch to production.\nYou should really only deploy a stable branch.\nDo you know what you're doing?" % env.branch)
 
-    if app_config.DEPLOY_TO_SERVERS:
-        checkout_latest(remote)
-
-        if app_config.DEPLOY_CRONTAB:
-            install_crontab()
-
-        if app_config.DEPLOY_SERVICES:
-            deploy_confs()
-
-    render()
-    _gzip_www()
+    _gzip('www', '.gzip')
     _deploy_to_s3()
 
 def bootstrap():
@@ -346,6 +360,13 @@ def bootstrap():
     update_copy()
     for row in copytext.Copy()['tumblr-index']:
         local('mkdir -p tumblrs/%s' % row.value)
+        local('mkdir -p www/img/%s' % row.value)
+
+        try:
+            with open('tumblrs/img/%s/og-img.png' % row.value):
+                pass
+        except IOError:
+            local('cp www/img/og-image.png www/img/%s/og-image.png' % row.value)
 
         for path, filename in [
             ('www/js', 'app.js'),

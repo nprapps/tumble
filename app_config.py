@@ -14,19 +14,19 @@ import os
 NAMES
 """
 # Project name used for display
-PROJECT_NAME = '$NEW_PROJECT_NAME'
+PROJECT_NAME = 'tumble'
 
 # Project name in urls
 # Use dashes, not underscores!
-PROJECT_SLUG = '$NEW_PROJECT_SLUG'
+PROJECT_SLUG = 'tumble'
 
 # The name of the repository containing the source
-REPOSITORY_NAME = '$NEW_REPOSITORY_NAME'
+REPOSITORY_NAME = 'tumble'
 REPOSITORY_URL = 'git@github.com:nprapps/%s.git' % REPOSITORY_NAME
 REPOSITORY_ALT_URL = None  # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME'
 
 # The name to be used in paths on the server
-PROJECT_FILENAME = '$NEW_PROJECT_FILENAME'
+PROJECT_FILENAME = 'tumble'
 
 PROJECT_CREDITS = 'Jeremy Bowers, Brian Boyer, Alyson Hurt and Matt Stiles / NPR'
 PROJECT_SHORTLINK = 'npr.org/foo'
@@ -41,7 +41,7 @@ PRODUCTION_SERVERS = ['54.214.20.225']
 STAGING_SERVERS = ['54.214.20.232']
 
 # Should code be deployed to the web/cron servers?
-DEPLOY_TO_SERVERS = 'True'
+DEPLOY_TO_SERVERS = False
 
 SERVER_USER = 'ubuntu'
 SERVER_PYTHON = 'python2.7'
@@ -55,7 +55,7 @@ DEPLOY_CRONTAB = False
 
 # Should the service configurations be installed on the servers?
 # If True, DEPLOY_TO_SERVERS must also be True
-DEPLOY_SERVICES = True
+DEPLOY_SERVICES = False
 
 # Services are the server-side services we want to enable and configure.
 # A three-tuple following this format:
