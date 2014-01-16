@@ -5,3 +5,4 @@ tumblrs/*/*.css
 tumblrs/*/*.html
 data/copy.xls
 .DS_Store
+.gzip
