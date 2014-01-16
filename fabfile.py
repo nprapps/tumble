@@ -363,10 +363,10 @@ def bootstrap():
         local('mkdir -p www/img/%s' % row.value)
 
         try:
-            with open('tumblrs/img/%s/og-img.png' % row.value):
+            with open('tumblrs/img/%s/og_img.png' % row.value):
                 pass
         except IOError:
-            local('cp www/img/og-image.png www/img/%s/og-image.png' % row.value)
+            local('cp www/img/og-image.png www/img/%s/og_image.png' % row.value)
 
         for path, filename in [
             ('www/js', 'app.js'),
