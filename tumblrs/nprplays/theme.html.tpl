@@ -395,8 +395,8 @@
                         var $new_posts = $('#posts', data);
 
                         // Insert posts and update counters
-                        $('#posts').append(new_posts_html);
-                        sizeVideoContainers();
+                        $('#posts').append('<div class="page' + _current_page + '">' + new_posts_html + '</div>');
+                        sizeVideoContainers('.page' + _current_page);
 
                         _posts_loaded = $new_posts.find('article.post').length;
 
