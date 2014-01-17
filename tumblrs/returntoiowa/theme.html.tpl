@@ -75,7 +75,7 @@
         <meta property="og:url" content="{{ copy.og_url }}" />
         <meta property="og:type" content="article" />
         <meta property="og:description" content="{{ copy.og_description }}" />
-        <meta property="og:image" content="{{ copy.og_image }}" />
+        <meta property="og:image" content="{{ S3_BASE_URL }}/img/{{ slug }}/og_image.png" />
         <meta property="og:site_name" content="NPR.org" />
         <meta property="fb:app_id" content="138837436154588" />
 
@@ -392,8 +392,8 @@
                         var $new_posts = $('#posts', data);
 
                         // Insert posts and update counters
-                        $('#posts').append(new_posts_html);
-                        sizeVideoContainers();
+                        $('#posts').append('<div class="page' + _current_page + '">' + new_posts_html + '</div>');
+                        sizeVideoContainers('.page' + _current_page);
 
                         _posts_loaded = $new_posts.find('article.post').length;
 

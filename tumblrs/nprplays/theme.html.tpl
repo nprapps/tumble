@@ -203,6 +203,7 @@
                             {/block:HasTags}
 
                                 <div class="sharing">
+                                    {LikeButton color="grey"}{ReblogButton color="grey"}
                                     <a rel="external" href="http://twitter.com/share?text=The+latest+from+Skunk+Bear%2C+NPR%27s+science+tumblr%3A&amp;url={Permalink}" alt="Share on Twitter" target="_blank" title="Share This Page On Twitter"><i class="icon icon-twitter"></i></a>
                                 </div>
                             </div>
