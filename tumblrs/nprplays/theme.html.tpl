@@ -394,10 +394,11 @@
                     _Ajax(_url, function(data) {
                         var new_posts_html = data.split('<!-- START' + ' POSTS -->')[1].split('<!-- END' + ' POSTS -->')[0];
                         var $new_posts = $('#posts', data);
-
+                        var new_post_div = '.page' + _current_page;
                         // Insert posts and update counters
                         $('#posts').append('<div class="page' + _current_page + '">' + new_posts_html + '</div>');
-                        sizeVideoContainers('.page' + _current_page);
+                        sizeVideoContainers(new_post_div);
+                        $(new_post_div).fitVids({ customSelector: "video"});
 
                         _posts_loaded = $new_posts.find('article.post').length;
 
