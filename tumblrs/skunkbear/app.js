@@ -3,11 +3,18 @@ $(function() {
 	var $_document = $(document);
 	var $video_containers = $('.video-container');
 
-	sizeVideoContainers = function(){
-		var $video_iframe = $(document).find('.tumblr_video_iframe, .video-container img');
+	sizeVideoContainers = function(element){
+		var scope = element||document;
+		var $video_iframe = $(scope).find('.tumblr_video_iframe, .video-container img');
 
 		$video_iframe.each(function(){
 			var $this = $(this);
+
+			// Don't recalculate if we've already assigned an aspect ratio
+			if ($this.parents('.video-container').hasClass('nine-by-sixteen vertical square sixteen-by-nine')){
+				return;
+			}
+
 			var height = parseInt($this.attr('height'));
 			var width = parseInt($this.attr('width'));
 
