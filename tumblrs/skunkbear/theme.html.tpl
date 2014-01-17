@@ -202,9 +202,11 @@
                                     {block:Tags}<a href="{TagURL}" class="tag">{Tag}<span class="triangle"></span></a>{/block:Tags}
                                 </div>
                             {/block:HasTags}
-                                <div class="sharing">
-                                    <a rel="external" href="http://twitter.com/share?text=The+latest+from+Skunk+Bear%2C+NPR%27s+science+tumblr%3A&amp;url={Permalink}" alt="Share on Twitter" target="_blank" title="Share This Page On Twitter"><i class="icon icon-twitter"></i></a>
-                                </div>
+                                <ul class="sharing list-unstyled">
+                                    <li>{LikeButton color="grey"}</li>
+                                    <li>{ReblogButton color="grey"}</li>
+                                    <li><a rel="external" href="http://twitter.com/share?text=The+latest+from+Skunk+Bear%2C+NPR%27s+science+tumblr%3A&amp;url={Permalink}" alt="Share on Twitter" target="_blank" title="Share This Page On Twitter"><i class="icon icon-twitter"></i></a></li>
+                                </ul>
 
                             </div>
 

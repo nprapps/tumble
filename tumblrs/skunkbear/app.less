@@ -566,12 +566,16 @@ h1,h2,h3,h4,h5,h6 {
             position: absolute;
             right: @grid-gutter-width / 2;
             bottom: 0;
+            margin: 0;
 
             li {
                 display: inline-block;
+                &:first-child {
+                    margin-right: 5px;
+                }
             }
             .icon {
-                color: @gray-light;
+                color: #ccc;
                 display: inline-block;
                 font-size: 24px;
                 width: 24px;
