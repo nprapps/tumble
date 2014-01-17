@@ -259,8 +259,8 @@
 
 
         <script type="text/javascript" src="http://assets.tumblr.com/javascript/jquery-1.7.2.min.js"></script>
-        {{ static(file_path='app.js') }}
         {{ static(file_path='jquery.fitvids.js') }}
+        {{ static(file_path='app.js') }}
 
         {block:IfUseEndlessScrolling}
         <script type="text/javascript">

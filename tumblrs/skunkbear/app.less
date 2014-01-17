@@ -261,6 +261,10 @@ h1,h2,h3,h4,h5,h6 {
             margin-left: 15px;
         }
 
+        .video-container {
+            margin-bottom: @line-height-computed;
+        }
+
         @media (min-width: @screen-lg){
             .caption,
             .text-wrapper {
@@ -510,17 +514,18 @@ h1,h2,h3,h4,h5,h6 {
         }
 
         .diptych {
-            margin-bottom: @line-height-computed;
             overflow: hidden;
             
             img {
                 width: 50%;
                 &:nth-child(odd){
+                    padding-left: 0;
                     padding-right: @grid-gutter-width / 4;
                     float: left;
                 }
                 &:nth-child(even){
                     padding-left: @grid-gutter-width / 4;
+                    padding-right: 0;
                     float: right;
                 }
             }
