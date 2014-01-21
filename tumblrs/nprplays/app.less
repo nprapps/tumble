@@ -81,7 +81,7 @@
 
 // Global
 body {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AgMAAAC2uDcZAAAACVBMVEX///////////+OSuX+AAAAA3RSTlMATYPLECcMAAAB5klEQVR4Xu3dwcnsIBiGUTcpwX6ymQ4s0jIvKlwbGObj5z0nTJjdQ3BlMNpaG20ZrUByvd5YP/Uso42jDfUgY11j39WDjEs9ceTVw4xzqUcZYz/9/vNV6gAAAAAwz109ceCnepbZ5tGmepC5rrnvP1t3pl5vXj9cd6Zebx4/XXemXm+e64frztTrzbmffv350roz9SjW3Flzp27NnXo9AAAAAOB5z109cOCfVz1s0J/P9j6vetK476df91c9x/P571UPHPlXPcvznks9yfN599OvP+p/Qz939TR9/dSz9NaP1tWD9HX1fVcP0i/1xJFXD9PPVVuvmDDceuB0pff99PvPDxTU+/oV1E1X6piumK6om66om66om66oFyiYMKgHAAAAwPeQvodUD+J7SN9DqvseUt33kOrl57PcesE3gcX1q6o+qob91gu+CSyuXwX1gvNZ1KvUn8+iXm9c6s6mUXc2jbqzadTrAAAAAMA4d/XEgR/qUSzKsChDPci41FNYlGFRhrpFGeqOQnEUinoKewvbW1g9SL/UozYH6Ud9vW7kIzcH6ecqrhe49YDNQb6/v259vX5vYVuT2JpE3dYk6o5qV3dUu3oZAGyNbGtk9Si2RrY1snoK7x+9f1TP4v2j94/qAADAPzd72kDdDMEKAAAAAElFTkSuQmCC)
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAABKAQMAAAB6lBMWAAAABlBMVEUAAAAzMzPI8eYgAAAAkklEQVR4XrXRsRHDIAyFYVy9ThOIXRjJHesxiLjzBJohcgocVLxLinzQ/KfylR/o+0t8XtkxjhFxxWOVaZ3TVMTdhVaiWk3jJi5CK6kzmPiNVhZHK+U+8so0xC3QyupQPUyuODmt/1gzg1b2MfNJK1kzA73R2q2ZATRauzUzem+0ds/M6I3W7pkZoJWsmXGC1vdeFXO1My57/ZoAAAAASUVORK5CYII=)
 }
 
 
@@ -161,10 +161,11 @@ h1,h2,h3,h4,h5,h6 {
     p {        
         display: inline-block;
         clear: both;
-        padding: @line-height-computed / 2 0;
+        margin: @line-height-computed / 2 0;
         line-height: 1;
-        margin-bottom: 0;
+        padding: 3px;
         color: @reverse-text;
+        background: #000;
         text-transform: uppercase;
         letter-spacing: 0.1em;
         -webkit-font-smoothing: antialiased;
@@ -190,7 +191,7 @@ h1,h2,h3,h4,h5,h6 {
     .tag-nav {
         li {
             display: inline-block;
-            margin: 0 @grid-gutter-width / 4;
+            margin: 0 @grid-gutter-width / 4 @grid-gutter-width / 4;
             letter-spacing: 0.1em;
             -webkit-font-smoothing: antialiased;
 
@@ -199,6 +200,8 @@ h1,h2,h3,h4,h5,h6 {
                 text-transform: uppercase;
                 font-weight: bold;
                 color: rgb(255, 0, 164);
+                background: #000;
+                padding: 3px;
             }
         }
     }
@@ -540,7 +543,7 @@ h1,h2,h3,h4,h5,h6 {
             color: @gray-light;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            font-weight: bold;
+            font-weight: normal;
             font-size: 13px;
             font-family: @font-family-headline;
             line-height: 25px;
@@ -578,7 +581,7 @@ h1,h2,h3,h4,h5,h6 {
                 display: inline-block;
             }
             .icon {
-                color: @gray-light;
+                color: #ccc;
                 display: inline-block;
                 font-size: 24px;
                 width: 24px;

@@ -14,14 +14,18 @@ def get_auth():
     """
     username = raw_input('Username:')
     password = getpass.getpass('Password:')
+    code = ''
 
-    auth = HTTPBasicAuth(username, password)
+    auth = HTTPBasicAuth(username, password, code)
 
     # Test auth by requesting repo events
     response = requests.get('https://api.github.com/notifications', auth=auth)
 
     if response.status_code == 401:
-        raise Exception('Invalid username or password')
+        if response.headers.get('X-GitHub-OTP').search('required') != 'None':
+            code = getpass.getpass('Two-factor Authentication Code:')
+        else:
+            raise Exception('Invalid username or password')
 
     return auth
 
