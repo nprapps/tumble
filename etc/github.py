@@ -14,18 +14,14 @@ def get_auth():
     """
     username = raw_input('Username:')
     password = getpass.getpass('Password:')
-    code = ''
 
-    auth = HTTPBasicAuth(username, password, code)
+    auth = HTTPBasicAuth(username, password)
 
     # Test auth by requesting repo events
     response = requests.get('https://api.github.com/notifications', auth=auth)
 
     if response.status_code == 401:
-        if response.headers.get('X-GitHub-OTP').search('required') != 'None':
-            code = getpass.getpass('Two-factor Authentication Code:')
-        else:
-            raise Exception('Invalid username or password')
+        raise Exception('Invalid username or password')
 
     return auth
 
@@ -117,4 +113,3 @@ def create_milestones(auth, filename='etc/default_milestones.csv'):
         data = json.dumps(milestone)
 
         requests.post(url, data=data, auth=auth) 
-
