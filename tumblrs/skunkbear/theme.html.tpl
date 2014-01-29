@@ -70,13 +70,55 @@
         </script>
 
         <meta name="twitter:card" content="summary">
-        <meta property="og:title" content="{Title}" />
-        <meta property="og:url" content="{{ copy.og_url }}" />
-        <meta property="og:type" content="article" />
-        <meta property="og:description" content="{{ copy.og_description }}" />
-        <meta property="og:image" content="{{ copy.og_image }}" />
         <meta property="og:site_name" content="NPR.org" />
         <meta property="fb:app_id" content="138837436154588" />
+        <meta property="og:description" content="{{ copy.og_description }}" />
+
+        {block:IndexPage}
+        <meta property="og:title" content="{Title}" />
+        <meta property="og:url" content="{{ copy.og_url }}" />
+        <meta property="og:type" content="blog" />
+        <meta property="og:image" content="{{ S3_BASE_URL }}/img/{{ slug }}/og_image.png" />
+        {/block:IndexPage}
+
+        {block:PostSummary}
+        <meta property="og:title" content="{PlaintextPostSummary}" />
+        {/block:PostSummary}
+
+        {block:Permalink}
+            <meta property="og:type" content="article" />
+            <meta property="og:url" content="{Permalink}" />
+            {block:Posts}
+                {block:Text}
+                    <meta property="og:image" content="{{ S3_BASE_URL }}/img/{{ slug }}/og_image.png"/>
+                {/block:Text}
+                {block:Photo}
+                    <meta property="og:image" content="{PhotoURL-500}"/>
+                {/block:Photo}
+                {block:Photoset}
+                    <meta property="og:image" content="{{ S3_BASE_URL }}/img/{{ slug }}/og_image.png"/> 
+                {/block:Photoset}
+                {block:Quote}
+                    <meta property="og:image" content="{{ S3_BASE_URL }}/img/{{ slug }}/og_image.png"/>
+                {/block:Quote}
+                {block:Link}
+                    <meta property="og:image" content="{{ S3_BASE_URL }}/img/{{ slug }}/og_image.png"/>
+                {/block:Link}
+                {block:Chat}
+                    <meta property="og:image" content="{{ S3_BASE_URL }}/img/{{ slug }}/og_image.png"/>
+                {/block:Chat}
+                {block:Video}
+                    <meta property="og:image" content="{{ S3_BASE_URL }}/img/{{ slug }}/og_image.png"/>
+                {/block:Video}
+                {block:Audio}
+                    <meta property="og:image" content="{{ S3_BASE_URL }}/img/{{ slug }}/og_image.png"/>
+                {/block:Audio}
+                {block:Answer}
+                    <meta property="og:image" content="{{ S3_BASE_URL }}/img/{{ slug }}/og_image.png"/>
+                {/block:Answer}
+            {/block:Posts}
+        {/block:Permalink}
+
 
     </head>
     <body class="{block:IndexPage}index-page{/block:IndexPage}{block:PermalinkPage}permalink-page{/block:PermalinkPage}">
@@ -94,14 +136,14 @@
                                 {{ static(file_path='skunkbanner.svg', classes='img-responsive', alt="header") }}
                             </a>
                             <p class="description">{Description}</p>
-                            {block:HasPages}
                             <ul class="list-unstyled tag-nav"> 
+                            {block:HasPages}
                             {block:Pages}
                                 <li><a href="{URL}">{Label}</a></li>
                             {/block:Pages}
-                                <li><a href="/ask/">Questions?</a></li>
-                            </ul>
                             {/block:HasPages}
+                                <li><a href="/ask/">Ask Skunk Bear A Question</a></li>
+                            </ul>
                         </div>
                     </div>
                 </header>
@@ -206,8 +248,8 @@
                                     <li>{LikeButton color="grey"}</li>
                                     <li>{ReblogButton color="grey"}</li>
                                     <li><a rel="external" href="http://twitter.com/share?text=The+latest+from+Skunk+Bear%2C+NPR%27s+science+tumblr%3A&amp;url={Permalink}" alt="Share on Twitter" target="_blank" title="Share This Page On Twitter"><i class="icon icon-twitter"></i></a></li>
+                                    <li><a rel="external" href="https://www.facebook.com/sharer/sharer.php?u={Permalink}" target="_blank" title="Share This Page On Facebook"><i class="icon icon-facebook"></i></a></li>
                                 </ul>
-
                             </div>
 
                             <!--
