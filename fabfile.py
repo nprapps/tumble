@@ -366,7 +366,7 @@ def bootstrap():
             with open('tumblrs/img/%s/og_img.png' % row.value):
                 pass
         except IOError:
-            local('cp www/img/og-image.png www/img/%s/og_image.png' % row.value)
+            local('cp www/img/og_image.png www/img/%s/og_image.png' % row.value)
 
         for path, filename in [
             ('www/js', 'app.js'),
