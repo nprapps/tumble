@@ -80,7 +80,7 @@
         <meta property="fb:app_id" content="138837436154588" />
 
     </head>
-    <body class="{block:IndexPage}index-page{/block:IndexPage}{block:PermalinkPage}permalink-page{/block:PermalinkPage}">
+    <body class="{block:IndexPage}index-page{/block:IndexPage}{block:PermalinkPage}permalink-page post{PostID}{/block:PermalinkPage}">
 
         <div id="container" class="group container-fluid">
             <div class="row-fluid">
