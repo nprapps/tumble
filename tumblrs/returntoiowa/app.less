@@ -38,6 +38,23 @@ body {
         -webkit-font-smoothing: antialiased;
     }
 
+    ul {
+        list-style: none;
+        margin: 0;
+
+        li {
+            a {
+                color: @musicMedium;
+                font-weight: bold;
+                font-size: 12px;
+            }
+
+            @media @screen-small{
+                display: inline-block;
+                margin-right: 15px;
+            }
+        }
+    }
     .fix-wrap {
         width: 23.076923076923077%;
 

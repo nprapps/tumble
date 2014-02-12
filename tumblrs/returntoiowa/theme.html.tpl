@@ -95,6 +95,13 @@
                             </a></h1>
                             {/block:IfShowBlogTitle}
                             <p>{Description}</p>
+                            {block:HasPages} 
+                            <ul class="list-unstyled pages">
+                                {block:Pages} 
+                                <li><a href="{URL}" title="{Label}">{Label}</a></li>
+                                {/block:Pages}
+                            </ul>
+                            {/block:HasPages}
                         </div>
                     </div>
                 </header>
