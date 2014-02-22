@@ -81,6 +81,14 @@
                             <p>{Description}</p>
                             <ul>
                                 <li><a href="{{ copy.team_link }}">{{ copy.team_link_text }}</a></li>
+
+                                {block:SubmissionsEnabled} 
+                                <li class="submit"><a href="/submit">{SubmitLabel}</a></li>
+                                {/block:SubmissionsEnabled}
+
+                                {block:AskEnabled}
+                                <li class="ask"><a href="/ask">{AskLabel}</a></li>
+                                {/block:AskEnabled}
                             </ul>
                         </div>
                     </div>

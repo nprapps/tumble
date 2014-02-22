@@ -100,6 +100,14 @@
                                 {block:Pages} 
                                 <li><a href="{URL}" title="{Label}">{Label}</a></li>
                                 {/block:Pages}
+
+                                {block:SubmissionsEnabled} 
+                                <li class="submit"><a href="/submit">{SubmitLabel}</a></li>
+                                {/block:SubmissionsEnabled}
+
+                                {block:AskEnabled}
+                                <li class="ask"><a href="/ask">{AskLabel}</a></li>
+                                {/block:AskEnabled}
                             </ul>
                             {/block:HasPages}
                         </div>
