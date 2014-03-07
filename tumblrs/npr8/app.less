@@ -37,18 +37,18 @@ body {
         color: @musicMedium;
         -webkit-font-smoothing: antialiased;
     }
-    
+
     ul {
         margin: 22px 0 0 0;
         padding: 0;
         list-style-type: none;
-        
+
     }
 
-    li { 
+    li {
         font-size: 12px;
         -webkit-font-smoothing: antialiased;
-        
+
         a, a:link, a:visited {
             font-weight: bold;
             color: #fff;
@@ -134,19 +134,19 @@ body {
         }
 
         .photoset {
-            iframe { 
-                margin: 0 auto; 
+            iframe {
+                margin: 0 auto;
                 display: block;
             }
             .caption { margin-top: 12px; }
             .photoset-250 { display: none; }
-            
+
             @media @screen-tiny {
                 .photoset-250 { display: block; }
                 .photoset-500 { display: none; }
             }
         }
-        
+
         .video {
             .video-container {
                 position: relative;
@@ -170,7 +170,7 @@ body {
                 }
 
             }
-            
+
             .tumblr_video_iframe,
             .video-container img, {
                 position: absolute;
@@ -376,4 +376,8 @@ body {
             display: none;
         }
     }
+}
+
+#disqus_thread {
+    margin-top: 30px;
 }
