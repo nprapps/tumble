@@ -23,22 +23,6 @@
         <link rel="shortcut icon" href="http://www.npr.org/favicon.ico" />
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
 
-        <!-- Font loader -->
-        <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.10/webfont.js"></script>
-        <script>
-            WebFont.load({
-                 custom: {
-                     families: [
-                         'Gotham SSm:n4,n7'
-                     ],
-                     urls: [
-                         'http://s.npr.org/templates/css/fonts/GothamSSm.css'
-                     ]
-                 },
-                 timeout: 10000
-             });
-        </script>
-
         <!-- HTML5 Shiv -->
         <!--[if lt IE 9]>
                 <script src="http://static.tumblr.com/hriofhd/Qj0m8pn7q/html5shiv.js"></script>
@@ -74,7 +58,7 @@
         <meta property="og:title" content="{Title}" />
         <meta property="og:url" content="{{ copy.og_url }}" />
         <meta property="og:type" content="article" />
-        <meta property="og:description" content="{{ copy.og_description }}" />
+        <meta property="og:description" content="{Description}" />
         <meta property="og:image" content="{{ S3_BASE_URL }}/img/{{ slug }}/og_image.png" />
         <meta property="og:site_name" content="NPR.org" />
         <meta property="fb:app_id" content="138837436154588" />
@@ -95,13 +79,10 @@
                             </a></h1>
                             {/block:IfShowBlogTitle}
                             <p>{Description}</p>
-                            {block:HasPages} 
-                            <ul class="list-unstyled pages">
-                                {block:Pages} 
-                                <li><a href="{URL}" title="{Label}">{Label}</a></li>
-                                {/block:Pages}
+                            <ul>
+                                <li><a href="{{ copy.team_link }}">{{ copy.team_link_text }}</a></li>
 
-                                {block:SubmissionsEnabled} 
+                                {block:SubmissionsEnabled}
                                 <li class="submit"><a href="/submit">{SubmitLabel}</a></li>
                                 {/block:SubmissionsEnabled}
 
@@ -109,7 +90,6 @@
                                 <li class="ask"><a href="/ask">{AskLabel}</a></li>
                                 {/block:AskEnabled}
                             </ul>
-                            {/block:HasPages}
                         </div>
                     </div>
                 </header>
@@ -228,6 +208,24 @@
                             -->
 
                             {block:PermalinkPage}
+                            {block:IfDisqusShortname}
+
+                            <div id="disqus_thread"></div>
+                            <script type="text/javascript">
+                                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                                var disqus_shortname = 'npr8'; // Required - Replace <example> with your forum shortname
+
+                                /* * * DON'T EDIT BELOW THIS LINE * * */
+                                (function() {
+                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                                })();
+                            </script>
+                            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                            {/block:IfDisqusShortname}
                             {block:PostNotes}
                                 <div class="post-notes">
                                     <h3>Notes</h3>
@@ -407,8 +405,8 @@
                         var $new_posts = $('#posts', data);
 
                         // Insert posts and update counters
-                        $('#posts').append('<div class="page' + _current_page + '">' + new_posts_html + '</div>');
-                        sizeVideoContainers('.page' + _current_page);
+                        $('#posts').append(new_posts_html);
+                        sizeVideoContainers();
 
                         _posts_loaded = $new_posts.find('article.post').length;
 
