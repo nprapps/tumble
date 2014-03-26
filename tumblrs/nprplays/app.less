@@ -239,6 +239,10 @@ h1,h2,h3,h4,h5,h6 {
             padding: 15px;
         }
 
+        h1 {
+            font-size: @font-size-base * 2;
+        }
+
         h3 {
             .make-md-column(12);
             line-height: 1.1;
@@ -572,6 +576,13 @@ h1,h2,h3,h4,h5,h6 {
 
                 li {
                     display: inline-block;
+                    height: 32px;
+                    line-height: 32px;
+
+                    iframe {
+                        display: inline-block;
+                        margin: 0;
+                    }
                 }
                 .icon {
                     color: #ccc;
@@ -587,6 +598,10 @@ h1,h2,h3,h4,h5,h6 {
                 a:hover .icon {
                     color: @primaryControl;
                     text-decoration: none;
+                }
+
+                .index-page & {
+                    text-align: right;
                 }
             }
 
@@ -632,12 +647,6 @@ h1,h2,h3,h4,h5,h6 {
                         margin: 0 0 5px;
                         .img-circle;
                     }
-                }
-            }
-
-            @media screen and (min-width: @screen-sm){
-                .sharing {
-                    text-align: right;
                 }
             }
         }
