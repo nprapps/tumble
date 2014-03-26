@@ -193,19 +193,29 @@
 
                             <div class="post-meta">
 
-                            {block:IndexPage}
-                                <p class="note-count"><a href="{Permalink}" class="permalink"><i class="icon icon-comment"></i> {NoteCountWithLabel}</a></p>
-                            {/block:IndexPage}
+                                <div class="post-author">
+                                    Posted by <a href="{PostAuthorURL}">{PostAuthorName} <img src="{PostAuthorPortraitURL-64}"></a>
+                                </div>
+
                             {block:HasTags}
                                 <div class="tags">
                                     {block:Tags}<a href="{TagURL}" class="tag">{Tag}<span class="triangle"></span></a>{/block:Tags}
                                 </div>
                             {/block:HasTags}
 
+                            {block:IndexPage}
+                                <p class="note-count"><a href="{Permalink}" class="permalink"><i class="icon icon-comment"></i> {NoteCountWithLabel}</a></p>
+                            {/block:IndexPage}
+
+
+
                                 <div class="sharing">
-                                    <li>{LikeButton color="grey"}</li>
-                                    <li>{ReblogButton color="grey"}</li>
-                                    <li><a rel="external" href="http://twitter.com/share?text=The+latest+from+Skunk+Bear%2C+NPR%27s+science+tumblr%3A&amp;url={Permalink}" alt="Share on Twitter" target="_blank" title="Share This Page On Twitter"><i class="icon icon-twitter"></i></a></li>
+                                    <ul class="list-unstyled">
+                                        <li>{LikeButton color="grey"}</li>
+                                        <li>{ReblogButton color="grey"}</li>
+                                        <li><a rel="external" href="http://twitter.com/share?text=The+latest+from+Skunk+Bear%2C+NPR%27s+science+tumblr%3A&amp;url={Permalink}" alt="Share on Twitter" target="_blank" title="Share This Page On Twitter"><i class="icon icon-twitter"></i></a></li>
+                                        <li><a rel="external" href="https://www.facebook.com/dialog/feed?app_id=138837436154588&amp;link={Permalink}" target="_blank" title="Like This Page On Facebook"><i class="icon icon-facebook"></i></a></li>
+                                    </ul>
                                 </div>
                             </div>
 

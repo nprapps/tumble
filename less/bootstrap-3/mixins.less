@@ -548,6 +548,13 @@
   padding-right: (@gutter / 2);
 }
 
+.make-xs-column-push(@columns) {
+  left: percentage((@columns / @grid-columns));
+}
+.make-xs-column-pull(@columns) {
+  right: percentage((@columns / @grid-columns));
+}
+
 // Generate the small columns
 .make-sm-column(@columns; @gutter: @grid-gutter-width) {
   position: relative;

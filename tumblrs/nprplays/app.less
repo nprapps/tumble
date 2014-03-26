@@ -342,21 +342,6 @@ h1,h2,h3,h4,h5,h6 {
                     display: none;
                 }
             }
-
-            .post-meta {
-                .make-sm-column(12);
-                .make-md-column(12);
-                margin-top: @line-height-computed;
-
-                @media (min-width: @screen-sm){
-                    .note-count,
-                    .tags {
-                        display: block;
-                        margin-left: 0;
-                        position: static;
-                    }
-                }
-            }
         }
 
         &.photoset {
@@ -542,7 +527,7 @@ h1,h2,h3,h4,h5,h6 {
             font-weight: normal;
             font-size: 13px;
             font-family: @font-family-headline;
-            line-height: 25px;
+            line-height: 32px;
 
             .permalink {
                 color: @gray-light;
@@ -560,67 +545,99 @@ h1,h2,h3,h4,h5,h6 {
             margin: 0 0 @line-height-computed;
         }
 
-        .note-count {
-            margin-right: 10px;
 
-            .icon {
-                .opacity(50);
-            }
-        }
+        .post-meta {
 
-        .sharing {
-            position: absolute;
-            right: @grid-gutter-width / 2;
-            bottom: 0;
+            .tags,
+            .post-author {
+                .make-xs-column(12);
+            }
 
-            li {
-                display: inline-block;
+            .sharing,
+            .note-count {
+                .make-xs-column(6);
             }
-            .icon {
-                color: #ccc;
-                display: inline-block;
-                font-size: 24px;
-                width: 24px;
-                height: 24px;
-                line-height: 32px;
-            }
-            a:hover {
-                cursor: pointer;
-            }
-            a:hover .icon {
-                color: @primaryControl;
-                text-decoration: none;
-            }
-        }
 
-        .tags {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            font-family: @font-family-headline;
-            text-transform: uppercase;
-            padding-right: 45px;
-
-            @media (max-width: @screen-xs-max) {
-                position: static;
+            .note-count {
+                .icon {
+                    .opacity(50);
+                }
             }
-            .tag {
-                display: inline-block;
-                position: relative;
-                background: @gray-light;
-                color: @white;
-                font-size: 13px;
-                line-height: 18px;
-                padding: 3px 5px;
-                margin-right: 5px;
 
-                &:first-child {
-                    margin-left: 0;
+            .sharing {
+                ul {
+                    margin: 0;
+                    padding: 0;
                 }
 
-                &:hover {
-                    background: @primaryControl;
+                li {
+                    display: inline-block;
+                }
+                .icon {
+                    color: #ccc;
+                    display: inline-block;
+                    font-size: 24px;
+                    width: 24px;
+                    height: 24px;
+                    line-height: 32px;
+                }
+                a:hover {
+                    cursor: pointer;
+                }
+                a:hover .icon {
+                    color: @primaryControl;
                     text-decoration: none;
+                }
+            }
+
+            .tags {
+                font-family: @font-family-headline;
+                text-transform: uppercase;
+                margin-bottom: 5px;
+
+                .tag {
+                    display: inline-block;
+                    position: relative;
+                    background: @gray-light;
+                    color: @white;
+                    font-size: 13px;
+                    line-height: 18px;
+                    padding: 3px 5px;
+                    margin-right: 5px;
+
+                    &:first-child {
+                        margin-left: 0;
+                    }
+
+                    &:hover {
+                        background: @primaryControl;
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            .post-author {
+                font-family: @font-family-headline;
+                font-size: 13px;
+                color: #999;
+                text-transform: uppercase;
+                .clearfix;
+
+                a {
+                    img {
+                        display: inline-block;
+                        float: none;
+                        max-width: 32px;
+                        padding: 0;
+                        margin: 0 0 5px;
+                        .img-circle;
+                    }
+                }
+            }
+
+            @media screen and (min-width: @screen-sm){
+                .sharing {
+                    text-align: right;
                 }
             }
         }
