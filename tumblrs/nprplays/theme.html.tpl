@@ -212,7 +212,7 @@
                                     <ul class="list-unstyled">
                                         <li>{LikeButton color="grey"}</li>
                                         <li>{ReblogButton color="grey"}</li>
-                                        <li><a rel="external" href="http://twitter.com/share?text=The+latest+from+Skunk+Bear%2C+NPR%27s+science+tumblr%3A&amp;url={Permalink}" alt="Share on Twitter" target="_blank" title="Share This Page On Twitter"><i class="icon icon-twitter"></i></a></li>
+                                        <li><a rel="external" href="http://twitter.com/share?text=The+latest+from+NPR+Plays&amp;url={Permalink}" alt="Share on Twitter" target="_blank" title="Share This Page On Twitter"><i class="icon icon-twitter"></i></a></li>
                                         <li><a rel="external" href="https://www.facebook.com/dialog/feed?app_id=138837436154588&amp;link={Permalink}" target="_blank" title="Like This Page On Facebook"><i class="icon icon-facebook"></i></a></li>
                                     </ul>
                                 </div>
