@@ -365,18 +365,12 @@ h1,h2,h3,h4,h5,h6 {
         }
 
         &.photoset {
-            iframe { 
-                margin: 0 auto @line-height-computed; 
+            iframe {
+                margin: 0 auto @line-height-computed;
                 display: block;
                 max-width: 100%;
             }
             // .caption { margin-top: 12px; }
-            .photoset-250 { display: none; }
-            
-            @media (max-width: @screen-xs-max) {
-                .photoset-250 { display: block; }
-                .photoset-500 { display: none; }
-            }
         }
 
         &.video {
