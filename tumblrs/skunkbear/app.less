@@ -548,9 +548,21 @@ h1,h2,h3,h4,h5,h6 {
             margin: 0 0 @line-height-computed;
         }
 
+        .sharing-wrapper {
+            border-top: 2px solid @gray-lighter;
+            padding-top: @line-height-computed / 2;
+            margin-top: @line-height-computed / 2;
+
+            .permalink-page & {
+                padding: 0 0 @line-height-computed / 2;
+                margin: 0 0 @line-height-computed / 2;
+                border-top: none;
+                border-bottom: 2px solid @gray-lighter;
+            }
+        }
+
         .note-count {
             margin-right: 10px;
-            margin-top: 10px;
             float: left;
 
             .icon {
@@ -560,10 +572,15 @@ h1,h2,h3,h4,h5,h6 {
 
         .sharing {
             float: right;
+            margin-bottom: 0;
 
             @media screen and (max-width: @screen-xs-max){
                 position: static;
-                margin-top: 5px;
+            }
+
+            .permalink-page & {
+                float: none;
+                margin-left: 0;
             }
 
             li {
@@ -594,10 +611,7 @@ h1,h2,h3,h4,h5,h6 {
         }
 
         .tags {
-            border-top: 2px solid @gray-lighter;
-            padding-top: @line-height-computed / 2;
             font-family: @font-family-headline;
-            text-transform: uppercase;
             clear: both;
 
             @media (max-width: @screen-xs-max) {
@@ -606,7 +620,7 @@ h1,h2,h3,h4,h5,h6 {
             .tag {
                 display: inline-block;
                 position: relative;
-                background: @gray-light;
+                background: #aaa;
                 color: @white;
                 font-size: 13px;
                 line-height: 18px;
@@ -632,16 +646,7 @@ h1,h2,h3,h4,h5,h6 {
                 .make-sm-column(12);
                 font-weight: normal;
                 line-height: 1;
-                color: @gray;
-
-                &:before {
-                    display: block;
-                    content: '';
-                    width: 100%;
-                    border-top: 2px solid @gray-lighter;
-                    margin-top: @line-height-computed;
-                    padding-top: @line-height-computed/2;
-                }
+                color: #ccc;
             }
             .notes {
                 .make-sm-column(12);
@@ -675,6 +680,22 @@ h1,h2,h3,h4,h5,h6 {
 
                 @media screen and (max-width: @screen-xs-max){
                     font-size: @font-size-base * 0.875;
+                }
+
+                .more_notes_link {
+                    display: inline-block;
+                    margin-top: @line-height-computed;
+                    background: @link-color;
+                    color: #fff;
+                    padding: 5px;
+                    font-family: @font-family-headline;
+                    text-transform: uppercase;
+
+                    &:hover {
+                        background: transparent;
+                        color: @link-color;
+                        text-decoration: none;
+                    }
                 }
             }
         }
