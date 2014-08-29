@@ -8,6 +8,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 
+        <meta name="google-site-verification" content="iihv-RXkz1bDb-QKTITQm_p77vy7yNdIO9BUZsvAU2A" />
+        <meta name="google-site-verification" content="244PFHlcVC8LNFl_V3wRuaGc0ifMOmT-hznl0xEk0bw" />
+
         <meta name="font:Body" content="'Helvetica Neue', Helvetica, Arial, sans-serif"/>
 
         <!-- Appearance option -->
