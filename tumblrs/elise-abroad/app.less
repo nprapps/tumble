@@ -82,14 +82,14 @@
 // Global
 
 html {
-    font-size: 12px;
+    font-size: 16px;
 
     @media screen and (min-width: @screen-sm){
-        font-size: 14px;
+        font-size: 16px;
     }
 
     @media screen and (min-width: @screen-md){
-        font-size: 16px;
+        font-size: 18px;
     }
 
     @media screen and (min-width: @screen-lg){
@@ -107,6 +107,10 @@ html {
 
 h1,h2,h3,h4,h5,h6 {
     margin-top: 0;
+}
+
+p {
+    line-height: 1.5;
 }
 
 .container {
@@ -132,13 +136,12 @@ h1,h2,h3,h4,h5,h6 {
 
     .npr img {
         width: 69px;
-        border: 1px solid #ddd;
     }
 
     h1 {
-        font-size: @font-size-base * 5;
-        font-size: 5vw;
-        font-weight: 400;
+        font-size: @font-size-base * 3;
+        letter-spacing: 0.5rem;
+        font-weight: 700;
         text-transform: uppercase;
         white-space: nowrap;
 
@@ -147,20 +150,6 @@ h1,h2,h3,h4,h5,h6 {
                 text-decoration: none;
                 color: @link-color;
             }
-        }
-
-        @media (max-width: @screen-sm-max){
-            font-size: @font-size-base * 2;
-            font-size: 10vw;
-        }
-
-        @media (min-width: @screen-md){
-            font-size: @font-size-base * 5;
-            font-size: 8vw;
-        }
-
-        @media (min-width: 1500px){
-            font-size: 124px;
         }
     }
 
@@ -179,9 +168,10 @@ h1,h2,h3,h4,h5,h6 {
     p {
         display: inline-block;
         clear: both;
-        padding: @line-height-computed / 2 0;
-        line-height: 1;
-        margin-bottom: 0;
+        padding: @line-height-computed 0;
+        line-height: 1.2;
+        color: #999;
+        font-size: @font-size-small;
         text-transform: uppercase;
         letter-spacing: 0.1em;
         -webkit-font-smoothing: antialiased;
@@ -223,6 +213,7 @@ h1,h2,h3,h4,h5,h6 {
 
 #post-wrap {
     .make-sm-column(10);
+    .make-md-column(8);
     max-width: 760px;
     margin: 0 auto;
     float: none !important;
@@ -242,14 +233,9 @@ h1,h2,h3,h4,h5,h6 {
     }
 
     .post {
-        background: @white;
-        // padding: @line-height-computed;
+        padding: @line-height-computed 0;
         margin-bottom: @line-height-computed;
-        // .box-shadow(@gray 0 3px 6px 0);
-
-        @media (max-width: @screen-xs-max){
-            padding: 15px;
-        }
+        border-top: 1px solid #ddd;
 
         h1,h2 {
             font-size: @font-size-base * 1.5;
@@ -443,7 +429,7 @@ h1,h2,h3,h4,h5,h6 {
         }
 
         &.audio {
-            iframe {
+            .tumblr_audio_player {
                 .make-md-column(12);
                 margin-bottom: @line-height-computed;
                 width: 100%;
@@ -468,10 +454,10 @@ h1,h2,h3,h4,h5,h6 {
                 blockquote {
                     border-left: none;
                     font-size: @font-size-base * 2;
-                    line-height: @line-height-computed * 1.7;
+                    line-height: 1.2;
                     font-weight: bold;
-                    text-indent: -0.46em;
-                    // margin-left: 0.46em;
+                    text-indent: -1rem;
+                    padding-left: 0;
                 }
 
                 .wf-loading & {
@@ -493,6 +479,7 @@ h1,h2,h3,h4,h5,h6 {
 
             .source {
                 font-style: italic;
+                font-family: @font-family-serif;
             }
         }
 
@@ -555,8 +542,8 @@ h1,h2,h3,h4,h5,h6 {
             text-transform: uppercase;
             letter-spacing: 0.1em;
             font-weight: normal;
-            font-size: 13px;
-            font-family: @font-family-sans-serif;
+            font-size: @font-size-base * 0.75;
+            font-family: @font-family-condensed;
             line-height: 31px;
 
             .permalink {
@@ -646,19 +633,21 @@ h1,h2,h3,h4,h5,h6 {
             .tag {
                 display: inline-block;
                 position: relative;
-                background: #aaa;
-                color: @white;
-                font-size: 13px;
-                line-height: 18px;
-                padding: 3px 5px;
-                margin-right: 5px;
+                border: 1px solid #ddd;
+                color: #999;
+                font-size: @font-size-base * 0.625;
+                line-height: 1;
+                padding: 0.5rem;
+                margin-right: 0.5rem;
 
                 &:first-child {
                     margin-left: 0;
                 }
 
                 &:hover {
-                    background: @primaryControl;
+                    background: @brand-primary;
+                    border: 1px solid @brand-primary;
+                    color: #fff;
                     text-decoration: none;
                 }
             }
