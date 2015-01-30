@@ -118,169 +118,181 @@
     </head>
     <body class="{block:IndexPage}index-page{/block:IndexPage}{block:PermalinkPage}permalink-page{/block:PermalinkPage}">
 
-        <div id="container" class="group container">
-            <div class="row">
-                <header>
-                    <div id="blog_info">
-                        <div class="fix-wrap">
-                            <h2 class="npr"><a href="http://npr.org"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></h2>
-                            {block:IfShowBlogTitle}
-                            <h1><a href="/">{Title}</a></h1>
-                            {/block:IfShowBlogTitle}
-                            <p class="description">{Description}</p>
-                            <ul class="list-unstyled tag-nav">
-                            {block:HasPages}
-                            {block:Pages}
-                                <li><a href="{URL}">{Label}</a></li>
-                            {/block:Pages}
-                            {/block:HasPages}
-                                <li><a href="/ask/">Ask Elise A Question</a></li>
-                            </ul>
-                        </div>
+        {block:IndexPage}
+        <header class="blog-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="blog-title">
+                        <h2 class="npr"><a href="http://npr.org">{{ static(file_path='npr-logo.svg') }}</a></h2>
+                        <h1><a href="/">{{ static(file_path='logo.svg', classes='img-responsive') }}</a></h1>
+                        <h3><a href="/">{Title}</a></h3>
+                        <p class="description">{Description}</p>
                     </div>
-                </header>
+                </div>
+            </div>
+        </header>
+        {/block:IndexPage}
+        
+        <nav>
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="header-nav">
+                        <ul>
+                <li><a href="/">everything</a></li>
+                <li><a href="/tagged/features/">features</a></li>
+                <li><a href="/about/">about</a></li>
+            </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
 
+        <div class="fixed-nav">
+            <div class="nav-wrapper">
+                <h2 class="npr"><a href="http://npr.org">{{ static(file_path='npr-logo.svg') }}</a></h2>
+                <h1><a href="/">{Title}</a></h1>
+            </div>
+        </div>
+
+        <div id="container" class="group container-fluid">
+            <div class="row">
                 <section id="post-wrap">
 
-                    {block:TagPage}<h2 class="tag-header">{Tag}</h2>{/block:TagPage}
+                    {block:TagPage}
+                        <div class="row">
+                            <h2 class="tag-header">{Tag}</h2>
+                        </div>
+                    {/block:TagPage}
 
                     <div id="posts">
-                        <!-- START POSTS -->
-                        {block:Posts}
+                    <!-- START POSTS -->
+                    {block:Posts}
                         <article class="post {TagsAsClasses} {block:Text}text{/block:Text}{block:Quote}quote{/block:Quote}{block:Link}link{/block:Link}{block:Video}video{/block:Video}{block:Audio}audio{/block:Audio}{block:Photo}photo{/block:Photo}{block:Photoset}photoset{/block:Photoset}{block:Panorama}panorama{/block:Panorama}{block:Chat}chat{/block:Chat}{block:Answer}answer{/block:Answer}">
-                            <h4 class="pubdate"><a href="{Permalink}" class="permalink">{block:Date}{Month} {DayOfMonth}, {Year}{/block:Date}</a></h4>
 
-                            <div class="row">
-                            {block:Text}
-                                {block:Title}
-                                    {block:IndexPage}
-                                    <a href="{Permalink}" class="permalink">
-                                    {/block:IndexPage}
-                                    <h3>{Title}</h3>
-                                    {block:IndexPage}
-                                    </a>
-                                    {/block:IndexPage}
+                            
+                                {block:IndexPage}
+                                <div class="post-header">
+                                        {block:NewDayDate}
+                                            <p class="pubdate"><a href="{Permalink}" class="permalink">{block:Date}{ShortMonth}. {DayOfMonth}, {Year} {12Hour}:{Minutes} {AmPm}{/block:Date}</a></p>
+                                        {/block:NewDayDate}
+                                        {block:SameDayDate}<p class="pubdate"><a href="{Permalink}" class="permalink">{block:Date}{12Hour}:{Minutes} {AmPm}{/block:Date}</a></p>{/block:SameDayDate}
+                                </div>
+                                {/block:IndexPage}
 
-                                {/block:Title}
-                                <div class="text-wrapper">
-                                    {Body}
-                                </div>
-                            {/block:Text}
-                            {block:Quote}
-                                <div class="quote-wrapper">
-                                    <blockquote class="words {Length}">&#8220;{Quote}&#8221;</blockquote>
-                                    {block:Source}<p class="source">&mdash; {Source}</p>{/block:Source}
-                                </div>
-                            {/block:Quote}
-                            {block:Link}
-                                <h3><a href="{URL}" {Target}>{Name} <i class="icon icon-external-link"></i></a></h3>
-                                <div class="caption">{block:Description}{Description}{/block:Description}</div>
-                            {/block:Link}
-                            {block:Video}
-                                <div class="video-wrapper">
-                                    <div class="video-container">
-                                        {VideoEmbed-700}
-                                    </div>
-                                </div>
-                                {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
-                            {/block:Video}
-                            {block:Audio}
-                                {block:AlbumArt}<img src="{AlbumArtURL}" alt="">{/block:AlbumArt}
-                                {AudioPlayerGrey}
-                                {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
-                            {/block:Audio}
-                            {block:Photo}
-                                    {LinkOpenTag}<img src="{PhotoURL-HighRes}" class="img-responsive" alt="{PhotoAlt}"/>{LinkCloseTag}
-                                    {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
-                            {/block:Photo}
+                                <div class="post-content">
+                                    <div class="post-content-wrapper">
+                                        {block:Text}
+                                            {block:IndexPage}
+                                                {block:Title}<h3><a href="{Permalink}" class="permalink">{Title}</a></h3>{/block:Title}
+                                            {/block:IndexPage}
+                                            {block:PermalinkPage}
+                                                {block:Title}<h3>{Title}</h3>{/block:Title}
+                                            {/block:PermalinkPage}
+                                            <div class="text-wrapper">
+                                                {Body}
+                                            </div>
+                                        {/block:Text}
+                                        {block:Quote}
+                                            <div class="quote-wrapper">
+                                                <blockquote class="words {Length}">&#8220;{Quote}&#8221;</blockquote>
+                                                {block:Source}<p class="source">&mdash; {Source}</p>{/block:Source}
+                                            </div>
+                                        {/block:Quote}
+                                        {block:Link}
+                                            <h3><a href="{URL}" {Target}>{Name} <i class="icon icon-external-link"></i></a></h3>
+                                            <div class="caption">{block:Description}{Description}{/block:Description}</div>
+                                        {/block:Link}
+                                        {block:Video}
+                                            <div class="media-wrapper video-wrapper">
+                                                <div class="video-container">
+                                                    {Video-700}
+                                                </div>
+                                            </div>
+                                            {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+                                        {/block:Video}
+                                        {block:Audio}
+                                            {block:AlbumArt}<img src="{AlbumArtURL}" alt="">{/block:AlbumArt}
+                                            {AudioPlayerGrey}
+                                            {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+                                        {/block:Audio}
+                                        {block:Photo}
+                                                <div class="media-wrapper">
+                                                    {LinkOpenTag}<img src="{PhotoURL-HighRes}" class="img-responsive" alt="{PhotoAlt}"/>{LinkCloseTag}
+                                                </div>
+                                                {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+                                        {/block:Photo}
 
-                            {block:Photoset}
-                                <div class="photoset">{Photoset}</div>
-                                {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+                                        {block:Photoset}
+                                        <div class="photoset-500">{Photoset-700}</div>
+                                        <div class="photoset-250">{Photoset-250}</div>
+                                        {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
                             {/block:Photoset}
 
-                            {block:Panorama}
-                                {LinkOpenTag}<img src="{PhotoURL-Panorama}" class="img-responsive" alt="{PhotoAlt}" />{LinkCloseTag}
-                                {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
-                            {/block:Panorama}
+                                        {block:Panorama}
+                                            {LinkOpenTag}<img src="{PhotoURL-Panorama}" class="img-responsive" alt="{PhotoAlt}" />{LinkCloseTag}
+                                            {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+                                        {/block:Panorama}
 
-                            {block:Chat}
-                                {block:Title}<h3>{Title}</h3>{/block:Title}
-                                <ul class="conversation">
-                                    {block:Lines}
-                                    <li class="line {Alt}">
-                                        {block:Label}<span class="person">{Label}</span>{/block:Label}
-                                        <span class="person-said">{Line}</span>
-                                    </li>
-                                    {/block:Lines}
-                                </ul>
-                            {/block:Chat}
-                            {block:Answer}
-                                <div class="text-wrapper">
-                                    <div class="qa-asker">
-                                        <img src="{AskerPortraitURL-40}">
-                                        {Asker} asks:
-                                    </div>
-                                    <div class="qa-question">{Question}</div>
-                                    <div class="qa-response">{Answer}</div>
-                                </div>
-                            {/block:Answer}
+                                        {block:Chat}
+                                            {block:Title}<h3>{Title}</h3>{/block:Title}
+                                            <ul class="list-unstyled conversation">
+                                                {block:Lines}
+                                                <li class="line {Alt}">
+                                                    {block:Label}<span class="person">{Label}</span>{/block:Label}
+                                                    <span class="person-said">{Line}</span>
+                                                </li>
+                                                {/block:Lines}
+                                            </ul>
+                                        {/block:Chat}
+                                        {block:Answer}
+                                            <div class="qa-asker">
+                                                <img src="{AskerPortraitURL-40}">
+                                                {Asker} asks:
+                                            </div>
+                                            <div class="qa-question">{Question}</div>
+                                            <div class="qa-response">{Answer}</div>
+                                        {/block:Answer}
 
-                            <div class="post-meta">
+                                        <div class="post-meta">
 
-                                {block:HasTags}
-                                    <div class="tags">
-                                        {block:Tags}<a href="{TagURL}" class="tag">{Tag}<span class="triangle"></span></a>{/block:Tags}
-                                    </div>
-                                {/block:HasTags}
+                                            {block:PermalinkPage}
+                                                {block:Posts}
+                                                    <p class="pubdate">{block:Date}{Month} {DayOfMonth}, {Year}{/block:Date}</p>
+                                                    <div class="sharing"> {LikeButton color="grey"}{ReblogButton color="grey"} </div>
+                                                {/block:Posts}
+                                            {/block:PermalinkPage}
+                                            {block:IndexPage}
+                                                <p class="note-count"><a href="{Permalink}" class="permalink"><i class="icon icon-comment"></i> {NoteCountWithLabel}</a></p>
+                                                <div class="sharing">{LikeButton color="grey"}{ReblogButton color="grey"}</div>
+                                            {/block:IndexPage}
+                                        </div>
+                                    </div><!-- end .post-content-wrapper -->
+                                </div><!-- end .post-content -->
 
-                                    <div class="sharing-wrapper">
-
-                                        {block:IndexPage}
-                                            <p class="note-count"><a href="{Permalink}" class="permalink"><i class="icon icon-comment"></i> {NoteCountWithLabel}</a></p>
-                                        {/block:IndexPage}
-
-                                        <ul class="sharing list-unstyled">
-                                            <li>{LikeButton color="grey"}</li>
-                                            <li>{ReblogButton color="grey"}</li>
-                                            <li><a rel="external" href="http://twitter.com/share?text=The+latest+from+Skunk+Bear%2C+NPR%27s+science+tumblr%3A&amp;url={Permalink}" alt="Share on Twitter" target="_blank" title="Share This Page On Twitter"><i class="icon icon-twitter"></i></a></li>
-                                            <li><a rel="external" href="https://www.facebook.com/sharer/sharer.php?u={Permalink}" target="_blank" title="Share This Page On Facebook"><i class="icon icon-facebook"></i></a></li>
-                                        </ul>
-
-                                    </div>
-
-
-                            </div>
-
-                            <!--
-                            <ul class="unstyled sharing-tools">
-                                <li><a rel="external" href="http://twitter.com/share?text=Read this post from &ldquo;{Title}&rdquo;%3a&amp;url={Permalink}" alt="Share on Twitter" target="_blank" onclick="_gaq.push(['_trackEvent', 'Social', 'Click Twitter In Post', '{Title}']);" title="Share This Page On Twitter"><i class="icon icon-twitter"></i></a></li>
-                                <li><a rel="external" href="https://www.facebook.com/dialog/feed?app_id=138837436154588&amp;link={Permalink}&picture={PhotoURL-HighRes}&name={Title}&redirect_uri={Permalink}" alt="Share on Facebook" target="_blank" onclick="_gaq.push(['_trackEvent', 'Social', 'Click Facebook In Post', 'Read this post from &ldquo;{Title}&rdquo;']);" title="Like This Page On Facebook"><i class="icon icon-facebook-sign"></i></a></li>
-                            </ul>
-                            -->
-                            </div> <!-- end .row -->
+                            
+                       
 
                             {block:PermalinkPage}
-                            {block:PostNotes}
-                                <div class="post-notes">
-                                    <h3>Notes</h3>
-                                    {PostNotes}
+                                {block:PostNotes}
+                                    <div class="post-notes">
+                                        <h3>{NoteCountWithLabel}</h3>
+                                        {PostNotes-64}
+                                    </div>
+                                {/block:PostNotes}
+
+                                <div class="row">
+                                    <nav class="pagination-index">
+                                        <a href="/">See More Posts <i class="fa fa-angle-right"></i></a>
+                                    </nav>
                                 </div>
-                            {/block:PostNotes}
                             {/block:PermalinkPage}
                         </article>
-                        {/block:Posts}
-                        <!-- END POSTS -->
+                    {/block:Posts}
+                    <!-- END POSTS -->
                     </div>
 
 
                     <footer id="footer">
-                        {block:PermalinkPage}
-                            <nav class="pagination-index">
-                                <a href="/">See More Posts <i class="icon icon-chevron-sign-right"></i></a>
-                            </nav>
-                        {/block:PermalinkPage}
-
                         {block:Pagination}
                             <nav class="pagination">
                                 <section class="buttons">
