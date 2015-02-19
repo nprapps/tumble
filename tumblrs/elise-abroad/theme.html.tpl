@@ -138,10 +138,12 @@
                 <div class="row">
                     <div id="header-nav">
                         <ul>
-                <li><a href="/">everything</a></li>
-                <li><a href="/tagged/features/">features</a></li>
-                <li><a href="/about/">about</a></li>
-            </ul>
+                        {block:HasPages}
+                        {block:Pages}
+                            <li><a href="{URL}">{Label}</a></li>
+                        {/block:Pages}
+                        {/block:HasPages}
+                        </ul>
                     </div>
                 </div>
             </div>
