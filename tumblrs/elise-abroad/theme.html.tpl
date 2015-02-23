@@ -123,7 +123,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="blog-title">
-                        <h2 class="npr"><a href="http://npr.org">{{ static(file_path='npr-logo.svg') }}</a></h2>
+                        <h2 class="npr-logo"><a href="http://npr.org">{{ static(file_path='npr-logo.svg') }}</a></h2>
                         <h1><a href="/">{{ static(file_path='logo.svg', classes='img-responsive') }}</a></h1>
                         <h3><a href="/">{Title}</a></h3>
                         <p class="description">{Description}</p>
@@ -151,7 +151,7 @@
 
         <div class="fixed-nav">
             <div class="nav-wrapper">
-                <h2 class="npr"><a href="http://npr.org">{{ static(file_path='npr-logo.svg') }}</a></h2>
+                <h2 class="npr-logo"><a href="http://npr.org">{{ static(file_path='npr-logo.svg') }}</a></h2>
                 <h1><a href="/">{Title}</a></h1>
             </div>
         </div>
