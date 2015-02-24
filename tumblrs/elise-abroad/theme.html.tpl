@@ -132,22 +132,22 @@
             </div>
         </header>
         {/block:IndexPage}
-        
+
+        {block:HasPages}
         <nav>
             <div class="container-fluid">
                 <div class="row">
                     <div id="header-nav">
                         <ul>
-                        {block:HasPages}
                         {block:Pages}
                             <li><a href="{URL}">{Label}</a></li>
                         {/block:Pages}
-                        {/block:HasPages}
                         </ul>
                     </div>
                 </div>
             </div>
         </nav>
+        {/block:HasPages}
 
         <div class="fixed-nav">
             <div class="nav-wrapper">
