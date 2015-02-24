@@ -203,13 +203,13 @@ body {
         a {
             color: @yellow;
 
-            &:before {
-                content: '(';
-            }
+            // &:before {
+            //     content: '(';
+            // }
 
-            &:after {
-                content: ')';
-            }
+            // &:after {
+            //     content: ')';
+            // }
 
             &:hover {
                 opacity: 0.7;
@@ -228,7 +228,7 @@ body {
         text-align: center;
 
         @media @screen-small-above {
-            font-size: 18px;
+            font-size: @font-size-base * 0.875;
         }
 
         a {
