@@ -137,7 +137,7 @@
                             <a href="/" class="logo">
                                 {{ static(file_path='skunkbanner.svg', classes='img-responsive', alt="header") }}
                             </a>
-                            <p class="description">{Description}</p>
+                            <p class="description">Wrangled by <a href="/about-adam">Adam Cole</a></p>
                             <ul class="list-unstyled tag-nav"> 
                             {block:HasPages}
                             {block:Pages}
