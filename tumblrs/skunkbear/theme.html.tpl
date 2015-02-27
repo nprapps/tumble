@@ -144,7 +144,7 @@
                                 <li><a href="{URL}">{Label}</a></li>
                             {/block:Pages}
                             {/block:HasPages}
-                                <li><a href="/ask/">Ask Skunk Bear A Question</a></li>
+                                <li><a href="/ask/">Questions?</a></li>
                             </ul>
                         </div>
                     </div>
