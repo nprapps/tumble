@@ -369,10 +369,20 @@ nav {
         font-size: 19px;
         letter-spacing: 2px;
         font-weight: normal;
+
+        @media screen and (max-width: @screen-xs-max){
+            font-size: 13px;
+        }
     }
 
     h1,
-    p { top: -3px; }
+    p {
+        top: -3px;
+
+        @media screen and (max-width: @screen-xs-max){
+            top: -4px;
+        }
+    }
 
     h2 { top: -1px; }
 
