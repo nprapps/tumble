@@ -205,7 +205,10 @@
                             {/block:Photo}
 
                             {block:Photoset}
-                                <div class="photoset">{Photoset}</div>
+                                {block:Photos}
+                                    {LinkOpenTag}<img src="{PhotoURL-1280}" width="{PhotoWidth-1280}"height="{PhotoHeight-1280}" />{LinkCloseTag}
+                                    {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+                                {/block:Photos}
                                 {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
                             {/block:Photoset}
 
