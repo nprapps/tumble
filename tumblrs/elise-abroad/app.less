@@ -715,6 +715,10 @@ nav {
                     margin-bottom: 0;
                 }
 
+                > p {
+                    margin-bottom: @line-height-computed;
+                }
+
                 @media (max-width: @screen-xs-max) {
                     //font-size: @font-size-base * 1.5;
                 }
@@ -726,6 +730,8 @@ nav {
                 font-style: italic;
                 color: @gray;
             }
+
+
         }
 
         &.text {
@@ -820,7 +826,7 @@ nav {
             font-family: @font-family-condensed;
             text-transform: uppercase;
             font-size: @font-size-base * 0.75;
-            line-height: 1;
+            line-height: 1.4rem;
             color: @gray-light;
             margin-bottom: 0;
 
