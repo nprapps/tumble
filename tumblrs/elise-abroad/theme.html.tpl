@@ -142,6 +142,8 @@
                         {block:Pages}
                             <li><a href="{URL}">{Label}</a></li>
                         {/block:Pages}
+                            <li><a href="https://www.youtube.com/channel/UCjHGnyIipP8gNrecyb9YcZA">YouTube</a></li>
+                            <li><a href="/ask/">Questions?</a></li>
                         </ul>
                     </div>
                 </div>
@@ -196,8 +198,8 @@
                                         {/block:Text}
                                         {block:Quote}
                                             <div class="quote-wrapper">
-                                                <blockquote class="words {Length}">&#8220;{Quote}&#8221;</blockquote>
-                                                {block:Source}<p class="source">&mdash; {Source}</p>{/block:Source}
+                                                <blockquote class="words {Length}"><span class="quote-open">&#8220;</span>{Quote}</blockquote>
+                                                {block:Source}<div class="source">{Source}</div>{/block:Source}
                                             </div>
                                         {/block:Quote}
                                         {block:Link}
