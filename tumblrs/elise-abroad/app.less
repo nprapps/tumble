@@ -495,25 +495,27 @@ nav {
 
         &.answer {
             .qa-asker {
-                font-size: 14px;
+                font-size: @font-size-small;
+                font-family: @font-family-sans-serif;
                 line-height: 40px;
                 font-weight: bold;
-                background-color: #f1f1f1;
-                display: inline-block;
-                padding-right: 11px;
-                margin-bottom: 11px;
+                display: block;
+                margin-bottom: 0.5rem;
 
                 img {
                     float: left;
-                    margin: 0 11px 0 0;
+                    margin: 0 1rem 0 0;
+                    .img-circle;
                 }
             }
             .qa-question {
+                background-color: #f5f5f5;
+                font-family: @font-family-sans-serif;
                 margin-bottom: 44px;
-                font-weight: bold;
                 line-height: 1.6;
                 font-size: 120%;
                 color: #333;
+                padding: 1rem;
             }
         }
 
@@ -725,6 +727,7 @@ nav {
                 font-family: @font-family-serif;
                 font-style: italic;
                 color: @gray;
+                margin-bottom: @line-height-computed / 2;
 
                 p {
                     margin-bottom: @line-height-computed / 2;
