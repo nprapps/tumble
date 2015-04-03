@@ -3,7 +3,7 @@ $(function() {
 	var $_document = $(document);
 	var $video_containers = $('.video-container');
 
-	sizeVideoContainers = function(element){
+	var sizeVideoContainers = function(element){
 		var scope = element||document;
 		var $video_iframe = $(scope).find('.tumblr_video_iframe, .video-container img');
 
@@ -31,6 +31,15 @@ $(function() {
 		});
 	}
 
+	var fixPhotosetWidths = function(element){
+		var scope = element||document;
+		var $photosets = $(scope).find('iframe.photoset');
+
+		$photosets.each(function(){
+			$(this).attr('width', $(this).parent().width());
+		});
+	}
+
 	$video_containers.fitVids({ customSelector: "video"});
 
 	$_window.on('resize', function(){
@@ -39,8 +48,11 @@ $(function() {
 			var vid_src = $(this).attr('src');
 			$(this).attr('src', vid_src);
 		});
+
+		fixPhotosetWidths();
 	});
 
 	sizeVideoContainers();
+	fixPhotosetWidths();
 
 });
