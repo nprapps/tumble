@@ -688,11 +688,20 @@ nav {
                     &.long,
                     &.long p {
                         font-size: @font-size-base * 1.5;
+
+                        @media screen and (max-width: @screen-xs-max){
+                            font-size: @font-size-base * 1;
+                        }
                     }
 
                     &.medium,
                     &.medium p {
                         font-size: @font-size-base * 2;
+
+                        @media screen and (max-width: @screen-xs-max){
+                            font-size: @font-size-base * 1.5;
+                            line-height: 1.2;
+                        }
                     }
 
                     &.short,
@@ -701,7 +710,8 @@ nav {
                         line-height: 1.1;
 
                         @media screen and (max-width: @screen-xs-max){
-                            font-size: @font-size-base * 2;
+                            font-size: @font-size-base * 1.5;
+                            line-height: 1.2;
                         }
                     }
                 }
