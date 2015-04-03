@@ -240,7 +240,7 @@ body {
 
 
 //header nav
-nav {
+body > nav {
     background: #eee;
 
     .permalink-page & {
@@ -327,12 +327,6 @@ nav {
             position: absolute;
             top: 40px;
             margin-bottom: 60px;
-
-            .nav-wrapper {
-                display: block;
-                width: 250px;
-                margin: 0 auto;
-            }
         }
 
         .index-page & {
@@ -949,10 +943,15 @@ nav {
             .sharing {
                 float: right;
             }
+
+            .post-meta {
+                padding-bottom: @line-height-computed / 4;
+            }
         }
 
         .post-notes {
-            .make-row();
+            clear: both;
+            margin-top: @line-height-computed * 2;
 
             h3 {
                 .make-sm-column(10);

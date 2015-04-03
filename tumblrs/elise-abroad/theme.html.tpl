@@ -284,11 +284,9 @@
                                     </div>
                                 {/block:PostNotes}
 
-                                <div class="row">
-                                    <nav class="pagination-index">
-                                        <a href="/">See More Posts <i class="fa fa-angle-right"></i></a>
-                                    </nav>
-                                </div>
+                                <nav class="pagination-index">
+                                    <a href="/">See More Posts <i class="fa fa-angle-right"></i></a>
+                                </nav>
                             {/block:PermalinkPage}
                         </article>
                     {/block:Posts}
