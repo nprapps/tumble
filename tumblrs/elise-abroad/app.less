@@ -111,6 +111,7 @@ h1,h2,h3,h4,h5,h6 {
 
 p {
     line-height: 1.5;
+    margin-bottom: @line-height-computed;
 }
 
 // Breakpoints
@@ -570,6 +571,15 @@ body > nav {
                     line-height: 1.3;
                     margin: @line-height-computed * 2 0 @line-height-computed;
                 }
+
+                .tmblr-full {
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+
+                    margin-bottom: @line-height-computed;
+                }
             }
         }
 
@@ -595,8 +605,10 @@ body > nav {
             }
         }
 
-        &.video {
-            .video-container {
+        &.video,
+        &.text-wrapper {
+            .video-container,
+            .tmblr-embed.tmblr-full {
                 position: relative;
                 width: 100%;
                 padding-bottom: 0;
@@ -625,13 +637,15 @@ body > nav {
             }
 
             .tumblr_video_iframe,
+            .tmblr-embed.tmblr-full iframe,
             .video-container img, {
                 position: absolute;
                 width: 100%;
                 height: 100%;
             }
 
-            .video-container {
+            .video-container,
+            .tmblr-embed {
                 margin-bottom: @line-height-computed/2;
                 a {
                     max-width: 100%;
@@ -734,10 +748,11 @@ body > nav {
         }
 
         &.text {
-            img {
+            img,
+            figure {
                 width: 100%;
                 height: auto;
-                margin-bottom: @line-height-computed / 2;
+                margin-bottom: @line-height-computed;
             }
 
             .text-wrapper {
