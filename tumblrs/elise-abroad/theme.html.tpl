@@ -91,7 +91,7 @@
                     <meta property="og:image" content="{PhotoURL-500}"/>
                 {/block:Photo}
                 {block:Photoset}
-                    <meta property="og:image" content="{{ S3_BASE_URL }}/img/{{ slug }}/og_image.png"/> 
+                    <meta property="og:image" content="{{ S3_BASE_URL }}/img/{{ slug }}/og_image.png"/>
                 {/block:Photoset}
                 {block:Quote}
                     <meta property="og:image" content="{{ S3_BASE_URL }}/img/{{ slug }}/og_image.png"/>
@@ -174,7 +174,7 @@
                     {block:Posts}
                         <article class="post {TagsAsClasses} {block:Text}text{/block:Text}{block:Quote}quote{/block:Quote}{block:Link}link{/block:Link}{block:Video}video{/block:Video}{block:Audio}audio{/block:Audio}{block:Photo}photo{/block:Photo}{block:Photoset}photoset{/block:Photoset}{block:Panorama}panorama{/block:Panorama}{block:Chat}chat{/block:Chat}{block:Answer}answer{/block:Answer}">
 
-                            
+
                                 {block:IndexPage}
                                 <div class="post-header">
                                         {block:NewDayDate}
@@ -205,7 +205,10 @@
                                         {/block:Quote}
                                         {block:Link}
                                             <h3><a href="{URL}" {Target}>{Name} <i class="icon icon-external-link"></i></a></h3>
-                                            <div class="caption">{block:Description}{Description}{/block:Description}</div>
+                                            <div class="caption">
+                                                <blockquote>{block:Excerpt}{Excerpt}{/block:Excerpt}</blockquote>
+                                                {block:Description}{Description}{/block:Description}
+                                            </div>
                                         {/block:Link}
                                         {block:Video}
                                             <div class="media-wrapper video-wrapper">
@@ -273,8 +276,8 @@
                                     </div><!-- end .post-content-wrapper -->
                                 </div><!-- end .post-content -->
 
-                            
-                       
+
+
 
                             {block:PermalinkPage}
                                 {block:PostNotes}

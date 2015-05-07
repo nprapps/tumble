@@ -142,7 +142,7 @@
                             {block:Video}
                             <div class="video">
                                 <div class="video-container">
-                                    {VideoEmbed-700}
+                                    {Video-700}
                                 </div>
                                 {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
                             </div>
