@@ -122,9 +122,9 @@ def download_copy():
     """
     Downloads a Google Doc as an .xls file.
     """
-    base_url = 'https://docs.google.com/spreadsheet/pub?key=%s&output=xls'
+    base_url = 'https://docs.google.com/spreadsheets/d/%s/pub?output=xlsx'
     doc_url = base_url % app_config.COPY_GOOGLE_DOC_KEY
-    local('curl -o data/copy.xls "%s"' % doc_url)
+    local('curl -o data/copy.xlsx "%s"' % doc_url)
 
 def update_copy():
     """

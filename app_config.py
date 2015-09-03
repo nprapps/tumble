@@ -81,7 +81,8 @@ LOG_PATH = '/var/log/%s.log' % PROJECT_FILENAME
 """
 COPY EDITING
 """
-COPY_GOOGLE_DOC_KEY = '0AjWpFWKpoFHqdHYtS1lnWjZqTlBPbXFmcDYwZ1BNbGc'
+COPY_GOOGLE_DOC_KEY = '1Ez-ttHoLvD8bNrlhh-kSvrDWNlgxBpLSHkEBntilMhY'
+COPY_PATH = 'data/copy.xlsx'
 
 """
 SHARING

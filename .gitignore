@@ -4,5 +4,6 @@ node_modules/*
 tumblrs/*/*.css
 tumblrs/*/*.html
 data/copy.xls
+data/copy.xlsx
 .DS_Store
 .gzip

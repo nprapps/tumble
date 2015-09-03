@@ -122,8 +122,8 @@ def _render_tumblr_theme(slug):
 
     # Loop over the copy in the sheet named for the slug.
     # Append it like it's a dict.
-    for item in copytext.Copy()[slug]:
-        context['copy'][item.key] = item.value
+    for item in copytext.Copy(app_config.COPY_PATH)[slug]:
+        context['copy'][item['key']] = item['value']
 
     # Open the theme's file.
     with open('tumblrs/%s/theme.html.tpl' % slug, 'r') as readfile:
@@ -181,7 +181,7 @@ def _app_config_js():
 # Render copytext
 @app.route('/js/copy.js')
 def _copy_js():
-    copy = 'window.COPY = ' + copytext.Copy().json()
+    copy = 'window.COPY = ' + copytext.Copy(app_config.COPY_PATH).json()
 
     return copy, 200, {'Content-Type': 'application/javascript'}
 

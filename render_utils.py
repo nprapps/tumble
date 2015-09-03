@@ -161,7 +161,7 @@ def make_context():
     """
     context = flatten_app_config()
 
-    context['COPY'] = copytext.Copy()
+    context['COPY'] = copytext.Copy(app_config.COPY_PATH)
     context['JS'] = JavascriptIncluder()
     context['CSS'] = CSSIncluder()
 
