@@ -195,10 +195,18 @@
                                 {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
                             {/block:Video}
                             {block:Audio}
+                                <div class="audio-wrapper">
                                 {block:AlbumArt}<img src="{AlbumArtURL}" alt="">{/block:AlbumArt}
                                 {AudioPlayerGrey}
                                 {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+                                </div>
                             {/block:Audio}
+                            {block:AudioEmbed}
+                                <div class="audio-wrapper">
+                                {AudioEmbed-640}
+                                {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+                                </div>
+                            {/block:AudioEmbed}
                             {block:Photo}
                                     {LinkOpenTag}<img src="{PhotoURL-HighRes}" class="img-responsive" alt="{PhotoAlt}"/>{LinkCloseTag}
                                     {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}

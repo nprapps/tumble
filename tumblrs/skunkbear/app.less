@@ -204,6 +204,8 @@ h1,h2,h3,h4,h5,h6 {
     margin-top: -25px;
     margin-bottom: 25px;
     clear: both;
+    font-size: 13px;
+    color: #999;
 }
 
 #post-wrap {
@@ -429,11 +431,16 @@ h1,h2,h3,h4,h5,h6 {
         }
 
         &.audio {
-            iframe {
-                .make-md-column(12);
-                margin-bottom: @line-height-computed;
-                width: 100%;
-                height: 88px;
+            .audio-wrapper {
+                iframe {
+                    .make-md-column(12);
+                    margin-bottom: @line-height-computed;
+                    width: 100%;
+                    height: 88px;
+                    &.soundcloud_audio_player {
+                        height: 640px;
+                    }
+                }
             }
         }
 
