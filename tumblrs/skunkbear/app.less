@@ -199,15 +199,6 @@ h1,h2,h3,h4,h5,h6 {
 
 }
 
-.caption {
-    text-align: right;
-    margin-top: -25px;
-    margin-bottom: 25px;
-    clear: both;
-    font-size: 13px;
-    color: #999;
-}
-
 #post-wrap {
     .make-sm-column(10);
     max-width: 760px;
@@ -276,6 +267,17 @@ h1,h2,h3,h4,h5,h6 {
 
         .video-container {
             margin-bottom: @line-height-computed;
+        }
+
+        .photo-wrapper {
+            .caption {
+                text-align: right;
+                margin-top: -25px;
+                margin-bottom: 25px;
+                clear: both;
+                font-size: 13px;
+                color: #999;
+            }
         }
 
         @media screen and (max-width: @screen-xs-max){
@@ -440,9 +442,6 @@ h1,h2,h3,h4,h5,h6 {
                     &.soundcloud_audio_player {
                         height: 640px;
                     }
-                }
-                .caption {
-                    text-align: left;
                 }
             }
         }

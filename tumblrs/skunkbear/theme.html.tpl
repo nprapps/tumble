@@ -205,14 +205,16 @@
                                 </div>
                             {/block:Audio}
                             {block:Photo}
-                                    {LinkOpenTag}<img src="{PhotoURL-HighRes}" class="img-responsive" alt="{PhotoAlt}"/>{LinkCloseTag}
-                                    {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+                                {LinkOpenTag}<img src="{PhotoURL-HighRes}" class="img-responsive" alt="{PhotoAlt}"/>{LinkCloseTag}
+                                {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
                             {/block:Photo}
 
                             {block:Photoset}
                                 {block:Photos}
-                                    {LinkOpenTag}<img src="{PhotoURL-1280}" width="{PhotoWidth-1280}"height="{PhotoHeight-1280}" />{LinkCloseTag}
-                                    {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+                                    <div class="photo-wrapper">
+                                        {LinkOpenTag}<img src="{PhotoURL-1280}" width="{PhotoWidth-1280}"height="{PhotoHeight-1280}" />{LinkCloseTag}
+                                        {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+                                    </div>
                                 {/block:Photos}
                                 {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
                             {/block:Photoset}
