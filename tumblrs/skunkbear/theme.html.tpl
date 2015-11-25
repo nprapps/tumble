@@ -324,6 +324,12 @@
         {{ static(file_path='jquery.fitvids.js') }}
         {{ static(file_path='app.js') }}
 
+        <script type="text/javascript">
+          $(document).ready(function() {
+              $('.post').fitVids({ customSelector: "iframe[src^='//player.vimeo.com'], iframe[src^='//www.youtube.com']"});
+          });
+        </script>
+
         {block:IfUseEndlessScrolling}
         <script type="text/javascript">
             var Tumblelog = {};
@@ -462,7 +468,7 @@
                         // Insert posts and update counters
                         $('#posts').append('<div class="page' + _current_page + '">' + new_posts_html + '</div>');
                         sizeVideoContainers(new_post_div);
-                        $(new_post_div).fitVids({ customSelector: "video"});
+                        $(new_post_div).fitVids({ customSelector: "iframe[src^='//player.vimeo.com'], iframe[src^='//www.youtube.com']"});
 
                         _posts_loaded = $new_posts.find('article.post').length;
 
