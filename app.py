@@ -151,7 +151,7 @@ def _less(slug, filename):
         abort(404)
 
     # Call lessc and compile this file to CSS.
-    os.system('node_modules/bin/lessc %s %s' % (lessfile, lessfile + '.css'))
+    os.system('node_modules/less/bin/lessc %s %s' % (lessfile, lessfile + '.css'))
 
     # Read the compiled CSS file.
     with open(lessfile + '.css', 'rb') as readfile:
