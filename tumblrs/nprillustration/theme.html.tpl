@@ -142,7 +142,6 @@
                         {block:Pages}
                             <li><a href="{URL}">{Label}</a></li>
                         {/block:Pages}
-                            <li><a href="https://www.youtube.com/channel/UCjHGnyIipP8gNrecyb9YcZA">YouTube</a></li>
                             <li><a href="/archive/">Archive</a></li>
                             <li><a href="/ask/">Questions?</a></li>
                         </ul>
