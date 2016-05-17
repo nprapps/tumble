@@ -189,8 +189,7 @@ body {
     }
 
     h3 {
-        margin: 0 0 @line-height-computed;
-        font-size: @font-size-huge;
+        font-size: @font-size-huger;
         text-align: center;
         text-transform: uppercase;
         letter-spacing: 0.3rem;
@@ -212,6 +211,14 @@ body {
                 text-decoration: none;
             }
         }
+    }
+
+    h4 {
+        margin: 0 0 @line-height-computed;
+        font-size: @font-size-huge;
+        text-align: center;
+        font-family: @font-family-condensed;
+        color: @johns3;
     }
 
     .description {
@@ -667,7 +674,12 @@ body > nav {
                 list-style: none;
 
                 .person {
+                    font-family: @font-family-condensed;
                     font-weight: bold;
+                    text-transform: uppercase;
+                }
+                &:not(:last-child) {
+                    margin-bottom: 10px;
                 }
             }
         }
@@ -824,15 +836,12 @@ body > nav {
                 font-weight: 400;
 
                 a {
-                    color: #fff;
-                    background: @johns1;
+                    color: black;
+                    font-family: @font-family-sans-serif;
                     line-height: 1.3;
-                    padding: 0 0.25rem;
 
                     &:hover {
-                        background: @johns1;
-                        color: #fff;
-                        text-decoration: none;
+                        color: @johns1;
                     }
                 }
 

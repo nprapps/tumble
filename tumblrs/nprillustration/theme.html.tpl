@@ -178,9 +178,9 @@
                                 {block:IndexPage}
                                 <div class="post-header">
                                         {block:NewDayDate}
-                                            <p class="pubdate"><a href="{Permalink}" class="permalink">{block:Date}{ShortMonth}. {DayOfMonth}, {Year} {12Hour}:{Minutes} {AmPm}{/block:Date}</a></p>
+                                            <p class="pubdate"><a href="{Permalink}" class="permalink">{block:Date}{Month} {DayOfMonth}, {Year} {12Hour}:{Minutes} {AmPm}{/block:Date}</a></p>
                                         {/block:NewDayDate}
-                                        {block:SameDayDate}<p class="pubdate"><a href="{Permalink}" class="permalink">{block:Date}{12Hour}:{Minutes} {AmPm}{/block:Date}</a></p>{/block:SameDayDate}
+                                        {block:SameDayDate}<p class="pubdate"><a href="{Permalink}" class="permalink">{block:Date}{Month} {DayOfMonth}, {Year} {12Hour}:{Minutes} {AmPm}{/block:Date}</a></p>{/block:SameDayDate}
                                 </div>
                                 {/block:IndexPage}
 
@@ -241,7 +241,7 @@
                                         {/block:Panorama}
 
                                         {block:Chat}
-                                            {block:Title}<h3>{Title}</h3>{/block:Title}
+                                            {block:Title}<h3><a href="{Permalink}" class="permalink">{Title}</a></h3>{/block:Title}
                                             <ul class="list-unstyled conversation">
                                                 {block:Lines}
                                                 <li class="line {Alt}">
