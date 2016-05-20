@@ -48,13 +48,14 @@ def static_processor():
                 'js': '<script type="text/javascript">%s</script>',
                 'css': '<style type="text/css">%s</style>',
                 'png': '<img class="%s" alt="%s" src="data:image/png;base64,%s" />',
+                'gif': '<img class="%s" alt="%s" src="data:image/gif;base64,%s" />',
                 'svg': '<img class="%s" alt="%s" src="data:image/svg+xml;base64,%s" />'
             }
 
             # Open the file as binary.
             with open(file_path, "rb") as readfile:
 
-                if extension == 'png' or extension == 'svg':
+                if extension == 'png' or extension == 'svg' or extension == 'gif':
 
                     # If it's a PNG, base64 encode it.
                     output = base64.b64encode(readfile.read())
@@ -73,7 +74,7 @@ def static_processor():
             strings = output
 
             # If it's an image, it needs classes and alt.
-            if extension == 'png' or extension == 'svg':
+            if extension == 'png' or extension == 'svg' or extension == 'gif':
 
                 strings = (classes, alt, output)
 

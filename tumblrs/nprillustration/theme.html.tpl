@@ -12,8 +12,12 @@
         <meta name="google-site-verification" content="244PFHlcVC8LNFl_V3wRuaGc0ifMOmT-hznl0xEk0bw" />
 
         <meta name="font:Body" content="'Helvetica Neue', Helvetica, Arial, sans-serif"/>
+        <meta name="image:Background" content="{HeaderImage}">
+        <meta name="color:Heading text" content="{TitleColor}">
+        <meta name="color:Background" content="{AccentColor}">
 
         <!-- Appearance option -->
+        <meta name="if:Use black NPR logo" content="0"/>
         <meta name="if:Two column posts" content="1"/>
         <meta name="if:Show blog title" content="1"/>
         <meta name="if:Show blog description" content="1"/>
@@ -53,6 +57,16 @@
         <!-- Project CSS -->
         {{ static(file_path='app.less.css') }}
 
+        <style>
+            .blog-header {
+                background-image: url('{image:Background}');
+            }
+
+            .blog-header h3 a {
+                background-color: {color:Background};
+                color: {color:Heading text};
+            }
+        </style>
         <!-- GOOGLE ANALYTICS -->
          <script>
              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -124,8 +138,8 @@
                 <div class="row">
                     <div class="blog-title">
                         <h2 class="npr-logo"><a href="http://npr.org">{{ static(file_path='npr-logo.svg') }}</a></h2>
-<!--                         <h1><a href="/">{{ static(file_path='logo.svg', classes='img-responsive') }}</a></h1> -->
                         <h3><a href="/">{Title}</a></h3>
+                        <!-- <h1>{{ static(file_path='drawmazing_text.gif', classes='img-responsive', alt="It's Drawmazing!") }}</h1> -->
                         <p class="description">{Description}</p>
                     </div>
                 </div>
