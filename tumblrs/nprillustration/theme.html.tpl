@@ -15,10 +15,7 @@
         <meta name="text:Illustration credit" content="">
         <meta name="color:Heading text" content="{TitleColor}">
         <meta name="color:Background" content="{AccentColor}">
-
-        <!-- Appearance option -->
         <meta name="if:Use black NPR logo" content="0"/>
-        <meta name="if:Show copyright in footer" content="0"/>
 
         <link rel="shortcut icon" href="http://www.npr.org/favicon.ico" />
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
