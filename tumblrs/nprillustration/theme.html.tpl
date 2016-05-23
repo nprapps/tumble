@@ -53,8 +53,12 @@
                 background-image: url('{image:Background}');
             }
 
-            .blog-header h3 a {
+            .blog-title {
                 background-color: {color:Background};
+                padding: 5px 0;
+            }
+
+            .blog-title h3 a {
                 color: {color:Heading text};
             }
             .fixed-nav h1 a {
