@@ -18,16 +18,7 @@
 
         <!-- Appearance option -->
         <meta name="if:Use black NPR logo" content="0"/>
-        <meta name="if:Two column posts" content="1"/>
-        <meta name="if:Show blog title" content="1"/>
-        <meta name="if:Show blog description" content="1"/>
-        <meta name="if:Show profile photo" content="0"/>
-        <meta name="if:Use endless scrolling" content="1"/>
-        <meta name="if:Use larger font for quotes" content="0"/>
-        <meta name="if:Show image shadows" content="1"/>
-        <meta name="if:Show post notes" content="1"/>
         <meta name="if:Show copyright in footer" content="0"/>
-        <meta name="text:Disqus Shortname" content="" />
 
         <link rel="shortcut icon" href="http://www.npr.org/favicon.ico" />
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
@@ -66,6 +57,13 @@
                 background-color: {color:Background};
                 color: {color:Heading text};
             }
+            .fixed-nav h1 a {
+                color: {color:Heading text};
+            }
+            .fixed-nav {
+                background-color: {color:Background};
+            }
+
         </style>
         <!-- GOOGLE ANALYTICS -->
          <script>
@@ -137,7 +135,13 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="blog-title">
-                        <h2 class="npr-logo"><a href="http://npr.org">{{ static(file_path='npr-logo.svg') }}</a></h2>
+                        <h2 class="npr-logo"><a href="http://npr.org">
+                        {block:IfUseBlackNPRLogo}
+                        {{ static(file_path='npr-logo-black.svg') }}
+                        {/block:IfUseBlackNPRLogo}{block:IfNotUseBlackNPRLogo}
+                        {{ static(file_path='npr-logo-white.svg') }}
+                        {/block:IfNotUseBlackNPRLogo}
+                        </a></h2>
                         <h3><a href="/">{Title}</a></h3>
                         <!-- <h1>{{ static(file_path='drawmazing_text.gif', classes='img-responsive', alt="It's Drawmazing!") }}</h1> -->
                         <p class="description">{Description}</p>
@@ -167,7 +171,12 @@
 
         <div class="fixed-nav">
             <div class="nav-wrapper">
-                <h2 class="npr-logo"><a href="http://npr.org">{{ static(file_path='npr-logo.svg') }}</a></h2>
+                <h2 class="npr-logo"><a href="http://npr.org">
+                        {block:IfUseBlackNPRLogo}
+                        {{ static(file_path='npr-logo-black.svg') }}
+                        {/block:IfUseBlackNPRLogo}{block:IfNotUseBlackNPRLogo}
+                        {{ static(file_path='npr-logo-white.svg') }}
+                        {/block:IfNotUseBlackNPRLogo}</a></h2>
                 <h1><a href="/">{Title}</a></h1>
             </div>
         </div>
