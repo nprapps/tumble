@@ -150,7 +150,7 @@ body {
 }
 
 .npr-logo img {
-    height: 24px;
+    height: 18px;
     margin-bottom: 0;
     @media @screen-small-above {
          height: 24px;
@@ -166,15 +166,16 @@ body {
     background: @johns2;
     position: relative;
     z-index: 150;
-    padding-top: 20px;
+    padding-top: 150px;
     text-align: center;
     background-size: cover;
 
 
     .blog-title {
         .make-sm-column(12);
-        .make-md-column(8);
-        .make-md-column-offset(2);
+        .make-md-column(6);
+        .make-md-column-offset(3);
+        padding: 5px 0 20px;
     }
 
     h1 {
@@ -197,7 +198,7 @@ body {
     }
 
     h3 {
-        font-size: 1.5rem;
+        font-size: 1rem;
         text-align: center;
         text-transform: uppercase;
         letter-spacing: 0.3rem;
@@ -221,6 +222,10 @@ body {
 
             padding: 5px 20px;
         }
+        @media screen and (min-width: 651px){
+            font-size: 1.5rem;
+        }
+
     }
 
     h4 {
@@ -248,6 +253,23 @@ body {
             color: @johns5;
             opacity: 0.8;
             margin-left: 20px;
+        }
+    }
+
+    .credit {
+        position: absolute;
+        right: 8px;
+        bottom: 65px;
+        color: #999;
+        font-family: @font-family-sans-serif;
+        font-size: 10px;
+
+        @media screen and (min-width: 651px) {
+            bottom: 76px;
+            font-size: 12px;
+        }
+        @media @screen-medium-above{
+            bottom: -14px;
         }
     }
 

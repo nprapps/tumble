@@ -11,8 +11,8 @@
         <meta name="google-site-verification" content="iihv-RXkz1bDb-QKTITQm_p77vy7yNdIO9BUZsvAU2A" />
         <meta name="google-site-verification" content="244PFHlcVC8LNFl_V3wRuaGc0ifMOmT-hznl0xEk0bw" />
 
-        <meta name="font:Body" content="'Helvetica Neue', Helvetica, Arial, sans-serif"/>
         <meta name="image:Background" content="{HeaderImage}">
+        <meta name="text:Illustration credit" content="">
         <meta name="color:Heading text" content="{TitleColor}">
         <meta name="color:Background" content="{AccentColor}">
 
@@ -55,7 +55,6 @@
 
             .blog-title {
                 background-color: {color:Background};
-                padding: 5px 0;
             }
 
             .blog-title h3 a {
@@ -147,11 +146,10 @@
                         {/block:IfNotUseBlackNPRLogo}
                         </a></h2>
                         <h3><a href="/">{Title}</a></h3>
-                        <!-- <h1>{{ static(file_path='drawmazing_text.gif', classes='img-responsive', alt="It's Drawmazing!") }}</h1> -->
-                        <p class="description">{Description}</p>
                     </div>
                 </div>
             </div>
+            <p class="credit">{text:Illustration credit}</p>
         </header>
         {/block:IndexPage}
 
