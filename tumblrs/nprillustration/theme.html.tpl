@@ -51,7 +51,6 @@
             }
 
             .blog-title {
-                background-color: {color:Background};
             }
 
             .blog-title h3 a {
@@ -65,6 +64,7 @@
             }
 
         </style>
+
         <!-- GOOGLE ANALYTICS -->
          <script>
              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -143,6 +143,7 @@
                         {/block:IfNotUseBlackNPRLogo}
                         </a></h2>
                         <h3><a href="/">{Title}</a></h3>
+                        <!-- <h1>{{ static(file_path='drawmazing_text.gif') }}</h1> -->
                     </div>
                 </div>
             </div>
@@ -171,11 +172,11 @@
         <div class="fixed-nav">
             <div class="nav-wrapper">
                 <h2 class="npr-logo"><a href="http://npr.org">
-                        {block:IfUseBlackNPRLogo}
-                        {{ static(file_path='npr-logo-black.svg') }}
-                        {/block:IfUseBlackNPRLogo}{block:IfNotUseBlackNPRLogo}
-                        {{ static(file_path='npr-logo-white.svg') }}
-                        {/block:IfNotUseBlackNPRLogo}</a></h2>
+                    {block:IfUseBlackNPRLogo}
+                    {{ static(file_path='npr-logo-black.svg') }}
+                    {/block:IfUseBlackNPRLogo}{block:IfNotUseBlackNPRLogo}
+                    {{ static(file_path='npr-logo-white.svg') }}
+                    {/block:IfNotUseBlackNPRLogo}</a></h2>
                 <h1><a href="/">{Title}</a></h1>
             </div>
         </div>
@@ -337,6 +338,16 @@
             </div>
         </div> <!-- #container -->
 
+        <script type="text/javascript">
+            var hexCode = '{color:Background}';
+            hexCode = hexCode.replace('#', '');
+            var r = parseInt(hexCode.substring(0,2), 16);
+            var g = parseInt(hexCode.substring(2,4), 16);
+            var b = parseInt(hexCode.substring(4,6), 16);
+            var result = 'rgba('+r.toString()+','+g.toString()+','+b.toString()+',0.8)';
+
+            document.querySelector('.blog-title').style.backgroundColor = result;
+        </script>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         {{ static(file_path='jquery.fitvids.js') }}
