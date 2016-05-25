@@ -217,7 +217,8 @@ body {
             // }
 
             &:hover {
-                text-decoration: underline;
+                opacity: 0.7;
+                text-decoration: none;
             }
 
             padding: 5px 20px;
@@ -259,17 +260,13 @@ body {
     .credit {
         position: absolute;
         right: 8px;
-        bottom: 105px;
+        bottom: -15px;
         color: #999;
         font-family: @font-family-sans-serif;
         font-size: 10px;
 
         @media screen and (min-width: 651px) {
-            bottom: 135px;
             font-size: 12px;
-        }
-        @media @screen-medium-above{
-            bottom: -14px;
         }
     }
 
@@ -339,10 +336,6 @@ body > nav {
             font-family: @font-family-sans-serif;
             text-transform: uppercase;
             text-decoration: none;
-
-            &:hover {
-                color: @johns5;
-            }
         }
     }
 }
@@ -355,7 +348,6 @@ body > nav {
     left: 0;
     height: 40px;
     overflow: hidden;
-    background: @johns2;
     content: ' ';
     z-index: 100;
     width: 100%;
@@ -874,7 +866,7 @@ body > nav {
                     line-height: 1.3;
 
                     &:hover {
-                        color: @johns1;
+                        color: @brand-primary;
                     }
                 }
 
@@ -1175,10 +1167,6 @@ body > nav {
                 .right {
                     right: 0;
                 }
-
-                a {
-                    color: @johns5;
-                }
             }
 
             .count {
@@ -1190,13 +1178,6 @@ body > nav {
                 list-style: none;
             }
 
-    }
-
-    .pagination-index {
-        a {
-            color: @johns5;
-            -webkit-font-smoothing: antialiased;
-        }
     }
 }
 
@@ -1228,7 +1209,6 @@ body > nav {
 
     .tag-header:after {
         content:"";
-        background: @johns5;
         position: absolute;
         bottom: 0;
         left: 39%;

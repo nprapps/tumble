@@ -63,6 +63,14 @@
                 background-color: {color:Background};
             }
 
+            #header-nav ul li a:hover {
+                color: {color:Background};
+            }
+
+            #post-wrap .post .pagination-index a, #post-wrap .post .pagination-index a:hover {
+                background-color: {color:Background};
+                color: {color:Heading text};
+            }
         </style>
 
         <!-- GOOGLE ANALYTICS -->
