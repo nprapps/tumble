@@ -50,9 +50,6 @@
                 background-image: url('{image:Background}');
             }
 
-            .blog-title {
-            }
-
             .blog-title h3 a {
                 color: {color:Heading text};
             }
@@ -169,7 +166,7 @@
                             <li><a href="{URL}">{Label}</a></li>
                         {/block:Pages}
                             <li><a href="/archive/">Archive</a></li>
-                            <li><a href="/ask/">Questions?</a></li>
+                            <li><a href="mailto:illustration@npr.org">Show Us Your Work</a></li>
                         </ul>
                     </div>
                 </div>
