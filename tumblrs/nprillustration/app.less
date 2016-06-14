@@ -160,7 +160,7 @@ body {
 .blog-header {
     background: @johns2;
     position: relative;
-    z-index: 150;
+    z-index: 99;
     padding-top: 150px;
     text-align: center;
     background-size: cover;
@@ -342,7 +342,7 @@ body > nav {
     height: 40px;
     overflow: hidden;
     content: ' ';
-    z-index: 100;
+    z-index: 98;
     width: 100%;
     padding: 0 15px;
     font-family: @font-family-sans-serif;
@@ -350,7 +350,7 @@ body > nav {
     @media screen and (max-width: 650px){
         .permalink-page & {
             position: absolute;
-            top: 0;
+            top: 43px;
             margin-bottom: 60px;
         }
 
@@ -1261,15 +1261,20 @@ body > nav {
         }
     }
 }
-
 // Center logged-in tumblr controls in fixed nav bar
 #tumblr_controls[height="26"] {
     margin-top: 5px;
 }
 
 @media screen and (max-width: 650px){
-    #tumblr_controls {
-        position: absolute;
+
+    body.permalink-page {
+        padding-top: 43px;
+    }
+
+    .tmblr-iframe {
+        z-index: 100 !important;
+        padding-right: 0 !important;
 
         .permalink-page & {
             top: 2px;
