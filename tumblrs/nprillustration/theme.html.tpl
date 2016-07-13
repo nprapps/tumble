@@ -16,6 +16,7 @@
         <meta name="color:Heading text" content="{TitleColor}">
         <meta name="color:Background" content="{AccentColor}">
         <meta name="if:Use black NPR logo" content="0"/>
+        <meta name="if:Use endless scrolling" content="1"/>
 
         <link rel="shortcut icon" href="http://www.npr.org/favicon.ico" />
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
@@ -557,8 +558,5 @@
                     loadChartbeat : function() { oldonload(); loadChartbeat(); };
             })();
         </script>
-
-
-        {block:IfUseEndlessScrolling}<script type="text/javascript" src="http://assets.tumblr.com/javascript/tumblelog.js"></script>{/block:IfUseEndlessScrolling}
     </body>
 </html>
