@@ -131,7 +131,7 @@ body {
 
 .container-fluid {
     .center-block;
-    max-width: 1400px;
+    max-width: 1200px;
     padding-left: 15px;
     padding-right: 15px;
 
@@ -664,6 +664,7 @@ body > nav {
                     font-size: @font-size-base * 2;
                     font-family: @font-family-sans-serif;
                     font-style: normal;
+                    font-weight: bold;
                     line-height: 1.2;
                     position: relative;
                     padding: 0;
@@ -675,12 +676,12 @@ body > nav {
                     .quote-open {
                         position: absolute;
                         top: 0;
-                        left: -0.46em;
+                        left: -0.60em;
                     }
 
                     &.long,
                     &.long p {
-                        font-size: @font-size-base * 1.5;
+                        font-size: @font-size-base * 1.3333;
 
                         @media screen and (max-width: @screen-xs-max){
                             font-size: @font-size-base * 1;
@@ -689,7 +690,7 @@ body > nav {
 
                     &.medium,
                     &.medium p {
-                        font-size: @font-size-base * 2;
+                        font-size: @font-size-base * 1.5;
 
                         @media screen and (max-width: @screen-xs-max){
                             font-size: @font-size-base * 1.5;
@@ -699,7 +700,7 @@ body > nav {
 
                     &.short,
                     &.short p {
-                        font-size: @font-size-base * 3;
+                        font-size: @font-size-base * 2;
                         line-height: 1.1;
 
                         @media screen and (max-width: @screen-xs-max){
@@ -718,16 +719,21 @@ body > nav {
                 }
 
                 @media (max-width: @screen-xs-max) {
-                    //font-size: @font-size-base * 1.5;
+                    font-size: @font-size-base * 1.5;
                 }
 
             }
 
             .source {
                 font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-                font-style: italic;
+                // font-style: italic;
                 color: @gray;
                 margin-bottom: @line-height-computed / 2;
+
+                a {
+                    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+                    font-weight: bold;
+                }
 
                 p {
                     margin-bottom: @line-height-computed / 2;
