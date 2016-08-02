@@ -286,9 +286,14 @@ body > nav {
 
         li {
             display: inline-block;
-            padding: 0.5rem 0.5rem;
-            font-size: @font-size-base * 0.875;
+            padding: 0.5rem 0.25rem;
+            font-size: @font-size-base * 0.75;
             line-height: 1.2;
+
+            @media @screen-small-above {
+                font-size: @font-size-base * 0.875;
+                padding: 0.5rem 0.5rem;
+            }
 
             &:first-child{
                 border: none;
@@ -453,7 +458,8 @@ body > nav {
     .post {
         padding-top: @line-height-computed;
         margin-bottom: 0;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-weight: 300;
 
 
         @media screen and (min-width: @screen-sm){
@@ -474,7 +480,8 @@ body > nav {
 
             p {
                 font-size: @font-size-base;
-                font-weight: normal;
+                // font-weight: normal;
+                // font-family: "HelveticaNeue-Light";
                 margin-bottom: @line-height-computed / 2;
                 line-height: @line-height-base;
             }
@@ -684,7 +691,7 @@ body > nav {
                     font-size: @font-size-base * 2;
                     font-family: @font-family-sans-serif;
                     font-style: normal;
-                    line-height: 1.1;
+                    line-height: 1.2;
                     position: relative;
                     padding: 0;
 
@@ -744,7 +751,7 @@ body > nav {
             }
 
             .source {
-                font-family: @font-family-sans-serif;
+                font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
                 font-style: italic;
                 color: @gray;
                 margin-bottom: @line-height-computed / 2;
@@ -832,7 +839,7 @@ body > nav {
                     color: #fff;
                     background: @music-hp-link-color;
                     line-height: 1.3;
-                    padding: 2sapx 0.15rem;
+                    padding: 2px 0.15rem;
                     transition: all 0.25s ease;
                     -webkit-box-decoration-break: clone;
                     -ms-box-decoration-break: clone;
@@ -1278,22 +1285,8 @@ a:hover {
 }
 
 @media screen and (max-width: 650px){
-    #tumblr_controls {
-        position: absolute;
-
-        .permalink-page & {
-            top: 2px;
-            right: 0;
-        }
-
-        .index-page & {
-            top: 2px;
-            right: 0;
-        }
+    .tmblr-iframe--controls.iframe-controls--phone-mobile, .tmblr-iframe--mobile-logged-in-controls.iframe-controls--phone-mobile{
+        z-index: 200 !important;
+        padding-right: 0 !important;
     }
-
-    body {
-        border-top: 40px solid #333;
-    }
-
 }

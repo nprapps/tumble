@@ -192,7 +192,7 @@
                                         {block:Quote}
                                             <div class="quote-wrapper">
                                                 <blockquote class="words {Length}"><span class="quote-open">&#8220;</span>{Quote}</blockquote>
-                                                {block:Source}<div class="source">{Source}</div>{/block:Source}
+                                                {block:Source}<div class="source">&mdash; {Source}</div>{/block:Source}
                                             </div>
                                         {/block:Quote}
                                         {block:Link}
@@ -512,8 +512,5 @@
                     loadChartbeat : function() { oldonload(); loadChartbeat(); };
             })();
         </script>
-
-
-        {block:IfUseEndlessScrolling}<script type="text/javascript" src="http://assets.tumblr.com/javascript/tumblelog.js"></script>{/block:IfUseEndlessScrolling}
     </body>
 </html>
