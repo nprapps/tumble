@@ -113,8 +113,6 @@
                 {/block:Answer}
             {/block:Posts}
         {/block:Permalink}
-
-
     </head>
     <body class="{block:IndexPage}index-page{/block:IndexPage}{block:PermalinkPage}permalink-page{/block:PermalinkPage}">
 
