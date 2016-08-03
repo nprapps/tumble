@@ -183,6 +183,11 @@
                                             </div>
                                         {/block:Quote}
                                         {block:Link}
+                                            {block:Thumbnail}
+                                            <div class="media-wrapper">
+                                                <a href="{URL}" {Target}><img src="{Thumbnail-HighRes}" class="img-responsive"/></a>
+                                            </div>
+                                            {/block:Thumbnail}
                                             <h3><a href="{URL}" {Target}>{Name} <i class="icon icon-external-link"></i></a></h3>
                                             <div class="caption">
                                                 <blockquote>{block:Excerpt}{Excerpt}{/block:Excerpt}</blockquote>
