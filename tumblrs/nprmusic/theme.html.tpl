@@ -37,8 +37,6 @@
              });
         </script>
 
-        {{ static(file_path='modernizr.js') }}
-
         <!-- Project CSS -->
         {{ static(file_path='app.less.css') }}
 
