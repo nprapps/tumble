@@ -108,7 +108,6 @@
                 <div class="row">
                     <div class="blog-title">
                         <h1><a href="/">{{ static(file_path='npr_music_line.svg', classes='img-responsive') }}</a></h1>
-                        <p class="description">{Description}</p>
                     </div>
                 </div>
             </div>

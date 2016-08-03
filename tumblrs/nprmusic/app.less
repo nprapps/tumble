@@ -161,7 +161,7 @@ body {
     background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(rgb(249, 126, 80)), to(rgb(240, 91, 78)));
     position: relative;
     z-index: 150;
-    padding-top: 50px;
+    padding: 80px 0;
     text-align: center;
 
     .blog-title {
@@ -171,7 +171,7 @@ body {
     }
 
     h1 {
-        margin: 0 0 @line-height-computed;
+        margin: 0; //use @line-height-computed when description is back for bottom
         text-align: center;
 
         a {
@@ -235,7 +235,7 @@ body {
     }
 
     @media screen and (min-width: 651px){
-        padding-top: 50px;
+        // padding-top: 50px;
     }
 }
 
