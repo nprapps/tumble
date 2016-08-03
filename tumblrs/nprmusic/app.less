@@ -217,7 +217,7 @@ body {
     .description {
         color: #fff;
         font-family: @font-family-condensed;
-        font-size: @font-size-base;
+        font-size: @font-size-base * 0.9;
         -webkit-font-smoothing: antialiased;
         margin-bottom: @line-height-computed;
         text-align: center;
@@ -260,8 +260,12 @@ body > nav {
         li {
             display: inline-block;
             padding: 0.5rem 0.25rem;
-            font-size: @font-size-base * 0.75;
+            font-size: @font-size-base * 0.6;
             line-height: 1.2;
+
+            @media screen and (min-width: 375px) {
+                font-size: @font-size-base * 0.7;
+            }
 
             @media @screen-small-above {
                 font-size: @font-size-base * 0.875;
@@ -720,7 +724,7 @@ body > nav {
                 }
 
                 @media (max-width: @screen-xs-max) {
-                    font-size: @font-size-base * 1.5;
+                    // font-size: @font-size-base * 1.5;
                 }
 
             }
