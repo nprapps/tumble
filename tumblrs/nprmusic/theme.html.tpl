@@ -11,19 +11,8 @@
         <meta name="google-site-verification" content="iihv-RXkz1bDb-QKTITQm_p77vy7yNdIO9BUZsvAU2A" />
         <meta name="google-site-verification" content="244PFHlcVC8LNFl_V3wRuaGc0ifMOmT-hznl0xEk0bw" />
 
-        <meta name="font:Body" content="'Helvetica Neue', Helvetica, Arial, sans-serif"/>
-
         <!-- Appearance option -->
-        <meta name="if:Two column posts" content="1"/>
-        <meta name="if:Show blog title" content="1"/>
-        <meta name="if:Show blog description" content="1"/>
-        <meta name="if:Show profile photo" content="0"/>
         <meta name="if:Use endless scrolling" content="1"/>
-        <meta name="if:Use larger font for quotes" content="0"/>
-        <meta name="if:Show image shadows" content="1"/>
-        <meta name="if:Show post notes" content="1"/>
-        <meta name="if:Show copyright in footer" content="0"/>
-        <meta name="text:Disqus Shortname" content="" />
 
         <link rel="shortcut icon" href="http://www.npr.org/favicon.ico" />
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
