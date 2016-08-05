@@ -379,13 +379,12 @@
                     }
 
                     if (_posts_loaded >= 4) {
-                        _trigger_post = _$posts.find('article.post:eq(' + ($all_posts.length - 4) + ')').get(0);
+                        _trigger_post = _$posts.find('article.post:eq(' + ($all_posts.length - 4) + ') .post-header').get(0);
                     } else if (_posts_loaded >= 3) {
                         _trigger_post = _$posts.find('article.post:eq(' + ($all_posts.length - 3) + ')').get(0);
                     } else {
                         _trigger_post = _$posts.find('article.post:last').get(0);
                     }
-
                 };
 
                 function in_viewport (el) {
