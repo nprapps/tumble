@@ -358,15 +358,15 @@ def bootstrap():
     If they don't exist, create/copy the files for this tumblog.
     """
     update_copy()
-    for row in copytext.Copy()['tumblr-index']:
-        local('mkdir -p tumblrs/%s' % row.value)
-        local('mkdir -p www/img/%s' % row.value)
+    for row in copytext.Copy('data/copy.xlsx')['tumblr-index']:
+        local('mkdir -p tumblrs/%s' % row['value'])
+        local('mkdir -p www/img/%s' % row['value'])
 
         try:
-            with open('tumblrs/img/%s/og_img.png' % row.value):
+            with open('tumblrs/img/%s/og_img.png' % row['value']):
                 pass
         except IOError:
-            local('cp www/img/og_image.png www/img/%s/og_image.png' % row.value)
+            local('cp www/img/og_image.png www/img/%s/og_image.png' % row['value'])
 
         for path, filename in [
             ('www/js', 'app.js'),
@@ -376,10 +376,10 @@ def bootstrap():
             ('templates', 'theme.html.tpl'),
         ]:
             try:
-                with open('tumblrs/%s/%s' % (row.value, filename)):
+                with open('tumblrs/%s/%s' % (row['value'], filename)):
                     pass
             except IOError:
-                local('cp %s/%s tumblrs/%s/%s' % (path, filename, row.value, filename))
+                local('cp %s/%s tumblrs/%s/%s' % (path, filename, row['value'], filename))
 
 """
 Destruction
