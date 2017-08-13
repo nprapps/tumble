@@ -152,7 +152,7 @@ def _less(slug, filename):
         abort(404)
 
     # Call lessc and compile this file to CSS.
-    os.system('node_modules/less/bin/lessc %s %s' % (lessfile, lessfile + '.css'))
+    os.system('node_modules/bin/lessc %s %s' % (lessfile, lessfile + '.css'))
 
     # Read the compiled CSS file.
     with open(lessfile + '.css', 'rb') as readfile:
@@ -165,7 +165,7 @@ def _less(slug, filename):
 # Render JST templates on-demand
 @app.route('/js/templates.js')
 def _templates_js():
-    r = envoy.run('node_modules/.bin/jst --template underscore jst')
+    r = envoy.run('node_modules/bin/jst --template underscore jst')
 
     return r.std_out, 200, {'Content-Type': 'application/javascript'}
 

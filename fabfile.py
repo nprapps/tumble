@@ -110,7 +110,7 @@ def less(initial_path=None):
         name = os.path.splitext(filename)[0]
         out_path = '%s.css' % path
 
-        local('node_modules/less/bin/lessc %s %s' % (path, out_path))
+        local('node_modules/bin/lessc %s %s' % (path, out_path))
 
 def jst():
     """
