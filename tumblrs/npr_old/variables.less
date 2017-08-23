@@ -9,7 +9,7 @@
 // Grays
 // -------------------------
 
-@white: 				 #fff;
+@white:                  #fff;
 @gray-darker:            lighten(#000, 13.5%); // #222
 @gray-dark:              lighten(#000, 20%);   // #333
 @gray:                   lighten(#000, 33.5%); // #555
@@ -19,7 +19,7 @@
 // Brand colors
 // -------------------------
 
-@brand-primary:         #568fcb;
+@brand-primary:         @deepBlue;
 @brand-success:         #5cb85c;
 @brand-warning:         #f0ad4e;
 @brand-danger:          #d9534f;
@@ -33,6 +33,13 @@
 @blue: #0DB3E9;
 @green: #A4D548;
 
+@johns1: #4B6892;
+@johns2: #9ef2ff;
+@johns3: #FED43F;
+@johns4: #F6BD28;
+@johns5: #BE4C46;
+
+
 // NPR colors
 // -------------------------
 @inlineLink: #00A1AC;
@@ -45,56 +52,10 @@
 @darkHover: #4065a2;
 @deepBlue: #7598C9;
 
-//color palette
-@primary-control: #6d8ac4;
-@deep-blue: #7598c9;
-@blue-dark: #24243A; //#1E2E3A;
-@blue-darker: #1F1F31; //#141D24;
-
-// music palette
-@music-dark: #444d58;
-@music-medium: #e6ebf2;
-@music-light: #dbe0e6;
-@music-red: #bc453e;
-@music-red-dark: #6f3533;
-@music-red-light: #f05b4e;
-
-// music events
-@music-event-dark: #2e333c;
-@music-event-darker: #16191e;
-@music-event-txt-light: #cfd3de;
-@music-event-txt-dark: #8b9094;
-@music-event-light-button-blue: @deep-blue;
-@music-event-light-button: @deep-blue;
-@music-event-light-highlight-txt: @primary-control;
-@music-event-light-border: #252525;
-
-// music homepage
-@music-hp-light: #e7e4dd;
-@music-hp-dark: #3A3A65; //#19262f;
-@music-hp-link-color: #568fcb;
-@music-hp-link-color2: #4a90e2;
-@music-hp-c-t-asecondary: #8a8a8a;
-
-@yellow: #EFC637;
-@white: #fff;
-@gray-medium: #A0A0A0;
-
-@title-pink: #aa3658;
-
-
-@tag-0: #f97e50;
-@tag-1: #f97450;
-@tag-2: #f05b4e;
-@tag-3: #ce4242;
-@tag-4: #b73759;
-@tag-5: #933256;
-@tag-6: #7b2c62;
-@tag-7: #653279;
-@tag-8: #524189;
-@tag-9: #5756a5;
-@tag-10: #416ab8;
-@tag-11: #415bb8;
+//music palette
+@musicDark: #41474E;
+@musicMedium: #e6ebf2;
+@musicLight: #dbe0e6;
 
 // Scaffolding
 // -------------------------
@@ -106,7 +67,7 @@
 // -------------------------
 
 @link-color:            @brand-primary;
-@link-hover-color:      desaturate(lighten(@link-color, 15%), 40%);
+@link-hover-color:      darken(@link-color, 15%);
 
 // Typography
 // -------------------------
@@ -118,6 +79,8 @@
 @font-family-base:        @font-family-serif;
 
 @font-size-base:          1rem;
+@font-size-huger:          @font-size-base * 2.5;
+@font-size-huge:          @font-size-base * 2;
 @font-size-large:         @font-size-base * 1.25; // ~18px
 @font-size-small:         @font-size-base * 0.85; // ~12px
 

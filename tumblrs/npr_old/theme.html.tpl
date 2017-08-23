@@ -28,9 +28,9 @@
                          'Knockout 31 4r:n4'
                      ],
                      urls: [
-                         'http://s.npr.org/templates/css/fonts/GothamSSm.css',
+                         'https://secure.npr.org/templates/css/fonts/GothamSSm.css',
                          // 'http://s.npr.org/templates/css/fonts/Gotham.css',
-                         'http://s.npr.org/templates/css/fonts/Knockout.css'
+                         'https://secure.npr.org/templates/css/fonts/Knockout.css'
                      ]
                  },
                  timeout: 10000
@@ -107,26 +107,20 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="blog-title">
-                        <h1><a href="/">{{ static(file_path='npr_music_line.svg', classes='img-responsive') }}</a></h1>
+                        <h1><a href="/">{{ static(file_path='npr-home.png', classes='img-responsive') }}</a></h1>
                     </div>
-                </div>
-            </div>
-        </header>
-
-        {block:HasPages}
-        <nav>
-            <div class="container-fluid">
-                <div class="row">
-                    <div id="header-nav">
+                    <nav>
                         <ul>
                         {block:Pages}
                             <li><a href="{URL}">{Label}</a></li>
                         {/block:Pages}
                         </ul>
-                    </div>
+                    </nav>
                 </div>
             </div>
-        </nav>
+        </header>
+
+        {block:HasPages}
         {/block:HasPages}
 
 <!--         <div class="fixed-nav">

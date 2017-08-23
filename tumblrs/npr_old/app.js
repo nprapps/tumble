@@ -116,5 +116,5 @@ $(function() {
           }
     }
 
-    setInterval(updateGradient,10);
+    // setInterval(updateGradient,10);
 });
