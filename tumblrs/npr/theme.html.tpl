@@ -107,7 +107,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="blog-title">
-                        <h1><a href="/">{{ static(file_path='npr_music_line.svg', classes='img-responsive') }}</a></h1>
+                        <h1><a href="/">{{ static(file_path='npr_logo_ed.jpg', classes='img-responsive') }}</a></h1>
                     </div>
                 </div>
             </div>
@@ -129,11 +129,11 @@
         </nav>
         {/block:HasPages}
 
-<!--         <div class="fixed-nav">
+         <div class="fixed-nav">
             <div class="nav-wrapper">
-                <h2 class="npr-logo"><a href="http://npr.org/music">{{ static(file_path='npr_music_line.svg') }}</a></h2>
+                <h2 class="npr-logo"><a href="http://npr.org">{{ static(file_path='npr_logo_ed.jpg') }}</a></h2>
             </div>
-        </div> -->
+        </div> 
 
         <div id="container" class="group container-fluid">
             <div class="row">
