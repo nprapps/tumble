@@ -12,3 +12,4 @@ requests==1.1.0
 nose==1.2.1
 xlrd==0.9.0
 copytext==0.1.9
+s3cmd==2.0.0
