@@ -109,7 +109,7 @@ Create staging and production Tumblr accounts for your project in the following 
 
 *Note: The Google Spreadsheet used with this project is specified in `app_config.py` with the variable ``COPY_GOOGLE_DOC_KEY``. To use your own spreadsheet, change this value to reflect your document's key (found in the Google Docs URL after ``&key=``).*
 
-**4. Bootstrap the new Tumblog.**
+**3. Bootstrap the new Tumblog.**
 
 In the terminal, run `fab bootstrap`. This command will run through the list of projects in the `tumblr-index` sheet of the Google Spreadsheet and, for any new project, do the following things:
 
@@ -125,7 +125,7 @@ In the terminal, run `fab bootstrap`. This command will run through the list of 
 
 * Create a folder for Open Graph image files in the `www/img/` folder. (For example: `www/img/ari-whitehouse/`)
 
-**5. Start editing and previewing locally.**
+**4. Start editing and previewing locally.**
 
 The `theme.html.tpl` file in your project folder (for example, `tumblrs/ari-whitehouse/theme.html.tpl`) contains the template code for your Tumblog -- but with a mix of [Tumblr template tags](https://www.tumblr.com/docs/en/custom_themes) and [special template tags specific to this rig](#template-tags). Do not copy and paste this file directly into Tumblr.
 
@@ -143,13 +143,13 @@ If you are also making changes to the template markup, your workflow will be som
 * Edit local CSS/Javascript
 * Repeat as needed
 
-**6. Render production-ready files for the staging version of the Tumblog.**
+**5. Render production-ready files for the staging version of the Tumblog.**
 
 [Render out a version of the theme for production](#render-theme-production) and paste the result into your staging Tumblr. This will bake all images and external files added using the [static file template tags](#template-tags) into the page, so it will no longer refer to files on your local machine.
 
-**7. Add the new template to the production version of the Tumblog.**
+**6. Add the new template to the production version of the Tumblog.**
 
-Once you're ready to make this live, repeat step 6 -- but with the production version of the Tumblog.
+Once you're ready to make this live, repeat step 5 -- but with the production version of the Tumblog.
 
 If there are any external resources that could not be baked into the template (for example, an image referenced in an Open Graph image tag), be sure to deploy those to a production webserver (defined in `app_config.py`).
 
