@@ -87,6 +87,7 @@ def static_processor():
             template = {
                 'js': '<script src="%s/%s"></script>' % (app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
                 'css': '<link rel="stylesheet" href="%s/%s" />' % (app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
+                'jpg': '<img class="%s" alt="%s" src="%s/%s" />' % (classes, alt, app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
                 'png': '<img class="%s" alt="%s" src="%s/%s" />' % (classes, alt, app_config.S3_BASE_URL, file_path.replace('tumblrs/', '')),
                 'svg': '<img class="%s" alt="%s" src="%s/%s" />' % (classes, alt, app_config.S3_BASE_URL, file_path.replace('tumblrs/', ''))
             }
