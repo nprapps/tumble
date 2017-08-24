@@ -129,23 +129,20 @@ In the terminal, run `fab bootstrap`. This command will run through the list of 
 
 The `theme.html.tpl` file in your project folder (for example, `tumblrs/ari-whitehouse/theme.html.tpl`) contains the template code for your Tumblog -- but with a mix of [Tumblr template tags](https://www.tumblr.com/docs/en/custom_themes) and [special template tags specific to this rig](#template-tags). Do not copy and paste this file directly into Tumblr.
 
-Instead, [render out a version of the theme for local development](#render-theme-local-development) (with all asset links pointing to your localhost) and paste the result into Tumblr.
-
-If your changes are primarily to the CSS and Javascript, you can [run the project webserver locally](#run-the-project-locally), edit your CSS and Javascript on your own computer, and refresh the Tumblr URL to preview the changes.
-
-If you are also making changes to the template markup, your workflow will be something like this:
+Instead, [render out a version of the theme for local development](#render-theme-local-development) (with all asset links pointing to your localhost) and paste the result into Tumblr. Your workflow may be something like this:
 
 * Make changes to the `theme.html.tpl` file
 * Render out the theme for local development
 * Paste the updated code into Tumblr
-* Start up the local project webserver
+* Start up the [local project webserver](#run-the-project-locally)
 * Refresh the Tumblr URL to preview changes
 * Edit local CSS/Javascript
+* Refresh the Tumblr URL to preview changes
 * Repeat as needed
 
 **5. Render production-ready files for the staging version of the Tumblog.**
 
-[Render out a version of the theme for production](#render-theme-production) and paste the result into your staging Tumblr. This will bake all images and external files added using the [static file template tags](#template-tags) into the page, so it will no longer refer to files on your local machine.
+[Render out a version of the theme for production](#render-theme-production) and paste the result into your staging Tumblr. Any images and external files linked using the [static file template tags](#template-tags) will be baked into the page, rather than refer to files on your local machine.
 
 **6. Add the new template to the production version of the Tumblog.**
 
