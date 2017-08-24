@@ -129,7 +129,7 @@ In the terminal, run `fab bootstrap`. This command will run through the list of 
 
 The `theme.html.tpl` file in your project folder (for example, `tumblrs/ari-whitehouse/theme.html.tpl`) contains the template code for your Tumblog -- but with a mix of [Tumblr template tags](https://www.tumblr.com/docs/en/custom_themes) and [special template tags specific to this rig](#template-tags). Do not copy and paste this file directly into Tumblr.
 
-Instead, [render out a version of the theme for local development](#render-theme-local-development) (with all asset links pointing to your localhost) and paste the result into Tumblr. Your workflow may be something like this:
+Instead, [render out a version of the theme for local development](#render-theme-local-development) (with all asset links pointing to your localhost) and paste the result into your Tumblr staging account. Your workflow may be something like this:
 
 * Make changes to the `theme.html.tpl` file
 * Render out the theme for local development
